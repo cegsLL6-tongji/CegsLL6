@@ -32,9 +32,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <wpf:Temperature Grid.Column="0" Grid.Row="0" 
+            <wpf:Temperature Grid.Column="0" Grid.Row="0"
                 Component="tMC" HelpText="Measurement chamber temperature" ContentStringFormat="0.00" />
-            <wpf:Pressure Grid.Column="0" Grid.Row="1" 
+            <wpf:Pressure Grid.Column="0" Grid.Row="1"
                 Component="pMC" HelpText="Measurement chamber pressure" ContentStringFormat="0.00" />
             <Label Content="°C" Padding="1,0.5" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
         </Grid>

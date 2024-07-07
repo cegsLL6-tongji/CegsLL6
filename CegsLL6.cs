@@ -212,7 +212,7 @@ namespace AeonHacs.Components
             ProcessDictionary["Bleed IP gas through CT (no temperature control)"] = Bleed;
             ProcessDictionary["Evacuate and Freeze VTT"] = FreezeVtt;
             ProcessDictionary["Admit Dead CO2 into MC"] = AdmitDeadCO2;
-            ProcessDictionary["Purify CO2 in MC"] = CleanupCO2InMC;            
+            ProcessDictionary["Purify CO2 in MC"] = CleanupCO2InMC;
             ProcessDictionary["Discard MC gases"] = DiscardMCGases;
             ProcessDictionary["Divide sample into aliquots"] = DivideAliquots;
             ProcessDictionary["Wait for operator"] = WaitForOperator;
@@ -342,7 +342,7 @@ namespace AeonHacs.Components
         #region Process Control Parameters
 
         /// <summary>
-        /// During sample collection, close the Inlet Port when the Inlet Manifold pressure falls to this value, 
+        /// During sample collection, close the Inlet Port when the Inlet Manifold pressure falls to this value,
         /// provided that it is a number (i.e., not NaN).
         /// </summary>
         public double CollectCloseIpAtPressure => GetParameter("CollectCloseIpAtPressure");
@@ -372,7 +372,7 @@ namespace AeonHacs.Components
         public double CollectUntilCtPressureFalls => GetParameter("CollectUntilCtPressureFalls");
 
         /// <summary>
-        /// Stop collecting into the coil trap when this much time has elapsed. 
+        /// Stop collecting into the coil trap when this much time has elapsed.
         /// provided that the value is a number (i.e., not NaN).
         /// </summary>
         public double CollectUntilMinutes => GetParameter("CollectUntilMinutes");
@@ -779,7 +779,7 @@ namespace AeonHacs.Components
             //    //VTT_MC.Open();
 
             //    var list = FindAll<CpwValve>(v => v.IsOpened && !(v is RS232Valve));
-            //    list.ForEach(v => 
+            //    list.ForEach(v =>
             //    {
             //        v.CloseWait();
             //        v.OpenWait();

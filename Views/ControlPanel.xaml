@@ -6,7 +6,7 @@
         xmlns:cegs="clr-namespace:AeonHacs.Components"
         xmlns:local="clr-namespace:CegsLL6.Views"
         xmlns:wpf="http://schemas.aeonhacs.com/wpf"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         d:DesignWidth="1020"
         d:DesignHeight="450">
 

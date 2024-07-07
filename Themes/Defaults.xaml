@@ -7,5 +7,5 @@
             <wpf:Fitting Data="M0.5,12.5 h24 M12.5,0.5 v24"/>
         </VisualBrush.Visual>
     </VisualBrush>
-    
+
 </ResourceDictionary>

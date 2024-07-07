@@ -25,7 +25,7 @@
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>AeonHacs.$(AssemblyName)</PackageId>
-        <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>        
+        <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <ApplicationIcon>keg.ico</ApplicationIcon>

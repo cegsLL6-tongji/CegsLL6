@@ -10,7 +10,7 @@
     <Canvas Width="87" Height="123">
         <wpf:Chamber Canvas.Top="0" Component="Section.CT" HelpText="Coil trap section"
             Data="M0.5,63.5 h8 M26.5,63.5 h21 M43.5,50.5 v26 M59.5,63.5 h47 M63.5,63.5 v13 M89.5,63.5 v17" />
-        
+
         <wpf:Valve Canvas.Left="8" Canvas.Top="54" Component="vCTFlow" HelpText="CT flow valve" d:ValveState="Opened">
             <wpf:Restriction Orientation="Horizontal" />
         </wpf:Valve>
