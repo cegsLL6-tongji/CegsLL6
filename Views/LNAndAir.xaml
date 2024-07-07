@@ -9,8 +9,8 @@
     Background="Transparent"
     >
 
-	<StackPanel>
-		<local:LNManifold HorizontalAlignment="Center"/>
-		<local:AirManifold Margin="5" HorizontalAlignment="Center"/>
-	</StackPanel>
+    <StackPanel>
+        <local:LNManifold HorizontalAlignment="Center"/>
+        <local:AirManifold Margin="5" HorizontalAlignment="Center"/>
+    </StackPanel>
 </wpf:View>
