@@ -1,0 +1,106 @@
+﻿<wpf:View x:Class="CegsLL6.Views.VS" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:wpf="http://schemas.aeonhacs.com/wpf" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+    Background="{x:Null}"
+    >
+    <Grid>
+        <Canvas Width="344" Height="245" Visibility="Visible">
+            <!--Vacuum manifold-->
+            <wpf:Chamber Canvas.Top="18" Component="Section.VM" HelpText="Vacuum manifold"
+                Data="M5.5,69.5 h325 M9.5,0.5 v69.5 M35.5,56.5 v13.5 M61.5,56.5 v13.5 M133.5,0.5 v69.5 M326.5,0.5 v69.5 M107.5,69.5 v17 M159.5,69.5 v17 M235.5,69.5 v17 M261.5,69.5 v17 M287.5,69.5 v17 M313.5,69.5 v17" />
+
+            <!--Vacuum manifold pressure-->
+            <Canvas Canvas.Left="25" Canvas.Top="23" Width="44" Height="51" Background="Transparent"
+            wpf:View.Component="pVM" AutomationProperties.HelpText="Vacuum manifold pressure">
+                <wpf:EdwardsAimX Canvas.Bottom="0" Component="pVM_IG" HelpText="Low-pressure manometer" />
+                <wpf:Mks901P Canvas.Right="0" Canvas.Bottom="0" Component="pVM_HP" HelpText="High-pressure manometer" />
+                <wpf:Pressure Canvas.Left="22" Canvas.Bottom="29" RenderTransform="{wpf:AnchorTransform BottomCenter}" IsHitTestVisible="False"
+                    Component="pVM" ContentStringFormat="0.0e0" FontSize="16" />
+            </Canvas>
+
+            <!--Gross pressure manometer (absent on some systems)-->
+            <!--<wpf:PortPressureSensor Canvas.Left="82" Canvas.Top="72" Background="Transparent" Panel.ZIndex="-1"
+                IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Rectangle Canvas.Left="78" Canvas.Top="68" Width="19" Height="19" d:Fill="#2200FFFF" Fill="Transparent"
+                wpf:View.Component="pVM_GP" AutomationProperties.HelpText="Gross pressure manometer" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+
+            <!--Gas supplies-->
+            <Canvas Canvas.Left="225" Canvas.Top="104" Width="99" Height="95">
+                <wpf:GasSupply Canvas.Left="0" GasName="O2" HelpText="Oxygen gas supply" Valve="vO2_VM" />
+                <wpf:GasSupply Canvas.Left="26" GasName="He" HelpText="Helium gas supply" Valve="vHe_VM" FlowValve="vHeFlow" d:FlowValve="" />
+                <wpf:GasSupply Canvas.Left="52" GasName="H2" HelpText="Hydrogen gas supply" Valve="vH2_VM" FlowValve="vH2Flow" d:FlowValve=""/>
+                <wpf:GasSupply Canvas.Left="78" GasName="CO2" HelpText="Carbon dioxide gas supply" Valve="vCO2_VM" FlowValve="vCO2Flow" d:FlowValve=""/>
+            </Canvas>
+
+            <!--Vacuum system-->
+            <Canvas Canvas.Left="95" Canvas.Top="104" Width="115" Height="138">
+                <wpf:View Width="129" Height="138" Background="Transparent" Component="VacuumSystem1" HelpText="Vacuum system">
+                    <Canvas>
+                        <wpf:TurboPump Canvas.Top="33" RenderTransformOrigin="0.5,0.5" RenderTransform="{DynamicResource Flip}" IsHitTestVisible="False"/>
+                        <Rectangle Canvas.Top="33" Width="25" Height="43" d:Fill="#2200FFFF" Fill="Transparent"
+                                   AutomationProperties.HelpText="Turbo pump" />
+                        
+                        <wpf:ScrollPump Canvas.Left="45" Canvas.Top="100" IsHitTestVisible="False" />
+                        <Rectangle Canvas.Left="45" Canvas.Top="100" Width="39" Height="39" d:Fill="#2200FFFF" Fill="Transparent"
+                                   AutomationProperties.HelpText="Roughing pump" />
+                    </Canvas>
+                </wpf:View>
+                <Path Canvas.Left="8" Canvas.Top="18" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+                Data="M0.5,0.5 h8 v15 h-8 z" />
+                <Path Canvas.Left="24" Canvas.Top="57" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+                Data="M0.5,0.5 h5 v8 h-5 z" />
+                <Path Canvas.Left="60" Canvas.Top="96" Style="{DynamicResource FittingShapeStyle}" IsHitTestVisible="False"
+                Data="M0.5,0.5 h8 v5 h-8 z" />
+                
+                <!--Foreline (Port pressure sensor version)-->
+                <!--<wpf:Chamber Canvas.Left="47" Canvas.Top="18" Data="M17.5,0.5 v60 M0.5,43.5 h21" HelpText="Foreline" />
+                <wpf:PortPressureSensor Canvas.Left="64" Canvas.Top="30" Panel.ZIndex="-1" LayoutTransform="{DynamicResource Right}" IsHitTestVisible="False" />
+                <wpf:Pressure Canvas.Left="84" Canvas.Top="35.5" RenderTransform="{wpf:AnchorTransform MiddleLeft}" IsHitTestVisible="False"
+                        Component="pForeline" ContentStringFormat="0.0" />
+                <Rectangle Canvas.Left="68" Canvas.Top="26" Width="49" Height="19" d:Fill="#2200FFFF" Fill="Transparent"
+                    wpf:View.Component="pForeline" AutomationProperties.HelpText="Foreline pressure" />-->
+                
+                <!--Foreline (Mks901P version)-->
+                <wpf:Chamber Canvas.Left="47" Canvas.Top="18" Data="M17.5,0.5 v60 M0.5,43.5 h21 M17.5,17.5 h17" HelpText="Foreline"/>
+                <Canvas Canvas.Left="82" Canvas.Top="8" Width="33" Height="35" Background="Transparent"
+                    wpf:View.Component="pForeline" AutomationProperties.HelpText="Foreline pressure">
+                    <wpf:Mks901P Canvas.Left="14" Canvas.Bottom="1" RenderTransform="{DynamicResource Right}" IsHitTestVisible="False" />
+                    <wpf:Pressure Canvas.Left="0" Canvas.Bottom="18" RenderTransform="{wpf:AnchorTransform BottomLeft}" IsHitTestVisible="False"
+                        Component="pForeline" ContentStringFormat="0.0" />
+                </Canvas>
+
+                <!--Ambient-->
+                <wpf:Arrow Canvas.Left="87" Canvas.Top="116" Orientation="Right" />
+                <Grid Canvas.Left="107" Canvas.Top="102.5" Background="Transparent"
+                    AutomationProperties.HelpText="Ambient conditions">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <wpf:Temperature Grid.Row="0" Grid.Column="0" Component="tAmbient" HelpText="Ambient temperature"
+                        ContentStringFormat="0.0" />
+                    <wpf:Pressure Grid.Row="1" Grid.Column="0" Component="pAmbient" HelpText="Ambient pressure"
+                        ContentStringFormat="0" />
+                    <Label Grid.Column="1" Padding="1,0.5" Margin="2,0,0,0" Content="°C" wpf:View.Component="tAmbient"
+                        AutomationProperties.HelpText="Ambient temperature" />
+                </Grid>
+
+                <wpf:Valve Canvas.Left="3" Component="vHV" HelpText="High-vacuum valve" d:ValveState="Opened" />
+                <wpf:Valve Canvas.Left="55" Component="vLV" HelpText="Low-vacuum valve" d:ValveState="Closed" />
+                <wpf:Valve Canvas.Left="29" Canvas.Top="52" Component="vB" HelpText="Backing valve" d:ValveState="Opened" />
+                <wpf:Valve Canvas.Left="55" Canvas.Top="78" Component="vR" HelpText="Roughing valve" d:ValveState="Opened" />
+            </Canvas>
+
+            <wpf:Valve Canvas.Left="0" Canvas.Top="0" Component="vIMC_VM" HelpText="IMC-VM valve" d:ValveState="Opened" />
+            <wpf:Valve Canvas.Left="124" Canvas.Top="0" Component="vCT_VM" HelpText="CT-VM valve" d:ValveState="Opened" />
+            <wpf:Valve Canvas.Left="317" Canvas.Top="0" Component="vGMC_VM" HelpText="GMC-VM valve" d:ValveState="Opened" />
+        </Canvas>
+    </Grid>
+</wpf:View>

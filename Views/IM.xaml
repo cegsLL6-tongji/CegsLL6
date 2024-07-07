@@ -1,0 +1,32 @@
+﻿<wpf:View x:Class="CegsLL6.Views.IM"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CegsLL6.Views"
+    xmlns:wpf="http://schemas.aeonhacs.com/wpf"
+    mc:Ignorable="d"
+    Background="{x:Null}"
+    >
+
+    <Canvas Width="250" Height="177">
+        <local:Manifold Canvas.Right="0" Canvas.Top="6" LayoutTransform="{DynamicResource Mirror}"
+            Component="Section.IM" AutomationProperties.HelpText="Inlet manifold" />
+
+        <Grid Canvas.Right="17.5" Canvas.Bottom="102" Background="Transparent" ClipToBounds="True"  RenderTransform="{wpf:AnchorTransform BottomCenter}"
+            wpf:View.Component="pIM" AutomationProperties.HelpText="Inlet manifold pressure">
+            <wpf:Mks722BHighPressure HorizontalAlignment="Center" VerticalAlignment="Bottom" IsHitTestVisible="False" />
+            <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,29" IsHitTestVisible="False"
+                Component="pIM" ContentStringFormat="0"/>
+        </Grid>
+
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="0" Component="IP1" HelpText="Inlet port 1" d:PortType="Combustion" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="26" Component="IP2" HelpText="Inlet port 2" d:PortType="Combustion"  />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="52" Component="IP3" HelpText="Inlet port 3" d:PortType="Combustion"  />
+
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="104" Component="IP4" HelpText="Inlet port 4" d:PortType="Combustion"  />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="130" Component="IP5" HelpText="Inlet port 5" d:PortType="Combustion"  />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="156" Component="IP6" HelpText="Inlet port 6" d:PortType="Combustion"  />
+
+    </Canvas>
+</wpf:View>

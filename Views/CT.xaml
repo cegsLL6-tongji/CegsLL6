@@ -1,0 +1,28 @@
+﻿<wpf:View x:Class="CegsLL6.Views.CT" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:wpf="http://schemas.aeonhacs.com/wpf"
+    xmlns:local="clr-namespace:CegsLL6.Views"
+    mc:Ignorable="d"
+    Background="{x:Null}">
+
+    <Canvas Width="87" Height="123">
+        <wpf:Chamber Canvas.Top="0" Component="Section.CT" HelpText="Coil trap section"
+            Data="M0.5,63.5 h8 M26.5,63.5 h21 M43.5,50.5 v26 M59.5,63.5 h47 M63.5,63.5 v13 M89.5,63.5 v17" />
+        
+        <wpf:Valve Canvas.Left="8" Canvas.Top="54" Component="vCTFlow" HelpText="CT flow valve" d:ValveState="Opened">
+            <wpf:Restriction Orientation="Horizontal" />
+        </wpf:Valve>
+        <Canvas Canvas.Left="27" Canvas.Bottom="72" Width="33" Canvas.Height="50" Background="Transparent"
+            wpf:View.Component="pCT" AutomationProperties.HelpText="Coil trap pressure" >
+            <wpf:Mks722BLowPressure Canvas.Left="11" Canvas.Bottom="0" />
+            <wpf:Pressure Canvas.Left="16.5" Canvas.Bottom="30" Component="pCT" ContentStringFormat="0.00" RenderTransform="{wpf:AnchorTransform BottomCenter}" IsHitTestVisible="False"/>
+        </Canvas>
+        <wpf:FTC Canvas.Left="36" Canvas.Top="80" Width="35" Height="42"
+            Component="ftcCT" HelpText="Coil trap coldfinger" />
+
+        <wpf:CoilTrapSmall HorizontalAlignment="Left" Canvas.Left="41" Canvas.Top="77" VerticalAlignment="Center" IsHitTestVisible="False"/>
+    </Canvas>
+
+</wpf:View>

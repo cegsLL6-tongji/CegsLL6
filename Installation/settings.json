@@ -1,0 +1,7457 @@
+{
+  "Name": "CEGSLL6",
+  "AlertManager": {
+    "Name": "CEGS AlertManager",
+    "MinutesToSuppressSameMessage": 1440,
+    "PriorAlertMessage": "Precondition GR iron process complete",
+    "ContactInfo": {
+      "SiteName": "SMSEGL CEGS LL6",
+      "PhoneNumber": null,
+      "AlertRecipients": [
+        "ll6.cegs.smsegl@aeonhacs.com // self"
+      ]
+    },
+    "SmtpInfo": {
+      "Host": "mail.aeonhacs.com",
+      "Port": 465,
+      "Username": "ll6.cegs.smsegl@aeonhacs.com",
+      "Password": "Ew&G^&wf9&IU"
+    }
+  },
+  "ProcessSequences": {
+    "Dead CO2": {
+      "Name": "Dead CO2",
+      "PortType": "GasSupply",
+      "CheckList": [
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Admit Dead CO2 into MC"
+        },
+        {
+          "Name": "Measure, etc."
+        }
+      ]
+    },
+    "Graphite": {
+      "Name": "Graphite",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "Name": "Admit O2 into Inlet Port"
+        },
+        {
+          "Name": "Heat Quartz and Open Line"
+        },
+        {
+          "Name": "Evacuate Inlet Port"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Pre-Burn",
+          "Temperature": 500,
+          "Minutes": 15,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": false
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Combust",
+          "Temperature": 850,
+          "Minutes": 50,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": true
+        },
+        {
+          "Name": "Turn off IP furnace"
+        },
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Oxalic Acid": {
+      "Name": "Oxalic Acid",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "Name": "Admit O2 into Inlet Port"
+        },
+        {
+          "Name": "Heat Quartz and Open Line"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Combust",
+          "Temperature": 150,
+          "Minutes": 15,
+          "AdmitO2": false,
+          "OpenLine": false,
+          "WaitForSetpoint": true
+        },
+        {
+          "Name": "Turn off IP furnace"
+        },
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Organic": {
+      "Name": "Organic",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "Name": "Admit O2 into Inlet Port"
+        },
+        {
+          "Name": "Heat Quartz and Open Line"
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Pre-Burn",
+          "Temperature": 150,
+          "Minutes": 15,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": false
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Combust",
+          "Temperature": 625,
+          "Minutes": 45,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": true
+        },
+        {
+          "Name": "Turn off IP furnace"
+        },
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Carbonate": {
+      "Name": "Carbonate",
+      "PortType": "Needle",
+      "CheckList": [
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Pyrolize": {
+      "Name": "Pyrolize",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Combust",
+          "Temperature": 425,
+          "Minutes": 30,
+          "AdmitO2": false,
+          "OpenLine": false,
+          "WaitForSetpoint": true
+        },
+        {
+          "Name": "Turn Off CC Furnaces"
+        },
+        {
+          "Name": "Prepare GRs for new iron and desiccant"
+        },
+        {
+          "Name": "Wait for operator"
+        }
+      ]
+    },
+    "Collect & Measure": {
+      "Name": "Collect & Measure",
+      "PortType": "Manual",
+      "CheckList": [],
+      "Steps": [
+        {
+          "Name": "Collect CO2 from InletPort"
+        },
+        {
+          "Name": "Extract"
+        },
+        {
+          "Name": "Measure"
+        }
+      ]
+    },
+    "Sealed CO2": {
+      "Name": "Sealed CO2",
+      "PortType": "Manual",
+      "CheckList": [
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Admit sealed CO2 to InletPort"
+        },
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Collect, etc.": {
+      "Name": "Collect, etc.",
+      "PortType": "Manual",
+      "CheckList": [
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Collect, etc."
+        }
+      ]
+    },
+    "Clean graphite": {
+      "Name": "Clean graphite",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "Name": "Evacuate Inlet Port"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Pre-Burn",
+          "Temperature": 500,
+          "Minutes": 15,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": false
+        },
+        {
+          "Name": "Turn off IP furnace"
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "Name": "Close IP"
+        },
+        {
+          "Name": "Open and evacuate line"
+        }
+      ]
+    },
+    "Combust, Measure": {
+      "Name": "Combust, Measure",
+      "PortType": "Combustion",
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ],
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port"
+        },
+        {
+          "Name": "Admit O2 into Inlet Port"
+        },
+        {
+          "Name": "Heat Quartz and Open Line"
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Pre-Burn",
+          "Temperature": 150,
+          "Minutes": 15,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": false
+        },
+        {
+          "Name": "Discard IP gases"
+        },
+        {
+          "$type": "HACS.Components.CombustionStep, HACS",
+          "Name": "Combust",
+          "Temperature": 625,
+          "Minutes": 45,
+          "AdmitO2": true,
+          "OpenLine": true,
+          "WaitForSetpoint": true
+        },
+        {
+          "Name": "Turn off IP furnace"
+        },
+        {
+          "Name": "Collect CO2 from InletPort"
+        },
+        {
+          "Name": "Extract"
+        },
+        {
+          "Name": "Measure"
+        }
+      ]
+    }
+  },
+  "DeviceManagers": {
+    "Daq": {
+      "$type": "HACS.Components.LabJackU6, HACS",
+      "Name": "Daq",
+      "LocalId": 1,
+      "MinimumRetrievalInterval": 50,
+      "SettlingTimeIndex": 3,
+      "ResolutionIndex": 8,
+      "OutputPaceMilliseconds": 1,
+      "IdleTimeout": 50,
+      "LogEverything": false,
+      "Devices": {
+        "do0": "pVM_IG.Enable",
+        "do1": "fan2",
+        "do2": "fan1",
+        "ai0": "pMC",
+        "ai2": "pCT",
+        "ai3": "pGM",
+        "ai4": "pIM",
+        "ai96": "pForeline",
+        "ai97": "pVM_HP",
+        "ai98": "pVM_IG",
+        "ai104": "tMC",
+        "ai105": "pGR6",
+        "ai106": "pGR4",
+        "ai107": "pGR5",
+        "ai108": "pGR3",
+        "ai109": "pGR2",
+        "ai110": "pGR1",
+        "ai123": "DC5VPower",
+        "ai124": "DC5VMainsDetect",
+        "ai125": "pAmbient",
+        "ai126": "tAmbient",
+        "ai127": "GND"
+      }
+    },
+    "HeaterController1": {
+      "$type": "HACS.Components.HC6Controller, HACS",
+      "Name": "HeaterController1",
+      "SerialController": {
+        "Name": "HeaterController1.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM3",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 20,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 250,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": 1000
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "h0": "hIP1CCS",
+        "h1": "hIP1CCQ",
+        "h2": "hIP2CCS",
+        "h3": "hIP2CCQ",
+        "h4": "hIP3CCS",
+        "h5": "hIP3CCQ",
+        "t0": "tIP1CCS",
+        "t2": "tIP2CCS",
+        "t4": "tIP3CCS"
+      }
+    },
+    "HeaterController2": {
+      "$type": "HACS.Components.HC6Controller, HACS",
+      "Name": "HeaterController2",
+      "SerialController": {
+        "Name": "HeaterController2.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM4",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 20,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 250,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": 1000
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "h0": "hIP4CCS",
+        "h1": "hIP4CCQ",
+        "h2": "hIP5CCS",
+        "h3": "hIP5CCQ",
+        "h4": "hIP6CCS",
+        "h5": "hIP6CCQ",
+        "t0": "tIP4CCS",
+        "t2": "tIP5CCS",
+        "t4": "tIP6CCS"
+      }
+    },
+    "HeaterController3": {
+      "$type": "HACS.Components.HC6Controller, HACS",
+      "Name": "HeaterController3",
+      "SerialController": {
+        "Name": "HeaterController3.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM7",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 20,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 250,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": 1000
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "h0": "hGR6",
+        "h1": "hGR5",
+        "h2": "hGR4",
+        "h3": "hGR3",
+        "h4": "hGR2",
+        "h5": "hGR1",
+        "t0": "tGR6",
+        "t1": "tGR5",
+        "t2": "tGR4",
+        "t3": "tGR3",
+        "t4": "tGR2",
+        "t5": "tGR1",
+        "t6": "tGM",
+        "t7": "tLN_GR6",
+        "t8": "tLN_GR5",
+        "t9": "tLN_GR4",
+        "t10": "tLN_GR3",
+        "t11": "tLN_GR2",
+        "t12": "tLN_GR1",
+        "t13": "tLnOverflow"
+      }
+    },
+    "HeaterController4": {
+      "$type": "HACS.Components.HC6Controller, HACS",
+      "Name": "HeaterController4",
+      "SerialController": {
+        "Name": "HeaterController4.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM8",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 20,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 250,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": 1000
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "h4": "hVTC",
+        "t0": "tLN_MC",
+        "t1": "tVTC_wire",
+        "t2": "tVTC_top",
+        "t3": "tLN_VTC",
+        "t4": "tVTC",
+        "t5": "tLN_CT",
+        "t6": "tLNManifold"
+      }
+    },
+    "ActuatorController1": {
+      "$type": "HACS.Components.ActuatorController, HACS",
+      "Name": "ActuatorController1",
+      "Channels": 48,
+      "AeonServo": {
+        "Name": "AeonServo",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM9",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 10,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 90,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": -1
+      },
+      "SerialController": {
+        "Name": "ActuatorController1.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM10",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 3,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": false,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 200,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": -1
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "0": "vGR2_GM",
+        "1": "vGR1_GM",
+        "2": "vGM_Split",
+        "3": "vGM_VM",
+        "4": "vMC_MCP2",
+        "5": "vMC_MCP1",
+        "6": "vIM_VM",
+        "7": "vIM_CT",
+        "8": "vIP4_IM",
+        "9": "vIP3_IM",
+        "10": "vIP2_IM",
+        "11": "vIP1_IM",
+        "12": "vGR6_GM",
+        "13": "vGR5_GM",
+        "14": "vGR4_GM",
+        "15": "vGR3_GM",
+        "16": "vLN_GR3",
+        "17": "vLN_GR2",
+        "18": "vLN_GR1",
+        "19": "vLN_MC",
+        "20": "vLN_VTC",
+        "21": "vLN_CT",
+        "22": "vIP6_IM",
+        "23": "vIP5_IM",
+        "24": "vCT_VM",
+        "25": "vHeFlow",
+        "26": "vHe_VM",
+        "27": "vCTFlow",
+        "28": "vO2_VM",
+        "29": "vLN_GR6",
+        "30": "vLN_GR5",
+        "31": "vLN_GR4",
+        "32": "vCO2_VM",
+        "33": "vMC_Split",
+        "34": "vH2Flow",
+        "35": "vLV",
+        "36": "vH2_VM",
+        "37": "vCT_VTT",
+        "38": "vVTT_MC",
+        "39": "vHV",
+        "40": "vCO2Flow",
+        "41": "vR",
+        "42": "vB"
+      }
+    },
+    "SwitchBank1": {
+      "$type": "HACS.Components.SwitchBank, HACS",
+      "Name": "SwitchBank1",
+      "Channels": 16,
+      "SerialController": {
+        "Name": "SwitchBank1.SerialController",
+        "SerialDevice": {
+          "RtsMode": "Enabled",
+          "PortSettings": {
+            "PortName": "COM11",
+            "BaudRate": 115200,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "Handshake": "None"
+          },
+          "CrcConfig": {
+            "InitialValue": 65535,
+            "Polynomial": 55982,
+            "ExpectedResidue": 33472,
+            "PostInvert": true,
+            "MsBitFirst": false,
+            "MsByteFirst": false,
+            "TermChar": 3,
+            "OmitTermChar": false
+          },
+          "MillisecondsBetweenMessages": 3,
+          "MillisecondsBetweenBytes": -1,
+          "MaximumMillisecondsSilenceInMessage": 5,
+          "BinaryComms": false,
+          "EscapeLoggedData": false
+        },
+        "LogCommands": true,
+        "LogResponses": false,
+        "LogEverything": false,
+        "TokenizeCommands": true,
+        "IgnoreUnexpectedResponses": true,
+        "ResponseTimeout": 200,
+        "TooManyResponseTimeouts": 5,
+        "IdleTimeout": -1
+      },
+      "IdleTimeout": -1,
+      "LogEverything": false,
+      "Devices": {
+        "0": "vAir_CT",
+        "1": "vAir_VTC",
+        "2": "vAir_MC",
+        "11": "vAir_GR1",
+        "4": "vAir_GR2",
+        "5": "vAir_GR3",
+        "6": "vAir_GR4",
+        "7": "vAir_GR5",
+        "14": "vLNSupply",
+        "15": "vAir_GR6"
+      }
+    }
+  },
+  "ManagedDevices": {
+    "pVM_IG.Enable": {
+      "$type": "HACS.Components.DigitalOutput, HACS",
+      "Name": "pVM_IG.Enable",
+      "OnOffState": "On",
+      "StopAction": "TurnOff"
+    },
+    "fan1": {
+      "$type": "HACS.Components.DigitalOutput, HACS",
+      "Name": "fan1",
+      "OnOffState": "Off",
+      "StopAction": "None"
+    },
+    "fan2": {
+      "$type": "HACS.Components.DigitalOutput, HACS",
+      "Name": "fan2",
+      "OnOffState": "Off",
+      "StopAction": "None"
+    }
+  },
+  "Meters": {
+    "pVM": {
+      "$type": "HACS.Components.DualManometer, HACS",
+      "Name": "pVM",
+      "HighPressureManometer": "pVM_HP",
+      "LowPressureManometer": "pVM_IG",
+      "MaximumLowPressure": 0.001,
+      "MinimumHighPressure": 0.01,
+      "SwitchpointPressure": 0.008,
+      "MillisecondsToValid": 5000,
+      "MinimumMillisecondsOff": 2000,
+      "Value": 3.7E-06,
+      "Pressure": 3.7E-06,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 1E-09,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": true,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pMC": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pMC",
+      "MaximumVoltage": 10.0,
+      "Value": 0.554,
+      "Pressure": 0.554,
+      "MaxPressure": 100.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.06949685031273528,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 100.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.001,
+      "Resolution": 0.001,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 3.0,
+        "StepChange": 0.18
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x-0.03248454189236558"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "CompensatedGain",
+            "Argument": "x*14.9784"
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": null,
+        "FilterLength": 19,
+        "MaxIntervalMilliseconds": 1000.0,
+        "Resolution": 0.01
+      },
+      "Stable": 0.01,
+      "Falling": -0.01,
+      "Rising": 0.01,
+      "ZerosToAverage": 100
+    },
+    "pCT": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pCT",
+      "MaximumVoltage": 10.0,
+      "Value": 1.086,
+      "Pressure": 1.086,
+      "MaxPressure": 10.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.8757951369846196,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 10.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.001,
+      "Resolution": 0.001,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageCorrection",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x+0.010679948279948656"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "CompensatedGain",
+            "Argument": "x*1.22542"
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": null,
+        "FilterLength": 21,
+        "MaxIntervalMilliseconds": 5000.0,
+        "Resolution": 0.001
+      },
+      "Stable": 0.01,
+      "Falling": -0.01,
+      "Rising": 0.01,
+      "ZerosToAverage": 100
+    },
+    "pForeline": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pForeline",
+      "MaximumVoltage": 10.0,
+      "Value": 1.73,
+      "Pressure": 1.73,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 6.238906184547596,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0001,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": true,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.036
+      },
+      "Conversion": {
+        "Name": "VoltageCorrection",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x+0"
+          },
+          {
+            "$type": "Utilities.OperationSet, Utilities",
+            "Name": "ValueConversion",
+            "Operations": [
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorReference",
+                "Argument": "x-6"
+              },
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorExponentialGain",
+                "Argument": "10^x"
+              }
+            ]
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": null,
+        "FilterLength": 13,
+        "MaxIntervalMilliseconds": 1000.0,
+        "Resolution": 0.01
+      },
+      "Stable": 0.1,
+      "Falling": -0.1,
+      "Rising": 0.1,
+      "ZerosToAverage": 100
+    },
+    "pIM": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pIM",
+      "MaximumVoltage": 10.0,
+      "Value": 1.2000000000000002,
+      "Pressure": 1.2000000000000002,
+      "MaxPressure": 1000.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.03131288086033178,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 1000.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.05
+      },
+      "Conversion": {
+        "Name": "VoltageCorrection",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x-0.02141071373653679"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "CompensatedGain",
+            "Argument": "x*123.014"
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": "pIM.RateOfChange",
+        "FilterLength": 35,
+        "MaxIntervalMilliseconds": 1000.0,
+        "Resolution": 0.01
+      },
+      "Stable": 0.5,
+      "Falling": -0.5,
+      "Rising": 0.5,
+      "ZerosToAverage": 100
+    },
+    "pGM": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGM",
+      "MaximumVoltage": 10.0,
+      "Value": 0.6000000000000001,
+      "Pressure": 0.6000000000000001,
+      "MaxPressure": 1000.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.05138371262603407,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 1000.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.1
+      },
+      "Conversion": {
+        "Name": "VoltageCorrection",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x-0.046876491746122954"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "CompensatedGain",
+            "Argument": "x*123.097"
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": "pGM.RateOfChange",
+        "FilterLength": 35,
+        "MaxIntervalMilliseconds": 1000.0,
+        "Resolution": 0.01
+      },
+      "Stable": 0.5,
+      "Falling": -0.5,
+      "Rising": 0.5,
+      "ZerosToAverage": 100
+    },
+    "pVM_HP": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pVM_HP",
+      "MaximumVoltage": 10.0,
+      "Value": 1.19E-05,
+      "Pressure": 1.19E-05,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.998214563701838,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 1E-05,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": true,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.01
+      },
+      "Conversion": {
+        "Name": null,
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x+0.013"
+          },
+          {
+            "$type": "Utilities.OperationSet, Utilities",
+            "Name": "ValueConversion",
+            "Operations": [
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorReference",
+                "Argument": "x-6"
+              },
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorExponentialGain",
+                "Argument": "10^x"
+              }
+            ]
+          },
+          {
+            "$type": "Utilities.OperationSet, Utilities",
+            "Name": "UnitConversion",
+            "Operations": [
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "AtmAdjustment",
+                "Argument": "x*1.1644"
+              }
+            ]
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pVM_IG": {
+      "$type": "HACS.Components.EdwardsAimX, HACS",
+      "Name": "pVM_IG",
+      "errorSignalVoltage": 2.0,
+      "AnalogInputMode": "SingleEnded",
+      "DigitalOutput": "pVM_IG.Enable",
+      "MillisecondsToValid": 5000,
+      "MinimumMillisecondsOff": 2000,
+      "Value": 3.7E-06,
+      "Pressure": 3.7E-06,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 0.01,
+      "MinValue": 1E-09,
+      "Sensitivity": 1E-09,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": true,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.5,
+        "StepChange": 0.2
+      },
+      "Conversion": {
+        "Name": null,
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "ZeroOffset",
+            "Argument": "x+0"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "VoltageCorrection",
+            "Argument": "x*1"
+          },
+          {
+            "$type": "Utilities.OperationSet, Utilities",
+            "Name": "ValueConversion",
+            "Operations": [
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorCoefficient",
+                "Argument": "x*0.875"
+              },
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorReference",
+                "Argument": "x-10.75"
+              },
+              {
+                "$type": "Utilities.Arithmetic, Utilities",
+                "Name": "SensorExponentialGain",
+                "Argument": "10^x"
+              }
+            ]
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": "UnitConversion",
+            "Argument": "x*0.750061683"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR1": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR1",
+      "MaximumVoltage": 10.0,
+      "Value": 0.2,
+      "Pressure": 0.2,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.4850485699509682,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.4845697989706693"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*382.6158"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR2": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR2",
+      "MaximumVoltage": 10.0,
+      "Value": 8.3,
+      "Pressure": 8.3,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.5060240742300851,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.4842537047336654"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*383.2718"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR3": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR3",
+      "MaximumVoltage": 10.0,
+      "Value": 0.8,
+      "Pressure": 0.8,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.47226215097436397,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.47020720449319986"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*381.5154"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR4": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR4",
+      "MaximumVoltage": 10.0,
+      "Value": 0.8,
+      "Pressure": 0.8,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.49427965390098194,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.49206673820389485"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*381.8752967267779"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR5": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR5",
+      "MaximumVoltage": 10.0,
+      "Value": 0.0,
+      "Pressure": 0.0,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.4811223353255592,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.48074986926425256"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*381.7975441597679"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pGR6": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pGR6",
+      "MaximumVoltage": 10.0,
+      "Value": 0.8,
+      "Pressure": 0.8,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.5008727311409963,
+      "UnitSymbol": "Torr",
+      "Ratiometric": true,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.02
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.4988432854393626"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*379.288211692864"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "pAmbient": {
+      "$type": "HACS.Components.AIManometer, HACS",
+      "Name": "pAmbient",
+      "MaximumVoltage": 10.0,
+      "Value": 750.5,
+      "Pressure": 750.5,
+      "MaxPressure": 1600.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 2.4611754945631734,
+      "UnitSymbol": "Torr",
+      "Ratiometric": false,
+      "MaxValue": 1600.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.1,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.5,
+        "StepChange": 0.05
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.5"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*382.6991"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tAmbient": {
+      "$type": "HACS.Components.AIThermometer, HACS",
+      "Name": "tAmbient",
+      "MaximumVoltage": 10.0,
+      "Value": 29.89,
+      "Temperature": 29.89,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 1.0104162428446712,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 50.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.05
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.5046"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*59.086"
+          }
+        ]
+      },
+      "RateOfChange": {
+        "Name": null,
+        "FilterLength": 13,
+        "MaxIntervalMilliseconds": 60000.0,
+        "Resolution": 0.01
+      },
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tMC": {
+      "$type": "HACS.Components.AIThermometer, HACS",
+      "Name": "tMC",
+      "MaximumVoltage": 10.0,
+      "Value": 29.490000000000002,
+      "Temperature": 29.490000000000002,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 0.9832800168129607,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 50.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.5,
+        "StepChange": 0.25
+      },
+      "Conversion": {
+        "Name": "VoltageConversion",
+        "Operations": [
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x-0.504"
+          },
+          {
+            "$type": "Utilities.Arithmetic, Utilities",
+            "Name": null,
+            "Argument": "x*61.538"
+          }
+        ]
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "DC5VMainsDetect": {
+      "$type": "HACS.Components.AIVoltmeter, HACS",
+      "Name": "DC5VMainsDetect",
+      "MaximumVoltage": 10.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 5.0022170736943155,
+      "Value": 5.002,
+      "UnitSymbol": "V",
+      "Ratiometric": false,
+      "MaxValue": 10.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.001,
+      "Resolution": 0.001,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.2
+      },
+      "Conversion": {
+        "Name": null,
+        "Operations": []
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "DC5VPower": {
+      "$type": "HACS.Components.AIVoltmeter, HACS",
+      "Name": "DC5VPower",
+      "MaximumVoltage": 10.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": 5.075265978990709,
+      "Value": 5.075,
+      "UnitSymbol": "V",
+      "Ratiometric": false,
+      "MaxValue": 10.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.001,
+      "Resolution": 0.001,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.05
+      },
+      "Conversion": {
+        "Name": null,
+        "Operations": []
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "GND": {
+      "$type": "HACS.Components.AIVoltmeter, HACS",
+      "Name": "GND",
+      "MaximumVoltage": 10.0,
+      "AnalogInputMode": "SingleEnded",
+      "MinimumVoltage": 0.0,
+      "Voltage": -3.40752297878938E-06,
+      "Value": 0.0,
+      "UnitSymbol": "V",
+      "Ratiometric": false,
+      "MaxValue": 10.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0001,
+      "Resolution": 0.0001,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 0.005
+      },
+      "Conversion": {
+        "Name": null,
+        "Operations": []
+      },
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP1CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP1CCS",
+      "Type": "K",
+      "Temperature": 30.79,
+      "Value": 30.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP2CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP2CCS",
+      "Type": "K",
+      "Temperature": 30.47,
+      "Value": 30.47,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP3CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP3CCS",
+      "Type": "K",
+      "Temperature": 30.3,
+      "Value": 30.3,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP4CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP4CCS",
+      "Type": "K",
+      "Temperature": 29.87,
+      "Value": 29.87,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP5CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP5CCS",
+      "Type": "K",
+      "Temperature": 29.57,
+      "Value": 29.57,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tIP6CCS": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tIP6CCS",
+      "Type": "K",
+      "Temperature": 29.39,
+      "Value": 29.39,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 2.0,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tVTC": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tVTC",
+      "Type": "T",
+      "Temperature": 29.18,
+      "Value": 29.18,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tVTC_top": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tVTC_top",
+      "Type": "T",
+      "Temperature": 29.27,
+      "Value": 29.27,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tVTC_wire": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tVTC_wire",
+      "Type": "T",
+      "Temperature": 29.580000000000002,
+      "Value": 29.580000000000002,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_VTC": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_VTC",
+      "Type": "T",
+      "Temperature": 29.28,
+      "Value": 29.28,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGM": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGM",
+      "Type": "T",
+      "Temperature": 30.19,
+      "Value": 30.19,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR1": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR1",
+      "Type": "K",
+      "Temperature": 29.82,
+      "Value": 29.82,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR2": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR2",
+      "Type": "K",
+      "Temperature": 29.84,
+      "Value": 29.84,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR3": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR3",
+      "Type": "K",
+      "Temperature": 29.78,
+      "Value": 29.78,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR4": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR4",
+      "Type": "K",
+      "Temperature": 29.79,
+      "Value": 29.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR5": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR5",
+      "Type": "K",
+      "Temperature": 29.79,
+      "Value": 29.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tGR6": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tGR6",
+      "Type": "K",
+      "Temperature": 30.05,
+      "Value": 30.05,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLNManifold": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLNManifold",
+      "Type": "T",
+      "Temperature": 29.14,
+      "Value": 29.14,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_CT": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_CT",
+      "Type": "T",
+      "Temperature": 29.080000000000002,
+      "Value": 29.080000000000002,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 1200.0,
+      "MinValue": -195.8,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_MC": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_MC",
+      "Type": "T",
+      "Temperature": 29.3,
+      "Value": 29.3,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 0.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR1": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR1",
+      "Type": "T",
+      "Temperature": 30.18,
+      "Value": 30.18,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR2": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR2",
+      "Type": "T",
+      "Temperature": 30.22,
+      "Value": 30.22,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR3": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR3",
+      "Type": "T",
+      "Temperature": 30.27,
+      "Value": 30.27,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR4": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR4",
+      "Type": "T",
+      "Temperature": 30.28,
+      "Value": 30.28,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR5": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR5",
+      "Type": "T",
+      "Temperature": 30.27,
+      "Value": 30.27,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLN_GR6": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLN_GR6",
+      "Type": "T",
+      "Temperature": 30.19,
+      "Value": 30.19,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 5.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "tLnOverflow": {
+      "$type": "HACS.Components.HC6Thermocouple, HACS",
+      "Name": "tLnOverflow",
+      "Type": "T",
+      "Temperature": 30.09,
+      "Value": 30.09,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": {
+        "$type": "HACS.Core.ExponentialFilter, HACS",
+        "Name": null,
+        "Power": 1.2,
+        "StepChange": 3.0
+      },
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100
+    },
+    "ugCinMC": {
+      "$type": "HACS.Components.Meter, HACS",
+      "Name": "ugCinMC",
+      "Value": 6.74,
+      "UnitSymbol": "ugC",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.01,
+      "Resolution": 0.01,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": {
+        "Name": null,
+        "FilterLength": 21,
+        "MaxIntervalMilliseconds": 1000.0,
+        "Resolution": 0.1
+      },
+      "Stable": 0.2,
+      "Falling": -0.21,
+      "Rising": 0.21,
+      "ZerosToAverage": 100
+    }
+  },
+  "Valves": {
+    "vHV": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vHV",
+      "ValveState": "Opened",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1850,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        },
+        {
+          "Name": "Open",
+          "Value": 850,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        }
+      ]
+    },
+    "vLV": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLV",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1825,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        },
+        {
+          "Name": "Open",
+          "Value": 1225,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        }
+      ]
+    },
+    "vB": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vB",
+      "ValveState": "Opened",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1787,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        },
+        {
+          "Name": "Open",
+          "Value": 1240,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        }
+      ]
+    },
+    "vR": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vR",
+      "ValveState": "Opened",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1710,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        },
+        {
+          "Name": "Open",
+          "Value": 1175,
+          "Incremental": false,
+          "Configuration": "t0.8"
+        }
+      ]
+    },
+    "vIM_VM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIM_VM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vCT_VM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vCT_VM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGM_VM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGM_VM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vHe_VM": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vHe_VM",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1750,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        },
+        {
+          "Name": "Open",
+          "Value": 1200,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        }
+      ]
+    },
+    "vH2_VM": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vH2_VM",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1725,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        },
+        {
+          "Name": "Open",
+          "Value": 1175,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        }
+      ]
+    },
+    "vCO2_VM": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vCO2_VM",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1850,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        },
+        {
+          "Name": "Open",
+          "Value": 1240,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        }
+      ]
+    },
+    "vO2_VM": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vO2_VM",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 1865,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        },
+        {
+          "Name": "Open",
+          "Value": 1275,
+          "Incremental": false,
+          "Configuration": "t0.6"
+        }
+      ]
+    },
+    "vIP1_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP1_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIP2_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP2_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIP3_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP3_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIP4_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP4_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIP5_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP5_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIP6_IM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIP6_IM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vIM_CT": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vIM_CT",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vCT_VTT": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vCT_VTT",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vVTT_MC": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vVTT_MC",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vMC_MCP1": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vMC_MCP1",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vMC_MCP2": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vMC_MCP2",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vMC_Split": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vMC_Split",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGM_Split": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGM_Split",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR1_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR1_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR2_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR2_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR3_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR3_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR4_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR4_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR5_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR5_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vGR6_GM": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vGR6_GM",
+      "Position": 192,
+      "MinimumPosition": 0,
+      "MaximumPosition": 192,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 0,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.175,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 192,
+          "Incremental": false,
+          "Configuration": "i700 t4"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i800 t4"
+        },
+        {
+          "Name": "Open pulse - use only if valve is stuck closed",
+          "Value": -10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Close pulse - use only if valve is stuck open",
+          "Value": 10,
+          "Incremental": true,
+          "Configuration": "t2"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i700 t1.5"
+        }
+      ]
+    },
+    "vLN_CT": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_CT",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1250,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_VTC": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_VTC",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "ColdTrickle",
+          "Value": 1390,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "WarmTrickle",
+          "Value": 1350,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1310,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_MC": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_MC",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1285,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR1": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR1",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1280,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR2": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR2",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1475,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR3": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR3",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1450,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR4": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR4",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1375,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR5": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR5",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1400,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vLN_GR6": {
+      "$type": "HACS.Components.CpwValve, HACS",
+      "Name": "vLN_GR6",
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 80,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 2000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open",
+          "Value": 1400,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        },
+        {
+          "Name": "Open fully",
+          "Value": 1000,
+          "Incremental": false,
+          "Configuration": "t0.5"
+        }
+      ]
+    },
+    "vCTFlow": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vCTFlow",
+      "Position": 0,
+      "MinimumPosition": 0,
+      "MaximumPosition": 675,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 3,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Opened",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 672,
+          "Incremental": false,
+          "Configuration": "i500 t15"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i550 t15"
+        },
+        {
+          "Name": "Close a bit",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.5"
+        },
+        {
+          "Name": "Close quarter turn",
+          "Value": 24,
+          "Incremental": true,
+          "Configuration": "i500 t1"
+        },
+        {
+          "Name": "Close half turn",
+          "Value": 48,
+          "Incremental": true,
+          "Configuration": "i500 t2"
+        },
+        {
+          "Name": "Close one turn",
+          "Value": 96,
+          "Incremental": true,
+          "Configuration": "i500 t3"
+        },
+        {
+          "Name": "Open a bit",
+          "Value": -1,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open a bit more",
+          "Value": -3,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open quarter turn",
+          "Value": -24,
+          "Incremental": true,
+          "Configuration": "i550 t1"
+        },
+        {
+          "Name": "Open half turn",
+          "Value": -48,
+          "Incremental": true,
+          "Configuration": "i550 t2"
+        },
+        {
+          "Name": "Open one turn",
+          "Value": -96,
+          "Incremental": true,
+          "Configuration": "i550 t3"
+        },
+        {
+          "Name": "Open pulse (only if stuck closed!)",
+          "Value": -5,
+          "Incremental": true,
+          "Configuration": "t2.0"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.4"
+        }
+      ]
+    },
+    "vHeFlow": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vHeFlow",
+      "Position": 672,
+      "MinimumPosition": 0,
+      "MaximumPosition": 682,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 10,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 672,
+          "Incremental": false,
+          "Configuration": "i500 t15"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i550 t15"
+        },
+        {
+          "Name": "Close a bit",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.5"
+        },
+        {
+          "Name": "Close quarter turn",
+          "Value": 24,
+          "Incremental": true,
+          "Configuration": "i500 t1"
+        },
+        {
+          "Name": "Close half turn",
+          "Value": 48,
+          "Incremental": true,
+          "Configuration": "i500 t2"
+        },
+        {
+          "Name": "Close one turn",
+          "Value": 96,
+          "Incremental": true,
+          "Configuration": "i500 t3"
+        },
+        {
+          "Name": "Open a bit",
+          "Value": -1,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open a bit more",
+          "Value": -3,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open quarter turn",
+          "Value": -24,
+          "Incremental": true,
+          "Configuration": "i550 t1"
+        },
+        {
+          "Name": "Open half turn",
+          "Value": -48,
+          "Incremental": true,
+          "Configuration": "i550 t2"
+        },
+        {
+          "Name": "Open one turn",
+          "Value": -96,
+          "Incremental": true,
+          "Configuration": "i550 t3"
+        },
+        {
+          "Name": "Open pulse (only if stuck closed!)",
+          "Value": -5,
+          "Incremental": true,
+          "Configuration": "t2.0"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.4"
+        }
+      ]
+    },
+    "vH2Flow": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vH2Flow",
+      "Position": 672,
+      "MinimumPosition": 0,
+      "MaximumPosition": 682,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 10,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 672,
+          "Incremental": false,
+          "Configuration": "i500 t15"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i550 t15"
+        },
+        {
+          "Name": "Close a bit",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.5"
+        },
+        {
+          "Name": "Close quarter turn",
+          "Value": 24,
+          "Incremental": true,
+          "Configuration": "i500 t1"
+        },
+        {
+          "Name": "Close half turn",
+          "Value": 48,
+          "Incremental": true,
+          "Configuration": "i500 t2"
+        },
+        {
+          "Name": "Close one turn",
+          "Value": 96,
+          "Incremental": true,
+          "Configuration": "i500 t3"
+        },
+        {
+          "Name": "Open a bit",
+          "Value": -1,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open a bit more",
+          "Value": -3,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open quarter turn",
+          "Value": -24,
+          "Incremental": true,
+          "Configuration": "i550 t1"
+        },
+        {
+          "Name": "Open half turn",
+          "Value": -48,
+          "Incremental": true,
+          "Configuration": "i550 t2"
+        },
+        {
+          "Name": "Open one turn",
+          "Value": -96,
+          "Incremental": true,
+          "Configuration": "i550 t3"
+        },
+        {
+          "Name": "Open pulse (only if stuck closed!)",
+          "Value": -5,
+          "Incremental": true,
+          "Configuration": "t2.0"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.4"
+        },
+        {
+          "Name": "_Move",
+          "Value": -12,
+          "Incremental": true,
+          "Configuration": "i500 t15"
+        }
+      ]
+    },
+    "vCO2Flow": {
+      "$type": "HACS.Components.RS232Valve, HACS",
+      "Name": "vCO2Flow",
+      "Position": 672,
+      "MinimumPosition": 0,
+      "MaximumPosition": 682,
+      "PositionsPerTurn": 96,
+      "ClosedOffset": 10,
+      "Calibrated": true,
+      "ConsecutiveMatches": 9,
+      "ValveState": "Closed",
+      "OpenedVolumeDelta": 0.0,
+      "IdleCurrentLimit": 110,
+      "ActuatorOperations": [
+        {
+          "Name": "Close",
+          "Value": 672,
+          "Incremental": false,
+          "Configuration": "i500 t15"
+        },
+        {
+          "Name": "Open",
+          "Value": 0,
+          "Incremental": false,
+          "Configuration": "i550 t15"
+        },
+        {
+          "Name": "Close a bit",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.5"
+        },
+        {
+          "Name": "Close quarter turn",
+          "Value": 24,
+          "Incremental": true,
+          "Configuration": "i500 t1"
+        },
+        {
+          "Name": "Close half turn",
+          "Value": 48,
+          "Incremental": true,
+          "Configuration": "i500 t2"
+        },
+        {
+          "Name": "Close one turn",
+          "Value": 96,
+          "Incremental": true,
+          "Configuration": "i500 t3"
+        },
+        {
+          "Name": "Open a bit",
+          "Value": -1,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open a bit more",
+          "Value": -3,
+          "Incremental": true,
+          "Configuration": "i550 t0.5"
+        },
+        {
+          "Name": "Open quarter turn",
+          "Value": -24,
+          "Incremental": true,
+          "Configuration": "i550 t1"
+        },
+        {
+          "Name": "Open half turn",
+          "Value": -48,
+          "Incremental": true,
+          "Configuration": "i550 t2"
+        },
+        {
+          "Name": "Open one turn",
+          "Value": -96,
+          "Incremental": true,
+          "Configuration": "i550 t3"
+        },
+        {
+          "Name": "Open pulse (only if stuck closed!)",
+          "Value": -5,
+          "Incremental": true,
+          "Configuration": "t2.0"
+        },
+        {
+          "Name": "Calibrate",
+          "Value": 1,
+          "Incremental": true,
+          "Configuration": "i500 t0.4"
+        }
+      ]
+    },
+    "vLNSupply": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vLNSupply",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_CT": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_CT",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_VTC": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_VTC",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_MC": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_MC",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR1": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR1",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR2": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR2",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR3": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR3",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR4": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR4",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR5": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR5",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    },
+    "vAir_GR6": {
+      "$type": "HACS.Components.SolenoidValve, HACS",
+      "Name": "vAir_GR6",
+      "OpenedVolumeDelta": 0.0,
+      "PoweredState": "Opened",
+      "MillisecondsToChangeState": 20,
+      "OnOffState": "Off",
+      "StopAction": "TurnOff"
+    }
+  },
+  "Switches": {},
+  "Heaters": {
+    "hIP1CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP1CCS",
+      "ThermocoupleChannel": 0,
+      "PidSetup": "PID_IP1",
+      "Setpoint": 850.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 30.79,
+      "Value": 30.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP2CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP2CCS",
+      "ThermocoupleChannel": 2,
+      "PidSetup": "PID_IP2",
+      "Setpoint": 850.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 30.47,
+      "Value": 30.47,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP3CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP3CCS",
+      "ThermocoupleChannel": 4,
+      "PidSetup": "PID_IP3",
+      "Setpoint": 500.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 30.3,
+      "Value": 30.3,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP4CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP4CCS",
+      "ThermocoupleChannel": 0,
+      "PidSetup": "PID_IP4",
+      "Setpoint": 150.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.87,
+      "Value": 29.87,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP5CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP5CCS",
+      "ThermocoupleChannel": 2,
+      "PidSetup": "PID_IP5",
+      "Setpoint": 150.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.57,
+      "Value": 29.57,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP6CCS": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP6CCS",
+      "ThermocoupleChannel": 4,
+      "PidSetup": "PID_IP6",
+      "Setpoint": 150.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 950.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.39,
+      "Value": 29.39,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP1CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP1CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 12.4,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP2CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP2CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 12.2,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP3CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP3CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 11.4,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP4CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP4CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 11.3,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP5CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP5CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 11.65,
+      "MaximumPowerLevel": 15.0
+    },
+    "hIP6CCQ": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hIP6CCQ",
+      "ThermocoupleChannel": -1,
+      "PidSetup": null,
+      "Setpoint": 800.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 800.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 21.4,
+      "Value": 21.4,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": true,
+      "PowerLevel": 11.4,
+      "MaximumPowerLevel": 15.0
+    },
+    "hGR1": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR1",
+      "ThermocoupleChannel": 5,
+      "PidSetup": "PID_GR1",
+      "Setpoint": 572.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.82,
+      "Value": 29.82,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 8.0
+    },
+    "hGR2": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR2",
+      "ThermocoupleChannel": 4,
+      "PidSetup": "PID_GR2",
+      "Setpoint": 586.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.84,
+      "Value": 29.84,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 8.0
+    },
+    "hGR3": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR3",
+      "ThermocoupleChannel": 3,
+      "PidSetup": "PID_GR3",
+      "Setpoint": 579.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.78,
+      "Value": 29.78,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 10.0
+    },
+    "hGR4": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR4",
+      "ThermocoupleChannel": 2,
+      "PidSetup": "PID_GR4",
+      "Setpoint": 560.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.79,
+      "Value": 29.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 8.0
+    },
+    "hGR5": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR5",
+      "ThermocoupleChannel": 1,
+      "PidSetup": "PID_GR5",
+      "Setpoint": 575.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 29.79,
+      "Value": 29.79,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 8.0
+    },
+    "hGR6": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hGR6",
+      "ThermocoupleChannel": 0,
+      "PidSetup": "PID_GR6",
+      "Setpoint": 568.0,
+      "MinimumSetpoint": 0.0,
+      "MaximumSetpoint": 600.0,
+      "StopAction": "None",
+      "OnOffState": "Off",
+      "Temperature": 30.05,
+      "Value": 30.05,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.0,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 8.0
+    },
+    "hVTC": {
+      "$type": "HACS.Components.HC6Heater, HACS",
+      "Name": "hVTC",
+      "ThermocoupleChannel": 4,
+      "PidSetup": "VtcWarm",
+      "Setpoint": 55.0,
+      "MinimumSetpoint": -196.0,
+      "MaximumSetpoint": 55.0,
+      "StopAction": "TurnOff",
+      "OnOffState": "Off",
+      "Temperature": 29.200000000000003,
+      "Value": 29.200000000000003,
+      "UnitSymbol": "°C",
+      "Ratiometric": false,
+      "MaxValue": 0.0,
+      "MinValue": 0.0,
+      "Sensitivity": 0.0,
+      "Resolution": 0.1,
+      "ResolutionIsProportional": false,
+      "Filter": null,
+      "Conversion": null,
+      "RateOfChange": null,
+      "Stable": 0.0,
+      "Falling": 0.0,
+      "Rising": 0.0,
+      "ZerosToAverage": 100,
+      "ManualMode": false,
+      "PowerLevel": 0.0,
+      "MaximumPowerLevel": 3.0
+    }
+  },
+  "PidSetups": {
+    "CFF60V88W": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "CFF60V88W",
+      "Gain": 14.09,
+      "Integral": 0.00684,
+      "Derivative": 151.5,
+      "Preset": 0.702
+    },
+    "PID_IP1": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP1",
+      "Gain": 9.82,
+      "Integral": 0.00621,
+      "Derivative": 185.2,
+      "Preset": 0.722
+    },
+    "PID_IP2": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP2",
+      "Gain": 14.09,
+      "Integral": 0.00684,
+      "Derivative": 151.5,
+      "Preset": 0.702
+    },
+    "PID_IP3": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP3",
+      "Gain": 11.55,
+      "Integral": 0.00826,
+      "Derivative": 130.4,
+      "Preset": 0.699
+    },
+    "PID_IP4": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP4",
+      "Gain": 11.46,
+      "Integral": 0.00651,
+      "Derivative": 170.5,
+      "Preset": 0.779
+    },
+    "PID_IP5": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP5",
+      "Gain": 10.89,
+      "Integral": 0.00612,
+      "Derivative": 187.5,
+      "Preset": 0.832
+    },
+    "PID_IP6": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_IP6",
+      "Gain": 9.79,
+      "Integral": 0.00675,
+      "Derivative": 166.7,
+      "Preset": 0.75
+    },
+    "PID_GR1": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR1",
+      "Gain": 14.9,
+      "Integral": 0.00685,
+      "Derivative": 156.3,
+      "Preset": 0.705
+    },
+    "PID_GR2": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR2",
+      "Gain": 22.31,
+      "Integral": 0.00841,
+      "Derivative": 92.0,
+      "Preset": 0.626
+    },
+    "PID_GR3": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR3",
+      "Gain": 9.93,
+      "Integral": 0.00681,
+      "Derivative": 174.4,
+      "Preset": 0.789
+    },
+    "PID_GR4": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR4",
+      "Gain": 18.36,
+      "Integral": 0.00699,
+      "Derivative": 127.1,
+      "Preset": 0.68
+    },
+    "PID_GR5": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR5",
+      "Gain": 46.22,
+      "Integral": 0.00753,
+      "Derivative": 100.0,
+      "Preset": 0.633
+    },
+    "PID_GR6": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "PID_GR6",
+      "Gain": 17.59,
+      "Integral": 0.00754,
+      "Derivative": 103.4,
+      "Preset": 0.65
+    },
+    "GROven200W": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "GROven200W",
+      "Gain": 19.23,
+      "Integral": 0.00672,
+      "Derivative": 283.6,
+      "Preset": 0.991
+    },
+    "VtcCold": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "VtcCold",
+      "Gain": 46.93,
+      "Integral": 0.03687,
+      "Derivative": 264.7,
+      "Preset": 6.323
+    },
+    "VtcWarm": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "VtcWarm",
+      "Gain": 162.37,
+      "Integral": 0.00203,
+      "Derivative": 360.4,
+      "Preset": 0.597
+    },
+    "HeatTape120V470W": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "HeatTape120V470W",
+      "Gain": 63.49,
+      "Integral": 0.02907,
+      "Derivative": 166.7,
+      "Preset": 8.273
+    },
+    "UltraFlexInductionFurnace": {
+      "$type": "HACS.Components.PidSetup, HACS",
+      "Name": "UltraFlexInductionFurnace",
+      "Gain": 0.0,
+      "Integral": 0.0,
+      "Derivative": 0.0,
+      "Preset": 0.0
+    }
+  },
+  "LNManifolds": {
+    "LNManifold": {
+      "$type": "HACS.Components.LNManifold, HACS",
+      "Name": "LNManifold",
+      "LNSupplyValve": "vLNSupply",
+      "Liters": null,
+      "LevelSensor": "tLNManifold",
+      "OverflowSensor": "tLnOverflow",
+      "OverflowTrigger": 25,
+      "MinimumLiters": 10,
+      "TargetTemperature": -185,
+      "FillTrigger": 5,
+      "SecondsSlowToFill": 180,
+      "ColdTemperature": -150,
+      "State": "Monitor",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    }
+  },
+  "Coldfingers": {
+    "ftcCT": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcCT",
+      "LevelSensor": "tLN_CT",
+      "LNValve": "vLN_CT",
+      "Trickle": null,
+      "AirValve": "vAir_CT",
+      "LNManifold": "LNManifold",
+      "AirThermometer": null,
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 60.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcVTC": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcVTC",
+      "LevelSensor": "tLN_VTC",
+      "LNValve": "vLN_VTC",
+      "Trickle": "ColdTrickle",
+      "AirValve": "vAir_VTC",
+      "LNManifold": "LNManifold",
+      "AirThermometer": null,
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 5,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcMC": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcMC",
+      "LevelSensor": "tLN_MC",
+      "LNValve": "vLN_MC",
+      "Trickle": null,
+      "AirValve": "vAir_MC",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tMC",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 7.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR1": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR1",
+      "LevelSensor": "tLN_GR1",
+      "LNValve": "vLN_GR1",
+      "Trickle": null,
+      "AirValve": "vAir_GR1",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR2": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR2",
+      "LevelSensor": "tLN_GR2",
+      "LNValve": "vLN_GR2",
+      "Trickle": null,
+      "AirValve": "vAir_GR2",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR3": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR3",
+      "LevelSensor": "tLN_GR3",
+      "LNValve": "vLN_GR3",
+      "Trickle": null,
+      "AirValve": "vAir_GR3",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR4": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR4",
+      "LevelSensor": "tLN_GR4",
+      "LNValve": "vLN_GR4",
+      "Trickle": null,
+      "AirValve": "vAir_GR4",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR5": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR5",
+      "LevelSensor": "tLN_GR5",
+      "LNValve": "vLN_GR5",
+      "Trickle": null,
+      "AirValve": "vAir_GR5",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "ftcGR6": {
+      "$type": "HACS.Components.Coldfinger, HACS",
+      "Name": "ftcGR6",
+      "LevelSensor": "tLN_GR6",
+      "LNValve": "vLN_GR6",
+      "Trickle": null,
+      "AirValve": "vAir_GR6",
+      "LNManifold": "LNManifold",
+      "AirThermometer": "tGM",
+      "FrozenTemperature": -185,
+      "FreezeTrigger": 5,
+      "RaiseTrigger": 2,
+      "MaximumSecondsLNFlowing": 60,
+      "SecondsToWaitAfterRaised": 8,
+      "NearAirTemperature": 10.0,
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    }
+  },
+  "VTColdfingers": {
+    "VTC": {
+      "$type": "HACS.Components.VTColdfinger, HACS",
+      "Name": "VTC",
+      "Heater": "hVTC",
+      "Coldfinger": "ftcVTC",
+      "TopThermometer": "tVTC_top",
+      "WireThermometer": "tVTC_wire",
+      "WireTemperatureLimit": 65,
+      "MaximumHeaterPower": 8.0,
+      "HeaterPid": "VtcCold",
+      "MaximumWarmHeaterPower": 3.0,
+      "WarmHeaterPid": "VtcWarm",
+      "ColdTemperature": -170,
+      "CleanupTemperature": 50,
+      "HeaterOnTrickle": "WarmTrickle",
+      "HeaterOffTrickle": "ColdTrickle",
+      "StopAction": "TurnOff",
+      "State": "Standby",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    }
+  },
+  "VacuumSystems": {
+    "VacuumSystem": {
+      "$type": "HACS.Components.VacuumSystem, HACS",
+      "Name": "VacuumSystem",
+      "TurboPump": null,
+      "RoughingPump": null,
+      "Manometer": "pVM",
+      "ForelineManometer": "pForeline",
+      "HighVacuumValve": "vHV",
+      "LowVacuumValve": "vLV",
+      "BackingValve": "vB",
+      "RoughingValve": "vR",
+      "VacuumManifold": "VM",
+      "State": "Evacuate",
+      "TargetPressure": 0.005,
+      "BaselinePressure": 0.0001,
+      "GoodBackingPressure": 2.8,
+      "HighVacuumPreferredPressure": 7.0,
+      "HighVacuumRequiredPressure": 5.0,
+      "LowVacuumRequiredPressure": 8.0,
+      "StateStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 1428793970
+      },
+      "IdleTimeout": 50
+    }
+  },
+  "Chambers": {
+    "Ambient": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "Ambient",
+      "MilliLiters": 5.63E+20,
+      "Manometer": "pAmbient",
+      "Thermometer": "tAmbient",
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "CalibratedKnownVolume": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "CalibratedKnownVolume",
+      "MilliLiters": 30.694,
+      "Manometer": null,
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "VM": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "VM",
+      "MilliLiters": 158.82372000552022,
+      "Manometer": "pVM",
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "Foreline": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "Foreline",
+      "MilliLiters": 143.26561786108564,
+      "Manometer": "pForeline",
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "IM": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "IM",
+      "MilliLiters": 25.016126498113316,
+      "Manometer": "pIM",
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "CT": {
+      "$type": "HACS.Components.FlowChamber, HACS",
+      "Name": "CT",
+      "FlowManager": "CTFlowManager",
+      "MilliLiters": 24.30375295978327,
+      "Dirty": false,
+      "Manometer": "pCT",
+      "Thermometer": "tLN_CT",
+      "Heater": null,
+      "Coldfinger": "ftcCT",
+      "VTColdfinger": null
+    },
+    "VTT": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "VTT",
+      "MilliLiters": 9.684034144464835,
+      "Manometer": null,
+      "Thermometer": "tVTC",
+      "Heater": "hVTC",
+      "Coldfinger": null,
+      "VTColdfinger": "VTC",
+      "Dirty": false
+    },
+    "MC": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "MC",
+      "MilliLiters": 19.1094582350044,
+      "Manometer": "pMC",
+      "Thermometer": "tMC",
+      "Heater": null,
+      "Coldfinger": "ftcMC",
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "Split": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "Split",
+      "MilliLiters": 4.224934988449399,
+      "Manometer": null,
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "GM": {
+      "$type": "HACS.Components.Chamber, HACS",
+      "Name": "GM",
+      "MilliLiters": 25.155852583680925,
+      "Manometer": "pGM",
+      "Thermometer": "tGM",
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null,
+      "Dirty": false
+    },
+    "MCP1": {
+      "$type": "HACS.Components.Port, HACS",
+      "Name": "MCP1",
+      "Valve": "vMC_MCP1",
+      "MilliLiters": 14.914741413033255,
+      "Dirty": false,
+      "Manometer": null,
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "MCP2": {
+      "$type": "HACS.Components.Port, HACS",
+      "Name": "MCP2",
+      "Valve": "vMC_MCP2",
+      "MilliLiters": 15.150157354443786,
+      "Dirty": false,
+      "Manometer": null,
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP1": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP1",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Combustion",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP1CCQ",
+      "SampleFurnace": "hIP1CCS",
+      "PathToFirstTrap": [
+        "vIP1_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP1_IM",
+      "Manometer": null,
+      "Thermometer": "tIP1CCS",
+      "Heater": "hIP1CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP2": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP2",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Combustion",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP2CCQ",
+      "SampleFurnace": "hIP2CCS",
+      "PathToFirstTrap": [
+        "vIP2_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP2_IM",
+      "Manometer": null,
+      "Thermometer": "tIP2CCS",
+      "Heater": "hIP2CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP3": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP3",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Combustion",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP3CCQ",
+      "SampleFurnace": "hIP3CCS",
+      "PathToFirstTrap": [
+        "vIP3_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP3_IM",
+      "Manometer": null,
+      "Thermometer": "tIP3CCS",
+      "Heater": "hIP3CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP4": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP4",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Combustion",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP4CCQ",
+      "SampleFurnace": "hIP4CCS",
+      "PathToFirstTrap": [
+        "vIP4_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP4_IM",
+      "Manometer": null,
+      "Thermometer": "tIP4CCS",
+      "Heater": "hIP4CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP5": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP5",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Combustion",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP5CCQ",
+      "SampleFurnace": "hIP5CCS",
+      "PathToFirstTrap": [
+        "vIP5_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP5_IM",
+      "Manometer": null,
+      "Thermometer": "tIP5CCS",
+      "Heater": "hIP5CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "IP6": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "IP6",
+      "SupportedPortTypes": [
+        "Combustion",
+        "Needle",
+        "Manual"
+      ],
+      "PortType": "Needle",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": "hIP6CCQ",
+      "SampleFurnace": "hIP6CCS",
+      "PathToFirstTrap": [
+        "vIP6_IM",
+        "vIM_CT"
+      ],
+      "State": "Empty",
+      "MilliLiters": 6.1574427299500645,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vIP6_IM",
+      "Manometer": null,
+      "Thermometer": "tIP6CCS",
+      "Heater": "hIP6CCS",
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "DeadCO2": {
+      "$type": "HACS.Components.InletPort, HACS",
+      "Name": "DeadCO2",
+      "SupportedPortTypes": [
+        "GasSupply"
+      ],
+      "PortType": "GasSupply",
+      "NotifySampleFurnaceNeeded": false,
+      "WarmTemperature": 40,
+      "QuartzFurnace": null,
+      "SampleFurnace": null,
+      "PathToFirstTrap": null,
+      "State": "Empty",
+      "MilliLiters": 1000.0,
+      "Dirty": false,
+      "Sample": null,
+      "Aliquot": 0,
+      "Valve": "vCO2_VM",
+      "Manometer": null,
+      "Thermometer": null,
+      "Heater": null,
+      "Coldfinger": null,
+      "VTColdfinger": null
+    },
+    "GR1": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR1",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": 8,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 7126529491
+      },
+      "PriorPressure": 160.20000000000002,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3848561771087464,
+      "Dirty": false,
+      "Valve": "vGR1_GM",
+      "Manometer": "pGR1",
+      "Thermometer": "tGR1",
+      "Heater": "hGR1",
+      "Coldfinger": "ftcGR1",
+      "VTColdfinger": null
+    },
+    "GR2": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR2",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": -6,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 7126071922
+      },
+      "PriorPressure": 201.10000000000002,
+      "PressurePeak": 1246,
+      "MilliLiters": 3.342220474568035,
+      "Dirty": false,
+      "Valve": "vGR2_GM",
+      "Manometer": "pGR2",
+      "Thermometer": "tGR2",
+      "Heater": "hGR2",
+      "Coldfinger": "ftcGR2",
+      "VTColdfinger": null
+    },
+    "GR3": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR3",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": 1,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 1558000871
+      },
+      "PriorPressure": 87.4,
+      "PressurePeak": 1342,
+      "MilliLiters": 3.2948610019433753,
+      "Dirty": false,
+      "Valve": "vGR3_GM",
+      "Manometer": "pGR3",
+      "Thermometer": "tGR3",
+      "Heater": "hGR3",
+      "Coldfinger": "ftcGR3",
+      "VTColdfinger": null
+    },
+    "GR4": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR4",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": 20,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 7131059913
+      },
+      "PriorPressure": 174.4,
+      "PressurePeak": 1481,
+      "MilliLiters": 3.2958354026089567,
+      "Dirty": false,
+      "Valve": "vGR4_GM",
+      "Manometer": "pGR4",
+      "Thermometer": "tGR4",
+      "Heater": "hGR4",
+      "Coldfinger": "ftcGR4",
+      "VTColdfinger": null
+    },
+    "GR5": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR5",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": 5,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 7131887420
+      },
+      "PriorPressure": 171.9,
+      "PressurePeak": 1234,
+      "MilliLiters": 3.3259950668244267,
+      "Dirty": false,
+      "Valve": "vGR5_GM",
+      "Manometer": "pGR5",
+      "Thermometer": "tGR5",
+      "Heater": "hGR5",
+      "Coldfinger": "ftcGR5",
+      "VTColdfinger": null
+    },
+    "GR6": {
+      "$type": "HACS.Components.GraphiteReactor, HACS",
+      "Name": "GR6",
+      "State": "Prepared",
+      "Size": "Standard",
+      "Sample": null,
+      "Aliquot": 0,
+      "GraphitizingTemperature": 580,
+      "SampleTemperatureOffset": 12,
+      "SampleSetpoint": 580.0,
+      "StateStopwatch": {
+        "IsRunning": false,
+        "Accumulated": 0
+      },
+      "ProgressStopwatch": {
+        "IsRunning": true,
+        "Accumulated": 7125576915
+      },
+      "PriorPressure": 189.0,
+      "PressurePeak": 1575,
+      "MilliLiters": 3.307390474870241,
+      "Dirty": false,
+      "Valve": "vGR6_GM",
+      "Manometer": "pGR6",
+      "Thermometer": "tGR6",
+      "Heater": "hGR6",
+      "Coldfinger": "ftcGR6",
+      "VTColdfinger": null
+    }
+  },
+  "Sections": {
+    "VM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VM",
+      "MilliLiters": null,
+      "Chambers": [
+        "VM"
+      ],
+      "Ports": null,
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vHe_VM",
+        "vH2_VM",
+        "vCO2_VM",
+        "vO2_VM",
+        "vIM_VM",
+        "vCT_VM",
+        "vGM_VM",
+        "vLV",
+        "vHV"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": null,
+      "PathToVacuumIsolation": null
+    },
+    "IM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "IM",
+      "MilliLiters": null,
+      "Chambers": [
+        "IM"
+      ],
+      "Ports": [
+        "IP1",
+        "IP2",
+        "IP3",
+        "IP4",
+        "IP5",
+        "IP6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vIM_CT",
+        "vIM_VM"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vIM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "CT": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "CT",
+      "MilliLiters": null,
+      "Chambers": [
+        "CT"
+      ],
+      "Ports": null,
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vIM_CT",
+        "vCT_VTT",
+        "vCT_VM"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vCT_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "VTT": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VTT",
+      "MilliLiters": null,
+      "Chambers": [
+        "VTT"
+      ],
+      "Ports": null,
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vCT_VTT",
+        "vVTT_MC"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vCT_VTT",
+        "vCT_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vIM_CT"
+      ]
+    },
+    "MC": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MC",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC"
+      ],
+      "Ports": [
+        "MCP1",
+        "MCP2"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vMC_Split"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vMC_Split",
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "Split": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "Split",
+      "MilliLiters": null,
+      "Chambers": [
+        "Split"
+      ],
+      "Ports": [],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vMC_Split",
+        "vGM_Split"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "GM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "GM",
+      "MilliLiters": null,
+      "Chambers": [
+        "GM"
+      ],
+      "Ports": [
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5",
+        "GR6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "InternalValves": null,
+      "PathToVacuum": [
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "IM_MC": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "IM_MC",
+      "MilliLiters": null,
+      "Chambers": [
+        "IM",
+        "CT",
+        "VTT",
+        "MC"
+      ],
+      "Ports": [
+        "IP1",
+        "IP2",
+        "IP3",
+        "IP4",
+        "IP5",
+        "IP6",
+        "MCP1",
+        "MCP2"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vMC_Split",
+        "vCT_VM",
+        "vIM_VM"
+      ],
+      "InternalValves": [
+        "vIM_CT",
+        "vCT_VTT",
+        "vVTT_MC"
+      ],
+      "PathToVacuum": [
+        "vCT_VM",
+        "vIM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "IM_CT": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "IM_CT",
+      "MilliLiters": null,
+      "Chambers": [
+        "IM",
+        "CT"
+      ],
+      "Ports": [
+        "IP1",
+        "IP2",
+        "IP3",
+        "IP4",
+        "IP5",
+        "IP6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vCT_VTT",
+        "vCT_VM",
+        "vIM_VM"
+      ],
+      "InternalValves": [
+        "vIM_CT"
+      ],
+      "PathToVacuum": [
+        "vCT_VM",
+        "vIM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "CT_VTT": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "CT_VTT",
+      "MilliLiters": null,
+      "Chambers": [
+        "CT",
+        "VTT"
+      ],
+      "Ports": null,
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vIM_CT",
+        "vVTT_MC",
+        "vCT_VM"
+      ],
+      "InternalValves": [
+        "vCT_VTT",
+        "vCTFlow"
+      ],
+      "PathToVacuum": [
+        "vCT_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "VTT_MC": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VTT_MC",
+      "MilliLiters": null,
+      "Chambers": [
+        "VTT",
+        "MC"
+      ],
+      "Ports": [
+        "MCP1",
+        "MCP2"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vCT_VTT",
+        "vMC_Split"
+      ],
+      "InternalValves": [
+        "vVTT_MC"
+      ],
+      "PathToVacuum": [
+        "vMC_Split",
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "MC_Split": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MC_Split",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC",
+        "Split"
+      ],
+      "Ports": [
+        "MCP1",
+        "MCP2"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vGM_Split"
+      ],
+      "InternalValves": [
+        "vMC_Split"
+      ],
+      "PathToVacuum": [
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "MC_GM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MC_GM",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC",
+        "Split",
+        "GM"
+      ],
+      "Ports": [
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5",
+        "MCP1",
+        "MCP2"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vGM_VM"
+      ],
+      "InternalValves": [
+        "vMC_Split",
+        "vGM_Split"
+      ],
+      "PathToVacuum": [
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "MCA": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MCA",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC",
+        "MCP1",
+        "MCP2"
+      ],
+      "Ports": null,
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vMC_Split"
+      ],
+      "InternalValves": [
+        "vMC_MCP1",
+        "vMC_MCP2"
+      ],
+      "PathToVacuum": [
+        "vMC_Split",
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "MCA_Split": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MCA_Split",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC",
+        "MCP1",
+        "MCP2",
+        "Split"
+      ],
+      "Ports": [],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vGM_Split"
+      ],
+      "InternalValves": [
+        "vMC_MCP1",
+        "vMC_MCP2",
+        "vMC_Split"
+      ],
+      "PathToVacuum": [
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM"
+      ]
+    },
+    "MCA_GM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "MCA_GM",
+      "MilliLiters": null,
+      "Chambers": [
+        "MC",
+        "MCP1",
+        "MCP2",
+        "Split",
+        "GM"
+      ],
+      "Ports": [
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vVTT_MC",
+        "vGM_VM"
+      ],
+      "InternalValves": [
+        "vMC_Split",
+        "vGM_Split"
+      ],
+      "PathToVacuum": [
+        "vGM_VM"
+      ],
+      "PathToVacuumIsolation": null
+    },
+    "VM_IM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VM_IM",
+      "MilliLiters": null,
+      "Chambers": [
+        "VM",
+        "IM"
+      ],
+      "Ports": [
+        "IP1",
+        "IP2",
+        "IP3",
+        "IP4",
+        "IP5",
+        "IP6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vHe_VM",
+        "vH2_VM",
+        "vCO2_VM",
+        "vO2_VM",
+        "vCT_VM",
+        "vGM_VM",
+        "vIM_CT",
+        "vLV",
+        "vHV"
+      ],
+      "InternalValves": [
+        "vIM_VM"
+      ],
+      "PathToVacuum": null,
+      "PathToVacuumIsolation": null
+    },
+    "VM_GM": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VM_GM",
+      "MilliLiters": null,
+      "Chambers": [
+        "VM",
+        "GM"
+      ],
+      "Ports": [
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5",
+        "GR6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vHe_VM",
+        "vH2_VM",
+        "vCO2_VM",
+        "vO2_VM",
+        "vIM_VM",
+        "vCT_VM",
+        "vGM_Split",
+        "vLV",
+        "vHV"
+      ],
+      "InternalValves": [
+        "vGM_VM"
+      ],
+      "PathToVacuum": null,
+      "PathToVacuumIsolation": null
+    },
+    "VM_Split": {
+      "$type": "HACS.Components.Section, HACS",
+      "Name": "VM_Split",
+      "MilliLiters": null,
+      "Chambers": [
+        "VM",
+        "GM",
+        "Split"
+      ],
+      "Ports": [
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5",
+        "GR6"
+      ],
+      "VacuumSystem": "VacuumSystem",
+      "Isolation": [
+        "vHe_VM",
+        "vH2_VM",
+        "vCO2_VM",
+        "vO2_VM",
+        "vIM_VM",
+        "vCT_VM",
+        "vMC_Split",
+        "vLV",
+        "vHV"
+      ],
+      "InternalValves": [
+        "vGM_Split",
+        "vGM_VM"
+      ],
+      "PathToVacuum": null,
+      "PathToVacuumIsolation": null
+    }
+  },
+  "GasSupplies": {
+    "H2.GM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "H2.GM",
+      "GasName": "H2",
+      "SourceValve": "vH2_VM",
+      "FlowValve": "vH2Flow",
+      "Meter": "pGM",
+      "SecondsSettlingTime": 3.0,
+      "FlowManager": "H2.GMFlowManager",
+      "Destination": "GM",
+      "Path": "VM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.GM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.GM",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pGM",
+      "SecondsSettlingTime": 3.0,
+      "FlowManager": "He.GMFlowManager",
+      "Destination": "GM",
+      "Path": "VM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.IM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.IM",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pIM",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": "He.IMFlowManager",
+      "Destination": "IM",
+      "Path": "VM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.MC": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.MC",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": "He.MCFlowManager",
+      "Destination": "MC",
+      "Path": "VM_Split",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.MCA": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.MCA",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "SecondsSettlingTime": 6.0,
+      "FlowManager": "He.MCFlowManager",
+      "Destination": "MCA",
+      "Path": "VM_Split",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.MCA_Split": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.MCA_Split",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": "He.MCFlowManager",
+      "Destination": "MCA_Split",
+      "Path": "VM_GM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.MC_GM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.MC_GM",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": "He.MCFlowManager",
+      "Destination": "MC_GM",
+      "Path": "VM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "He.MCA_GM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "He.MCA_GM",
+      "GasName": "He",
+      "SourceValve": "vHe_VM",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": "He.MCFlowManager",
+      "Destination": "MCA_GM",
+      "Path": "VM",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "CO2.MC": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "CO2.MC",
+      "GasName": "CO2",
+      "SourceValve": "vCO2_VM",
+      "FlowValve": "vCO2Flow",
+      "Meter": "ugCinMC",
+      "SecondsSettlingTime": 5.0,
+      "FlowManager": "CO2.MCFlowManager",
+      "Destination": "MC",
+      "Path": "VM_Split",
+      "PurgePressure": 10.0,
+      "SecondsToPurge": 20
+    },
+    "O2.IM": {
+      "$type": "HACS.Components.GasSupply, HACS",
+      "Name": "O2.IM",
+      "GasName": "O2",
+      "SourceValve": "vO2_VM",
+      "FlowValve": null,
+      "Meter": "pIM",
+      "SecondsSettlingTime": 0.9,
+      "FlowManager": null,
+      "Destination": "IM",
+      "Path": "VM",
+      "PurgePressure": 100.0,
+      "SecondsToPurge": 1
+    }
+  },
+  "FlowManagers": {
+    "CTFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "CTFlowManager",
+      "FlowValve": "vCTFlow",
+      "Meter": "pCT",
+      "MillisecondsTimeout": 200,
+      "SecondsCycle": 4.0,
+      "StartingMovement": 0,
+      "MaximumMovement": 96,
+      "MaximumRate": 0.04,
+      "Lag": 4.0,
+      "Deadband": 0.25,
+      "DeadbandIsFractionOfTarget": false,
+      "Gain": -1.5,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": true,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    },
+    "H2.GMFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "H2.GMFlowManager",
+      "FlowValve": "vH2Flow",
+      "Meter": "pGM",
+      "MillisecondsTimeout": 100,
+      "SecondsCycle": 2.0,
+      "StartingMovement": -20,
+      "MaximumMovement": 12,
+      "MaximumRate": 50.0,
+      "Lag": 15.0,
+      "Deadband": 0.1,
+      "DeadbandIsFractionOfTarget": false,
+      "Gain": -2.0,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": false,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    },
+    "He.GMFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "He.GMFlowManager",
+      "FlowValve": "vHeFlow",
+      "Meter": "pGM",
+      "MillisecondsTimeout": 100,
+      "SecondsCycle": 2.0,
+      "StartingMovement": -20,
+      "MaximumMovement": 12,
+      "MaximumRate": 50.0,
+      "Lag": 15.0,
+      "Deadband": 0.5,
+      "DeadbandIsFractionOfTarget": false,
+      "Gain": -2.0,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": false,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    },
+    "He.IMFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "He.IMFlowManager",
+      "FlowValve": "vHeFlow",
+      "Meter": "pIM",
+      "MillisecondsTimeout": 100,
+      "SecondsCycle": 2.0,
+      "StartingMovement": -20,
+      "MaximumMovement": 12,
+      "MaximumRate": 50.0,
+      "Lag": 15.0,
+      "Deadband": 0.5,
+      "DeadbandIsFractionOfTarget": false,
+      "Gain": -2.0,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": false,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    },
+    "He.MCFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "He.MCFlowManager",
+      "FlowValve": "vHeFlow",
+      "Meter": "pMC",
+      "MillisecondsTimeout": 35,
+      "SecondsCycle": 1.5,
+      "StartingMovement": -20,
+      "MaximumMovement": 12,
+      "MaximumRate": 1.0,
+      "Lag": 30.0,
+      "Deadband": 0.02,
+      "DeadbandIsFractionOfTarget": true,
+      "Gain": -5.0,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": false,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    },
+    "CO2.MCFlowManager": {
+      "$type": "HACS.Components.FlowManager, HACS",
+      "Name": "CO2.MCFlowManager",
+      "FlowValve": "vCO2Flow",
+      "Meter": "ugCinMC",
+      "MillisecondsTimeout": 100,
+      "SecondsCycle": 3.0,
+      "StartingMovement": -30,
+      "MaximumMovement": 12,
+      "MaximumRate": 25.0,
+      "Lag": 25.0,
+      "Deadband": 1.0,
+      "DeadbandIsFractionOfTarget": false,
+      "Gain": -5.0,
+      "DivideGainByDeadband": false,
+      "StopOnFullyOpened": false,
+      "StopOnFullyClosed": false,
+      "UseRateOfChange": false
+    }
+  },
+  "VolumeCalibrations": {
+    "MC": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "MC",
+      "GasSupply": "He.MC",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "MC to MC+MCP2",
+          "Chamber": "CalibratedKnownVolume",
+          "ValveList": [
+            "vMC_MCP2"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": true
+    },
+    "MCP1, MCP2": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "MCP1, MCP2",
+      "GasSupply": "He.MC",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "MCP1",
+          "Chamber": "MCP1",
+          "ValveList": [
+            "vMC_MCP1"
+          ]
+        },
+        {
+          "Name": "MCP2",
+          "Chamber": "MCP2",
+          "ValveList": [
+            "vMC_MCP2"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": false
+    },
+    "Split": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "Split",
+      "GasSupply": "He.MCA",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "Split",
+          "Chamber": "Split",
+          "ValveList": [
+            "vMC_Split",
+            "vGM_Split"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": false
+    },
+    "GM": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "GM",
+      "GasSupply": "He.MCA_Split",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "GM",
+          "Chamber": "GM",
+          "ValveList": [
+            "vGM_Split",
+            "vGR1_GM",
+            "vGR2_GM",
+            "vGR3_GM",
+            "vGR4_GM",
+            "vGR5_GM",
+            "vGR6_GM",
+            "vGM_VM"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": false
+    },
+    "VTT, CT, IM": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "VTT, CT, IM",
+      "GasSupply": "He.MCA_GM",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "VTT",
+          "Chamber": "VTT",
+          "ValveList": [
+            "vVTT_MC",
+            "vCT_VTT"
+          ]
+        },
+        {
+          "Name": "CT",
+          "Chamber": "CT",
+          "ValveList": [
+            "vCT_VTT",
+            "vIM_CT",
+            "vCT_VM"
+          ]
+        },
+        {
+          "Name": "IM",
+          "Chamber": "IM",
+          "ValveList": [
+            "vIM_CT",
+            "vIP1_IM",
+            "vIP2_IM",
+            "vIP3_IM",
+            "vIP4_IM",
+            "vIP5_IM",
+            "vIP6_IM",
+            "vIM_VM"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": false
+    },
+    "VM": {
+      "$type": "HACS.Components.VolumeCalibration, HACS",
+      "Name": "VM",
+      "GasSupply": "He.MCA_GM",
+      "CalibrationPressure": 95.0,
+      "CalibrationMinutes": 0,
+      "Expansions": [
+        {
+          "Name": "VM",
+          "Chamber": "VM",
+          "ValveList": [
+            "vGM_VM",
+            "vIM_VM",
+            "vCT_VM",
+            "vHe_VM",
+            "vH2_VM",
+            "vCO2_VM",
+            "vO2_VM",
+            "vHV",
+            "vLV"
+          ]
+        }
+      ],
+      "ExpansionVolumeIsKnown": false
+    }
+  },
+  "Logs": {
+    "AmbientLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "AmbientLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pAmbient",
+          "Resolution": 0.5,
+          "Format": "0.0"
+        },
+        {
+          "Name": "tAmbient",
+          "Resolution": 0.25,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGM",
+          "Resolution": -1.0,
+          "Format": "0"
+        },
+        {
+          "Name": "tMC",
+          "Resolution": -1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLnOverflow",
+          "Resolution": -1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "HC1.CJ",
+          "Resolution": -1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "HC2.CJ",
+          "Resolution": -1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "HC3.CJ",
+          "Resolution": -1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "HC4.CJ",
+          "Resolution": -1.0,
+          "Format": "0.0"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 60000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "Ambient data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "PressureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "PressureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pAmbient",
+          "Resolution": -1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pIM",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "pGM",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "pCT",
+          "Resolution": -1.0,
+          "Format": "0.0000"
+        },
+        {
+          "Name": "pForeline",
+          "Resolution": 0.1,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pVM",
+          "Resolution": -1.0,
+          "Format": "0.00e0"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "Pressure data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "VMPressureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "VMPressureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pVM",
+          "Resolution": 1.0,
+          "Format": "0.00e0"
+        },
+        {
+          "Name": "pVM_IG",
+          "Resolution": -1.0,
+          "Format": "0.00e0"
+        },
+        {
+          "Name": "pVM_HP",
+          "Resolution": -1.0,
+          "Format": "0.00e0"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "VM Pressure data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "IPTemperatureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "IPTemperatureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "tIP1CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tIP2CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tIP3CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tIP4CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tIP5CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tIP6CCS",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "IP Temperature data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "CTLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "CTLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pCT",
+          "Resolution": 0.01,
+          "Format": "0.000"
+        },
+        {
+          "Name": "tLN_CT",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "CT Data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "VttLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "VttLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "tLN_VTC",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tVTC",
+          "Resolution": 0.1,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tVTC_top",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tVTC_wire",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "VTT data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "MCLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "MCLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pMC",
+          "Resolution": 0.1,
+          "Format": "0.000"
+        },
+        {
+          "Name": "tMC",
+          "Resolution": 0.1,
+          "Format": "0.000"
+        },
+        {
+          "Name": "ugCinMC",
+          "Resolution": -1.0,
+          "Format": "0.000"
+        },
+        {
+          "Name": "tLN_MC",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "MC Data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "GRPressureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "GRPressureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "pGR1",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pGR2",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pGR3",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pGR4",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pGR5",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "pGR6",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "GR data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "GRSampleTemperatureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "GRSampleTemperatureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "GR1.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "GR2.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "GR3.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "GR4.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "GR5.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        },
+        {
+          "Name": "GR6.SampleTemperature",
+          "Resolution": 1.0,
+          "Format": "0.0"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "GR Sample Temperature data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "GRTemperatureLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "GRTemperatureLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "tGR1",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGR2",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGR3",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGR4",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGR5",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tGR6",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "GR Temperature data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "GRColdfingerLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "GRColdfingerLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "tLN_GR1",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_GR2",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_GR3",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_GR4",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_GR5",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_GR6",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLNManifold",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "GR Coldfinger data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "ColdfingerLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "ColdfingerLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "tLN_CT",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_VTC",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLN_MC",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLnOverflow",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        },
+        {
+          "Name": "tLNManifold",
+          "Resolution": 1.0,
+          "Format": "0.00"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 30000,
+      "OnlyLogWhenChanged": false,
+      "FileName": "Coldfinger data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "VoltageLog": {
+      "$type": "HACS.Components.DataLog, HACS",
+      "Name": "VoltageLog",
+      "InsertLatestSkippedEntry": false,
+      "Columns": [
+        {
+          "Name": "DC5VPower",
+          "Resolution": 0.01,
+          "Format": "0.000"
+        },
+        {
+          "Name": "DC5VMainsDetect",
+          "Resolution": 0.5,
+          "Format": "0.000"
+        }
+      ],
+      "ChangeTimeoutMilliseconds": 60000,
+      "OnlyLogWhenChanged": true,
+      "FileName": "Voltage data.txt",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": true
+    },
+    "SampleLog": {
+      "$type": "HACS.Core.HacsLog, HACS",
+      "Name": "SampleLog",
+      "FileName": "Sample data.txt",
+      "Header": "",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": false
+    },
+    "EventLog": {
+      "$type": "HACS.Core.HacsLog, HACS",
+      "Name": "EventLog",
+      "FileName": "Event log.txt",
+      "Header": "",
+      "TimeStampFormat": "MM/dd/yyyy HH:mm:ss.fff\t",
+      "ArchiveDaily": false
+    }
+  },
+  "Samples": {
+    "Sample100": {
+      "Name": "Sample100",
+      "LabId": "C1-12.9",
+      "InletPort": "IP6",
+      "Process": "Carbonate",
+      "SulfurSuspected": false,
+      "Take_d13C": false,
+      "Grams": 0.0129,
+      "MicrogramsDilutionCarbon": 0.0,
+      "TotalMicrogramsCarbon": 1106.885333333333,
+      "SelectedMicrogramsCarbon": 911.6611920529809,
+      "Micrograms_d13C": 0.0,
+      "d13CPartsPerMillion": 0.0,
+      "Aliquots": [
+        {
+          "$type": "HACS.Components.Aliquot, HACS",
+          "Name": "C1-12.9-1",
+          "Sample": "Sample100",
+          "GraphiteReactor": "GR6",
+          "MicrogramsCarbon": 911.6611920529809,
+          "InitialGmH2Pressure": 0.0,
+          "FinalGmH2Pressure": 0.0,
+          "H2CO2PressureRatio": 0.0,
+          "ExpectedResidualPressure": 0.0,
+          "ResidualPressure": 0.0,
+          "ResidualMeasured": false,
+          "Tries": 0
+        }
+      ]
+    }
+  },
+  "HacsComponents": {
+    "IpFan1-3": {
+      "$type": "HACS.Components.IpFan, HACS",
+      "Name": "IpFan1-3",
+      "Fan": "fan1",
+      "InletPorts": [
+        "IP1",
+        "IP2",
+        "IP3"
+      ],
+      "State": "Monitor",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    },
+    "IpFan4-6": {
+      "$type": "HACS.Components.IpFan, HACS",
+      "Name": "IpFan4-6",
+      "Fan": "fan2",
+      "InletPorts": [
+        "IP4",
+        "IP5",
+        "IP6"
+      ],
+      "State": "Monitor",
+      "IdleTimeout": 500,
+      "LogEverything": false
+    }
+  },
+  "Power": {
+    "Name": "Power",
+    "DC5V": "DC5VPower",
+    "MainsDetect": "DC5VMainsDetect",
+    "MainsDetectMinimumVoltage": 0.0,
+    "MilliSecondsMainsDownLimit": 5000
+  },
+  "CegsPreferences": {
+    "Name": "CegsPreferences",
+    "EnableWatchdogs": true,
+    "EnableAutozero": true,
+    "PriorGR": "GR6",
+    "NextGraphiteNumber": 13,
+    "DefaultMassUnits": "mg",
+    "Take13CDefault": false,
+    "PressureOverAtm": 780.0,
+    "OkPressure": 0.005,
+    "CleanPressure": 0.0005,
+    "VPInitialHePressure": -1.0,
+    "VPErrorPressure": -1.0,
+    "MaximumResidual": 1.2,
+    "IMO2Pressure": 1350.0,
+    "FirstTrapBleedPressure": 2.0,
+    "FirstTrapEndPressure": 0.03,
+    "FirstTrapFlowBypassPressure": 5.0,
+    "IronPreconditionH2Pressure": 0.0,
+    "IMPluggedTorrPerSecond": 5.0,
+    "IMLoadedTorrPerSecond": 4.0,
+    "GRCompleteTorrPerMinute": 0.4,
+    "RoomTemperature": 21.0,
+    "SulfurTrapTemperature": 400,
+    "IronPreconditioningTemperature": 580,
+    "IronPreconditioningTemperatureCushion": 10,
+    "CO2ExtractionTemperature": -140,
+    "CollectionMinutes": 4,
+    "ExtractionMinutes": 4,
+    "CO2TransferMinutes": 4,
+    "MeasurementSeconds": 15,
+    "IronPreconditioningMinutes": 15,
+    "QuartzFurnaceWarmupMinutes": 10,
+    "SulfurTrapMinutes": 20,
+    "UpdateIntervalMilliseconds": 50,
+    "AvogadrosNumber": 6.022140857E+23,
+    "BoltzmannConstant": 1.38064852E-23,
+    "Pascal": 101325.0,
+    "Torr": 760.0,
+    "MilliLiter": 1000.0,
+    "CubicMeter": 0.001,
+    "ZeroDegreesC": 273.15,
+    "GramsCarbonPerMole": 12.011,
+    "CO2FreezePressure": 0.0006,
+    "H2_CO2StoichiometricRatio": 2.0,
+    "H2_CO2GraphitizationRatio": 2.3,
+    "H2DensityAdjustment": 0.74,
+    "SmallSampleMicrogramsCarbon": 10,
+    "EnableSmallReactors": false,
+    "MinimumUgCThatPermits_d13CSplit": 1000,
+    "DilutedSampleMicrogramsCarbon": 0,
+    "MaximumSampleMicrogramsCarbon": 1000,
+    "SampleCounter": 101,
+    "MaximumAliquotsPerSample": 3
+  },
+  "AutoFeedEnabled": false,
+  "InletPort": "IP6"
+}
