@@ -20,13 +20,17 @@
                 Component="pIM" ContentStringFormat="0"/>
         </Grid>
 
+        <wpf:Switch Component="IpFan1-3" HelpText="Trap fan for IP1..IP3" IsOn="{Binding Component.Fan.IsOn, RelativeSource={RelativeSource Self}}" 
+            Canvas.Right="81" Canvas.Top="3" Width="23" Height="67" />
         <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="0" Component="IP1" HelpText="Inlet port 1" d:PortType="Combustion" />
         <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="26" Component="IP2" HelpText="Inlet port 2" d:PortType="Combustion"  />
         <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="52" Component="IP3" HelpText="Inlet port 3" d:PortType="Combustion"  />
 
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="104" Component="IP4" HelpText="Inlet port 4" d:PortType="Combustion"  />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="130" Component="IP5" HelpText="Inlet port 5" d:PortType="Combustion"  />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="156" Component="IP6" HelpText="Inlet port 6" d:PortType="Combustion"  />
+        <wpf:Switch Component="IpFan4-6" HelpText="Trap fan for IP4..IP6" IsOn="{Binding Component.Fan.IsOn, RelativeSource={RelativeSource Self} }" 
+            Canvas.Right="81" Canvas.Bottom="3" Width="23" Height="67" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="104" Component="IP4" HelpText="Inlet port 4" d:PortType="Combustion" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="130" Component="IP5" HelpText="Inlet port 5" d:PortType="Combustion" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="156" Component="IP6" HelpText="Inlet port 6" d:PortType="Combustion" />
 
     </Canvas>
 </wpf:View>

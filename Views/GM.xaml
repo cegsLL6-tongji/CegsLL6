@@ -12,9 +12,9 @@
         <local:Manifold Canvas.Left="0" Canvas.Top="6"
             wpf:View.Component="Section.GM" AutomationProperties.HelpText="Graphite manifold"/>
 
-        <Grid Canvas.Left="17.5" Canvas.Bottom="102" Background="Transparent" RenderTransform="{wpf:AnchorTransform BottomCenter}"
+        <Grid Canvas.Left="17.5" Canvas.Bottom="102" Background="Transparent" ClipToBounds="True"  RenderTransform="{wpf:AnchorTransform BottomCenter}"
             wpf:View.Component="pGM" AutomationProperties.HelpText="Graphite manifold pressure">
-            <wpf:Mks722BHighPressure HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            <wpf:Mks722BHighPressure VerticalAlignment="Bottom" HorizontalAlignment="Center" />
             <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,29" IsHitTestVisible="False"
                 Component="pGM" ContentStringFormat="0" />
         </Grid>

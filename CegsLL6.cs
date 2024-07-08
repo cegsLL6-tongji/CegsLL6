@@ -246,9 +246,6 @@ namespace AeonHacs.Components
             ProcessDictionary["Transfer CO2 from prior GR to MC"] = TransferCO2FromGRToMC;
             Separators.Add(ProcessDictionary.Count);
 
-            // Flow control steps
-            Separators.Add(ProcessDictionary.Count);
-
             // Utilities (generally not for sample processing)
             Separators.Add(ProcessDictionary.Count);
             ProcessDictionary["Exercise all Opened valves"] = ExerciseAllValves;
@@ -422,12 +419,6 @@ namespace AeonHacs.Components
             CalibrateManualHeater(Find<IHeater>("hIP4CCQ"), tc);
             CalibrateManualHeater(Find<IHeater>("hIP5CCQ"), tc);
             CalibrateManualHeater(Find<IHeater>("hIP6CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP7CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP8CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP9CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP10CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP11CCQ"), tc);
-            CalibrateManualHeater(Find<IHeater>("hIP12CCQ"), tc);
         }
 
 

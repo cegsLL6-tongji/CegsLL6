@@ -10,7 +10,7 @@
     >
 
     <StackPanel>
-        <local:LNManifold HorizontalAlignment="Center"/>
-        <local:AirManifold Margin="5" HorizontalAlignment="Center"/>
+        <local:LNManifolds HorizontalAlignment="Center"/>
+        <local:AirManifolds Margin="5" HorizontalAlignment="Center"/>
     </StackPanel>
 </wpf:View>

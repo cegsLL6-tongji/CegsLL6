@@ -3,11 +3,11 @@
 namespace CegsLL6.Views
 {
     /// <summary>
-    /// Interaction logic for LnManifold.xaml
+    /// Interaction logic for AirManifolds.xaml
     /// </summary>
-    public partial class LNManifold : View
+    public partial class AirManifolds : View
     {
-        public LNManifold()
+        public AirManifolds()
         {
             InitializeComponent();
         }
