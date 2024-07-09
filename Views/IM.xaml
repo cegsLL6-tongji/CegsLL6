@@ -3,15 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CegsLL6.Views"
     xmlns:wpf="http://schemas.aeonhacs.com/wpf"
     mc:Ignorable="d"
     Background="{x:Null}"
     >
 
     <Canvas Width="250" Height="177">
-        <local:Manifold Canvas.Right="0" Canvas.Top="6" LayoutTransform="{DynamicResource Mirror}"
-            Component="Section.IM" AutomationProperties.HelpText="Inlet manifold" />
+        <wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
+            Data="M17.5,0.5 v164
+                M0.5,4.5 h17 M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17 M0.5,160.5 h17
+                M17.5,82.5 h43 M43.5,69.5 v30" />        
 
         <Grid Canvas.Right="17.5" Canvas.Bottom="102" Background="Transparent" ClipToBounds="True"  RenderTransform="{wpf:AnchorTransform BottomCenter}"
             wpf:View.Component="pIM" AutomationProperties.HelpText="Inlet manifold pressure">

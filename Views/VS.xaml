@@ -7,7 +7,7 @@
     Background="{x:Null}"
     >
     <Grid>
-        <Canvas Width="344" Height="245" Visibility="Visible">
+        <Canvas Width="336" Height="245" Visibility="Visible">
             <!--Vacuum manifold-->
             <wpf:Chamber Canvas.Top="18" Component="Section.VM" HelpText="Vacuum manifold"
                 Data="M5.5,69.5 h325 M9.5,0.5 v69.5 M35.5,56.5 v13.5 M61.5,56.5 v13.5 M133.5,0.5 v69.5 M326.5,0.5 v69.5 M107.5,69.5 v17 M159.5,69.5 v17 M235.5,69.5 v17 M261.5,69.5 v17 M287.5,69.5 v17 M313.5,69.5 v17" />
