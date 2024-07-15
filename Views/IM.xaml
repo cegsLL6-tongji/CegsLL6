@@ -9,6 +9,7 @@
     >
 
     <Canvas Width="250" Height="177">
+        <!-- BEGIN MKS pressure sensor version -->
         <wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
             Data="M17.5,0.5 v164
                 M0.5,4.5 h17 M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17 M0.5,160.5 h17
@@ -20,6 +21,22 @@
             <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,29" IsHitTestVisible="False"
                 Component="pIM" ContentStringFormat="0"/>
         </Grid>
+        <!-- END MKS pressure sensor version -->
+
+        <!-- BEGIN Port pressure sensor version -->
+        <!--<wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
+            Data="M17.5,0.5 v164
+                M0.5,4.5 h17 M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17 M0.5,160.5 h17
+                M17.5,82.5 h43 M43.5,82.5 v17" />
+
+        <Grid Canvas.Right="17.5" Canvas.Bottom="92" Background="Transparent" ClipToBounds="True"
+                RenderTransform="{wpf:AnchorTransform BottomCenter}" wpf:View.Component="pGM"
+                AutomationProperties.HelpText="Graphite manifold pressure">
+            <wpf:PortPressureSensor VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-5" IsHitTestVisible="False" />
+            <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,19"
+                    IsHitTestVisible="False" Component="pGM" ContentStringFormat="0" />
+        </Grid>-->
+        <!-- END Port pressure sensor version -->
 
         <wpf:Switch Component="IpFan1-3" HelpText="Trap fan for IP1..IP3" IsOn="{Binding Component.Fan.IsOn, RelativeSource={RelativeSource Self}}" 
             Canvas.Right="81" Canvas.Top="3" Width="23" Height="67" />

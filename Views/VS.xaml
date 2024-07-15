@@ -98,9 +98,9 @@
                 <wpf:Valve Canvas.Left="55" Canvas.Top="78" Component="vR" HelpText="Roughing valve" d:ValveState="Opened" />
             </Canvas>
 
-            <wpf:Valve Canvas.Left="0" Canvas.Top="0" Component="vIM_VM" HelpText="IMC-VM valve" d:ValveState="Opened" />
+            <wpf:Valve Canvas.Left="0" Canvas.Top="0" Component="vIM_VM" HelpText="IM-VM valve" d:ValveState="Opened" />
             <wpf:Valve Canvas.Left="124" Canvas.Top="0" Component="vCT_VM" HelpText="CT-VM valve" d:ValveState="Opened" />
-            <wpf:Valve Canvas.Left="317" Canvas.Top="0" Component="vGM_VM" HelpText="GMC-VM valve" d:ValveState="Opened" />
+            <wpf:Valve Canvas.Left="317" Canvas.Top="0" Component="vGM_VM" HelpText="GM-VM valve" d:ValveState="Opened" />
         </Canvas>
     </Grid>
 </wpf:View>
