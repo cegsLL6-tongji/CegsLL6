@@ -9,24 +9,10 @@
     >
 
     <Canvas Width="250" Height="177">
-        <!-- BEGIN MKS pressure sensor version -->
-        <wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
-            Data="M17.5,0.5 v164
-                M0.5,4.5 h17 M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17 M0.5,160.5 h17
-                M17.5,82.5 h43 M43.5,69.5 v30" />        
-
-        <Grid Canvas.Right="17.5" Canvas.Bottom="102" Background="Transparent" ClipToBounds="True"  RenderTransform="{wpf:AnchorTransform BottomCenter}"
-            wpf:View.Component="pIM" AutomationProperties.HelpText="Inlet manifold pressure">
-            <wpf:Mks722BHighPressure HorizontalAlignment="Center" VerticalAlignment="Bottom" IsHitTestVisible="False" />
-            <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,29" IsHitTestVisible="False"
-                Component="pIM" ContentStringFormat="0"/>
-        </Grid>
-        <!-- END MKS pressure sensor version -->
-
         <!-- BEGIN Port pressure sensor version -->
-        <!--<wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
-            Data="M17.5,0.5 v164
-                M0.5,4.5 h17 M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17 M0.5,160.5 h17
+        <wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
+            Data="M0.5,4.5 h17 v156 h-17
+                M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17
                 M17.5,82.5 h43 M43.5,82.5 v17" />
 
         <Grid Canvas.Right="17.5" Canvas.Bottom="92" Background="Transparent" ClipToBounds="True"
@@ -35,20 +21,40 @@
             <wpf:PortPressureSensor VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-5" IsHitTestVisible="False" />
             <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,19"
                     IsHitTestVisible="False" Component="pGM" ContentStringFormat="0" />
-        </Grid>-->
+        </Grid>
         <!-- END Port pressure sensor version -->
+
+        <!-- BEGIN MKS pressure sensor version -->
+        <!--<wpf:Chamber Component="Section.IM" HelpText="Inlet manifold" Canvas.Top="6" Canvas.Right="0"
+            Data="M0.5,4.5 h17 v156 h-17
+                M0.5,30.5 h17 M0.5,56.5 h17 M0.5,108.5 h17 M0.5,134.5 h17
+                M17.5,82.5 h43 M43.5,69.5 v30" />        
+
+        <Grid Canvas.Right="17.5" Canvas.Bottom="102" Background="Transparent" ClipToBounds="True"  RenderTransform="{wpf:AnchorTransform BottomCenter}"
+            wpf:View.Component="pIM" AutomationProperties.HelpText="Inlet manifold pressure">
+            <wpf:Mks722BHighPressure HorizontalAlignment="Center" VerticalAlignment="Bottom" IsHitTestVisible="False" />
+            <wpf:Pressure HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,29" IsHitTestVisible="False"
+                Component="pIM" ContentStringFormat="0"/>
+        </Grid>-->
+        <!-- END MKS pressure sensor version -->
 
         <wpf:Switch Component="IpFan1-3" HelpText="Trap fan for IP1..IP3" IsOn="{Binding Component.Fan.IsOn, RelativeSource={RelativeSource Self}}" 
             Canvas.Right="81" Canvas.Top="3" Width="23" Height="67" />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="0" Component="IP1" HelpText="Inlet port 1" d:PortType="Combustion" />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="26" Component="IP2" HelpText="Inlet port 2" d:PortType="Combustion"  />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="52" Component="IP3" HelpText="Inlet port 3" d:PortType="Combustion"  />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="0" 
+            Component="IP1" HelpText="Inlet port 1" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="26" 
+            Component="IP2" HelpText="Inlet port 2" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="52" 
+            Component="IP3" HelpText="Inlet port 3" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
 
         <wpf:Switch Component="IpFan4-6" HelpText="Trap fan for IP4..IP6" IsOn="{Binding Component.Fan.IsOn, RelativeSource={RelativeSource Self} }" 
             Canvas.Right="81" Canvas.Bottom="3" Width="23" Height="67" />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="104" Component="IP4" HelpText="Inlet port 4" d:PortType="Combustion" />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="130" Component="IP5" HelpText="Inlet port 5" d:PortType="Combustion" />
-        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="156" Component="IP6" HelpText="Inlet port 6" d:PortType="Combustion" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="104" 
+            Component="IP4" HelpText="Inlet port 4" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="130" 
+            Component="IP5" HelpText="Inlet port 5" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
+        <wpf:InletPort Orientation="Right" Canvas.Right="60" Canvas.Top="156" 
+            Component="IP6" HelpText="Inlet port 6" d:PortType="Combustion" d:QuartzFurnace="" d:SampleFurnace="" />
 
     </Canvas>
 </wpf:View>
