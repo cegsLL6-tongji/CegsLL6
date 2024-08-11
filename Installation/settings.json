@@ -3,7 +3,7 @@
   "AlertManager": {
     "Name": "AlertManager",
     "MinutesToSuppressSameMessage": 1440,
-    "PriorAlertMessage": "HeaterController1.SerialController: No response to command z",
+    "PriorAlertMessage": "SwitchBank1.SerialController: No response to command z",
     "AlertsEnabled": true
   },
   "ProcessSequences": {
@@ -5457,6 +5457,7 @@
       "BackingValve": "vB",
       "RoughingValve": "vR",
       "VacuumManifold": "VM",
+      "MySection": "VS1All",
       "State": "Evacuate",
       "TargetPressure": 0.005,
       "BaselinePressure": 0.0001,
@@ -5466,7 +5467,7 @@
       "LowVacuumRequiredPressure": 8.0,
       "StateStopwatch": {
         "IsRunning": true,
-        "Accumulated": 46051
+        "Accumulated": 84030
       },
       "IdleTimeout": 50
     }
@@ -5776,11 +5777,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 7126609175
+        "Accumulated": 7126699346
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79684
+        "Accumulated": 169855
       },
       "PriorPressure": 160.20000000000002,
       "PressurePeak": 1250,
@@ -5808,11 +5809,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 7126151604
+        "Accumulated": 7126241773
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79682
+        "Accumulated": 169851
       },
       "PriorPressure": 201.10000000000002,
       "PressurePeak": 1246,
@@ -5840,11 +5841,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 1558080553
+        "Accumulated": 1558170722
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79682
+        "Accumulated": 169851
       },
       "PriorPressure": 87.4,
       "PressurePeak": 1342,
@@ -5872,11 +5873,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 7131139595
+        "Accumulated": 7131229764
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79682
+        "Accumulated": 169851
       },
       "PriorPressure": 174.4,
       "PressurePeak": 1481,
@@ -5904,11 +5905,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 7131967102
+        "Accumulated": 7132057271
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79682
+        "Accumulated": 169851
       },
       "PriorPressure": 171.9,
       "PressurePeak": 1234,
@@ -5936,11 +5937,11 @@
       },
       "ProgressStopwatch": {
         "IsRunning": true,
-        "Accumulated": 7125656597
+        "Accumulated": 7125746766
       },
       "GraphitizationStopwatch": {
         "IsRunning": true,
-        "Accumulated": 79682
+        "Accumulated": 169851
       },
       "PriorPressure": 189.0,
       "PressurePeak": 1575,
@@ -5975,6 +5976,59 @@
         "vHV"
       ],
       "InternalValves": null,
+      "PathToVacuum": null,
+      "PathToVacuumIsolation": null,
+      "FlowManager": null
+    },
+    "VS1All": {
+      "$type": "AeonHacs.Components.Section, AeonHacs.Core",
+      "Name": "VS1All",
+      "MilliLiters": null,
+      "Chambers": [
+        "IM",
+        "CT",
+        "VTT",
+        "MC",
+        "Split",
+        "GM",
+        "VM"
+      ],
+      "Ports": [
+        "IP1",
+        "IP2",
+        "IP3",
+        "IP4",
+        "IP5",
+        "IP6",
+        "GR1",
+        "GR2",
+        "GR3",
+        "GR4",
+        "GR5",
+        "GR6"
+      ],
+      "VacuumSystem": "VacuumSystem1",
+      "Isolation": [
+        "vCO2_VM",
+        "vH2_VM",
+        "vHe_VM",
+        "vO2_VM",
+        "vLV",
+        "vHV"
+      ],
+      "InternalValves": [
+        "vIM_CT",
+        "vCTFlow",
+        "vCT_VTT",
+        "vVTT_MC",
+        "vMC_MCP1",
+        "vMC_MCP2",
+        "vMC_Split",
+        "vGM_Split",
+        "vIM_VM",
+        "vCT_VM",
+        "vGM_VM"
+      ],
       "PathToVacuum": null,
       "PathToVacuumIsolation": null,
       "FlowManager": null
@@ -6962,47 +7016,56 @@
         {
           "Name": "pAmbient",
           "Resolution": 0.5,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "tAmbient",
           "Resolution": 0.25,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGM",
           "Resolution": -1.0,
-          "Format": "0"
+          "Format": "0",
+          "Source": null
         },
         {
           "Name": "tMC",
           "Resolution": -1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLnOverflow",
           "Resolution": -1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "HC1.CJ",
           "Resolution": -1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": "HeaterController1.ColdJunctionTemperature"
         },
         {
           "Name": "HC2.CJ",
           "Resolution": -1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": "HeaterController2.ColdJunctionTemperature"
         },
         {
           "Name": "HC3.CJ",
           "Resolution": -1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": "HeaterController3.ColdJunctionTemperature"
         },
         {
           "Name": "HC4.CJ",
           "Resolution": -1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": "HeaterController4.ColdJunctionTemperature"
         }
       ],
       "ChangeTimeoutMilliseconds": 60000,
@@ -7019,32 +7082,38 @@
         {
           "Name": "pAmbient",
           "Resolution": -1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pIM",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "pGM",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "pCT",
           "Resolution": -1.0,
-          "Format": "0.0000"
+          "Format": "0.0000",
+          "Source": null
         },
         {
           "Name": "pForeline",
           "Resolution": 0.1,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pVM",
           "Resolution": -1.0,
-          "Format": "0.00e0"
+          "Format": "0.00e0",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7061,17 +7130,20 @@
         {
           "Name": "pVM",
           "Resolution": 1.0,
-          "Format": "0.00e0"
+          "Format": "0.00e0",
+          "Source": null
         },
         {
           "Name": "pVM_IG",
           "Resolution": -1.0,
-          "Format": "0.00e0"
+          "Format": "0.00e0",
+          "Source": null
         },
         {
           "Name": "pVM_HP",
           "Resolution": -1.0,
-          "Format": "0.00e0"
+          "Format": "0.00e0",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7088,32 +7160,38 @@
         {
           "Name": "tIP1CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tIP2CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tIP3CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tIP4CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tIP5CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tIP6CCS",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7130,12 +7208,14 @@
         {
           "Name": "pCT",
           "Resolution": 0.01,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         },
         {
           "Name": "tLN_CT",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7152,22 +7232,26 @@
         {
           "Name": "tLN_VTC",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tVTC",
           "Resolution": 0.1,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tVTC_top",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tVTC_wire",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7184,22 +7268,26 @@
         {
           "Name": "pMC",
           "Resolution": 0.1,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         },
         {
           "Name": "tMC",
           "Resolution": 0.1,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         },
         {
           "Name": "ugCinMC",
           "Resolution": -1.0,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         },
         {
           "Name": "tLN_MC",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7216,32 +7304,38 @@
         {
           "Name": "pGR1",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pGR2",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pGR3",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pGR4",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pGR5",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "pGR6",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7258,32 +7352,38 @@
         {
           "Name": "GR1.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "GR2.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "GR3.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "GR4.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "GR5.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         },
         {
           "Name": "GR6.SampleTemperature",
           "Resolution": 1.0,
-          "Format": "0.0"
+          "Format": "0.0",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7300,32 +7400,38 @@
         {
           "Name": "tGR1",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGR2",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGR3",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGR4",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGR5",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tGR6",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7342,37 +7448,44 @@
         {
           "Name": "tLN_GR1",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_GR2",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_GR3",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_GR4",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_GR5",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_GR6",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLNManifold",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7389,27 +7502,32 @@
         {
           "Name": "tLN_CT",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_VTC",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLN_MC",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLnOverflow",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         },
         {
           "Name": "tLNManifold",
           "Resolution": 1.0,
-          "Format": "0.00"
+          "Format": "0.00",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 30000,
@@ -7426,12 +7544,14 @@
         {
           "Name": "DC5VPower",
           "Resolution": 0.01,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         },
         {
           "Name": "DC5VMainsDetect",
           "Resolution": 0.5,
-          "Format": "0.000"
+          "Format": "0.000",
+          "Source": null
         }
       ],
       "ChangeTimeoutMilliseconds": 60000,
