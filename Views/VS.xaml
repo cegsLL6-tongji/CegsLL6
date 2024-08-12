@@ -1,29 +1,27 @@
-﻿<wpf:View x:Class="CegsLL6.Views.VS"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:wpf="http://schemas.aeonhacs.com/wpf"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-    Background="{x:Null}"
-    >
+﻿<wpf:View x:Class="CegsLL6.Views.VS" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:wpf="http://schemas.aeonhacs.com/wpf" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Background="{x:Null}">
     <Grid>
         <Canvas Width="336" Height="245" Visibility="Visible">
             <!--Vacuum manifold-->
             <wpf:Chamber Canvas.Top="18" Component="Section.VM1" HelpText="Vacuum manifold"
-                Data="M9.5,0.5 v69.5 h317.5 v-69.5
-                      M35.5,57.5 v13 M61.5,57.5 v13 M133.5,0.5 v69.5
+                Data="M9.5,0.5 v69 h317 v-69
+                      M35.5,69.5 v-13 M61.5,69.5 v-13 M133.5,69.5 v-69
                       M107.5,69.5 v17 M159.5,69.5 v17 M235.5,69.5 v17 M261.5,69.5 v17 M287.5,69.5 v17 M313.5,69.5 v17" />
 
             <!--Vacuum manifold pressure-->
-            <wpf:VMPressure Canvas.Left="22.5" Canvas.Bottom="161"/>
-
+            <wpf:VMPressure Canvas.Left="22.5" Canvas.Bottom="162" />
 
             <!--Gas supplies-->
             <Canvas Canvas.Left="225" Canvas.Top="104" Width="99" Height="95">
                 <wpf:GasSupply Canvas.Left="0" GasName="O2" HelpText="Oxygen gas supply" Valve="vO2_VM" />
-                <wpf:GasSupply Canvas.Left="26" GasName="He" HelpText="Helium gas supply" Valve="vHe_VM" FlowValve="vHeFlow" d:FlowValve="" />
-                <wpf:GasSupply Canvas.Left="52" GasName="H2" HelpText="Hydrogen gas supply" Valve="vH2_VM" FlowValve="vH2Flow" d:FlowValve=""/>
-                <wpf:GasSupply Canvas.Left="78" GasName="CO2" HelpText="Carbon dioxide gas supply" Valve="vCO2_VM" FlowValve="vCO2Flow" d:FlowValve=""/>
+                <wpf:GasSupply Canvas.Left="26" GasName="He" HelpText="Helium gas supply" Valve="vHe_VM"
+                        FlowValve="vHeFlow" d:FlowValve="" />
+                <wpf:GasSupply Canvas.Left="52" GasName="H2" HelpText="Hydrogen gas supply" Valve="vH2_VM"
+                        FlowValve="vH2Flow" d:FlowValve="" />
+                <wpf:GasSupply Canvas.Left="78" GasName="CO2" HelpText="Carbon dioxide gas supply" Valve="vCO2_VM"
+                        FlowValve="vCO2Flow" d:FlowValve="" />
             </Canvas>
 
             <!--Vacuum system-->
