@@ -34,6 +34,10 @@ public partial class App : Application
         // Interaction.GetBehaviors(MainWindow).Add(new ScalableWindowBehavior());
     }
 
+    /// <summary>
+    /// Save preferences and close the event log before the application exits.
+    /// </summary>
+    /// <param name="e"></param>
     protected override void OnExit(ExitEventArgs e)
     {
         SavePreferences();
