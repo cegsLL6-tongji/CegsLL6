@@ -8,97 +8,95 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace CegsLL6.Views
+namespace CegsLL6.Views;
+
+/// <summary>
+/// Interaction logic for ControlPanel.xaml
+/// </summary>
+public partial class ControlPanel : ControlPanel<AeonHacs.Components.CegsLL6>
 {
-    /// <summary>
-    /// Interaction logic for ControlPanel.xaml
-    /// </summary>
-    public partial class ControlPanel : AeonHacs.Wpf.Views.ControlPanel<AeonHacs.Components.CegsLL6>
+    ResourceDictionary Preferences = (ResourceDictionary)Application.Current.Resources["PreferencesDictionary"];
+
+    HacsBase Hacs => Bridge?.GetHacs();
+
+    // Empty constructor required for the designer to work.
+    public ControlPanel()
     {
-        ResourceDictionary Preferences = (ResourceDictionary)Application.Current.Resources["PreferencesDictionary"];
+        InitializeComponent();
+    }
 
-        HacsBase Hacs => Bridge?.GetHacs();
+    // Parameterized constructor called by the application on startup.
+    public ControlPanel(Action closeAction) : base(closeAction)
+    {
+        InitializeComponent();
+        PopulateProcessSelector();
 
-        // Empty constructor required for the designer to work.
-        public ControlPanel()
+        if (Hacs is Cegs cegs)
+            cegs.SelectSamples += OpenSampleSelector;
+
+        StartUpdateCycle();
+    }
+
+    protected virtual List<ISample> OpenSampleSelector(bool selectAll)
+    {
+        if (!CheckAccess())
+            return Dispatcher.Invoke(() => OpenSampleSelector(selectAll));
+
+        var w = new Window
         {
-            InitializeComponent();
-        }
-
-        // Parameterized constructor called by the application on startup.
-        public ControlPanel(Action closeAction) : base(closeAction)
+            WindowStartupLocation = WindowStartupLocation.CenterScreen,
+            Title = "Select Samples",
+            Content = new SampleSelector(selectAll),
+            SizeToContent = SizeToContent.WidthAndHeight
+        };
+        w.ContentRendered += (sender, e) =>
         {
-            InitializeComponent();
-            PopulateProcessSelector();
+            w.ClearValue(Window.SizeToContentProperty);
+            w.MinWidth = w.ActualWidth;
+            w.MinHeight = w.ActualHeight;
+        };
+        w.ShowDialog();
+        return (w.Content as SampleSelector).SelectedSamples;
+    }
 
-            if (Hacs is Cegs cegs)
-                cegs.SelectSamples += OpenSampleSelector;
-
-            StartUpdateCycle();
-        }
-
-        protected virtual List<ISample> OpenSampleSelector(bool selectAll)
+    void PopulateProcessSelector()
+    {
+        if (Hacs is ProcessManager pm)
         {
-            if (!CheckAccess())
-                return Dispatcher.Invoke(() => OpenSampleSelector(selectAll));
+            var items = new ObservableCollection<object>();
 
-            var w = new Window
-            {
-                WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                Title = "Select Samples",
-                Content = new SampleSelector(selectAll),
-                SizeToContent = SizeToContent.WidthAndHeight
-            };
-            w.ContentRendered += (sender, e) =>
-            {
-                w.ClearValue(Window.SizeToContentProperty);
-                w.MinWidth = w.ActualWidth;
-                w.MinHeight = w.ActualHeight;
-            };
-            w.ShowDialog();
-            return (w.Content as SampleSelector).SelectedSamples;
+            for (int i = 0; i < pm.ProcessNames.Count; ++i)
+                items.Add(pm.ProcessNames[i]);
+
+            for (int i = pm.Separators.Count - 1; i >= 0; --i)
+                items.Insert(pm.Separators[i], new Separator());
+
+            ProcessSelector.ItemsSource = items;
         }
+    }
 
-        void PopulateProcessSelector()
-        {
-            if (Hacs is ProcessManager pm)
-            {
-                var items = new ObservableCollection<object>();
+    void StartUpdateCycle()
+    {
+        // 100 millisecond Update() timer
+        new DispatcherTimer(new TimeSpan(10000 * 100), DispatcherPriority.Background, (sender, e) => Update(), Dispatcher.CurrentDispatcher);
+    }
 
-                for (int i = 0; i < pm.ProcessNames.Count; ++i)
-                    items.Add(pm.ProcessNames[i]);
+    void UpdateContent(ContentControl control) =>
+        BindingOperations.GetBindingExpression(control, ContentProperty)?.UpdateTarget();
 
-                for (int i = pm.Separators.Count - 1; i >= 0; --i)
-                    items.Insert(pm.Separators[i], new Separator());
+    void Update()
+    {
+        UpdateContent(Uptime);
+        UpdateContent(ProcessTime);
+        UpdateContent(ProcessStepTime);
+        UpdateContent(ProcessSubstepTime);
+    }
 
-                ProcessSelector.ItemsSource = items;
-            }
-        }
-
-        void StartUpdateCycle()
-        {
-            // 100 millisecond Update() timer
-            new DispatcherTimer(new TimeSpan(10000 * 100), DispatcherPriority.Background, (sender, e) => Update(), Dispatcher.CurrentDispatcher);
-        }
-
-        void UpdateContent(ContentControl control) =>
-            BindingOperations.GetBindingExpression(control, ContentProperty)?.UpdateTarget();
-
-        void Update()
-        {
-            UpdateContent(Uptime);
-            UpdateContent(ProcessTime);
-            UpdateContent(ProcessStepTime);
-            UpdateContent(ProcessSubstepTime);
-        }
-
-        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (Hacs is ProcessManager pm && !pm.Busy && ProcessSelector.SelectedItem is string processName)
-                Task.Run(() => pm.RunProcess(processName));
-        }
+    private void StartButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (Hacs is ProcessManager pm && !pm.Busy && ProcessSelector.SelectedItem is string processName)
+            Task.Run(() => pm.RunProcess(processName));
     }
 }

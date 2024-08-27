@@ -5,8 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:wpf="http://schemas.aeonhacs.com/wpf"
     mc:Ignorable="d"
-    Background="Transparent"
-    >
+    Background="Transparent">
 
     <StackPanel>
         <wpf:Valve Component="{Binding Component.LNSupplyValve, ElementName=manifold1}" HelpText="LN Supply Valve" HorizontalAlignment="Right" d:ValveState="Closed" />
@@ -21,7 +20,7 @@
             <wpf:Valve HelpText="GR5 Coldfinger LN Valve" Component="vLN_GR5" d:ValveState="Closed" />
             <wpf:Valve HelpText="GR6 Coldfinger LN Valve" Component="vLN_GR6" d:ValveState="Closed" />
         </wpf:LNManifold>
-        
+
         <Border Background="Transparent" AutomationProperties.HelpText="Air manifold">
             <StackPanel>
                 <TextBlock Text="Air Manifold" HorizontalAlignment="Center" FontSize="10" Margin="0,10,0,2"/>
@@ -38,12 +37,13 @@
                 </wpf:StackingPanel>
             </StackPanel>
         </Border>
-        
+
         <TextBlock HorizontalAlignment="Center" FontSize="10" Background="Transparent" Margin="0,10,0,0"
                    wpf:View.Component="tLNOverflow" AutomationProperties.HelpText="LN overflow sensor"
                    DataContext="{Binding (wpf:View.Component), RelativeSource={RelativeSource Self}}">
             <Run Text="LN overflow sensor:" />
             <Run Text="{Binding Temperature, Mode=OneWay, FallbackValue='-- °C', StringFormat='0 °C'}" />
-        </TextBlock>       
+        </TextBlock>
     </StackPanel>
+
 </wpf:View>
