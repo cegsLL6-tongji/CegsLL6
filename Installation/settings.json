@@ -1097,7 +1097,7 @@
         ]
       },
       "RateOfChange": {
-        "Name": "pIM.RateOfChange",
+        "Name": null,
         "FilterLength": 35,
         "MaxIntervalMilliseconds": 1000.0,
         "Resolution": 0.01
@@ -1142,7 +1142,7 @@
         ]
       },
       "RateOfChange": {
-        "Name": "pGM.RateOfChange",
+        "Name": null,
         "FilterLength": 35,
         "MaxIntervalMilliseconds": 1000.0,
         "Resolution": 0.01
@@ -1529,7 +1529,7 @@
       "AnalogInputMode": "SingleEnded",
       "MinimumVoltage": 0.0,
       "UnitSymbol": "Torr",
-      "Ratiometric": false,
+      "Ratiometric": true,
       "MaxValue": 1600.0,
       "MinValue": 0.0,
       "Sensitivity": 0.1,
@@ -1569,7 +1569,7 @@
       "AnalogInputMode": "SingleEnded",
       "MinimumVoltage": 0.0,
       "UnitSymbol": "°C",
-      "Ratiometric": false,
+      "Ratiometric": true,
       "MaxValue": 50.0,
       "MinValue": 0.0,
       "Sensitivity": 0.01,
@@ -1614,7 +1614,7 @@
       "AnalogInputMode": "SingleEnded",
       "MinimumVoltage": 0.0,
       "UnitSymbol": "°C",
-      "Ratiometric": false,
+      "Ratiometric": true,
       "MaxValue": 50.0,
       "MinValue": 0.0,
       "Sensitivity": 0.01,
@@ -1627,17 +1627,29 @@
         "StepChange": 0.25
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": null,
-            "Argument": "x-0.504"
-          },
-          {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": null,
-            "Argument": "x*61.538"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "Interpolate",
+            "CalibrationData": [
+              {
+                "Item1": 0.737,
+                "Item2": 15.0
+              },
+              {
+                "Item1": 0.83,
+                "Item2": 20.0
+              },
+              {
+                "Item1": 0.941,
+                "Item2": 27.0
+              },
+              {
+                "Item1": 1.074,
+                "Item2": 35.0
+              }
+            ]
           }
         ]
       },
@@ -2205,7 +2217,7 @@
         "$type": "AeonHacs.ExponentialFilter, AeonHacs.Core",
         "Name": null,
         "Power": 1.2,
-        "StepChange": 0.0
+        "StepChange": 5.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -4121,12 +4133,6 @@
           "Value": 1,
           "Incremental": true,
           "Configuration": "i500 t0.4"
-        },
-        {
-          "Name": "_Move",
-          "Value": -12,
-          "Incremental": true,
-          "Configuration": "i500 t15"
         }
       ]
     },
@@ -4322,7 +4328,7 @@
       "Name": "hIP1CCS",
       "ThermocoupleChannel": 0,
       "PidSetup": "PID_IP1",
-      "Setpoint": 850.0,
+      "Setpoint": 150.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 950.0,
       "StopAction": "None",
@@ -4350,7 +4356,7 @@
       "Name": "hIP2CCS",
       "ThermocoupleChannel": 2,
       "PidSetup": "PID_IP2",
-      "Setpoint": 850.0,
+      "Setpoint": 150.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 950.0,
       "StopAction": "None",
@@ -4658,7 +4664,7 @@
       "Name": "hGR1",
       "ThermocoupleChannel": 5,
       "PidSetup": "PID_GR1",
-      "Setpoint": 572.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4686,7 +4692,7 @@
       "Name": "hGR2",
       "ThermocoupleChannel": 4,
       "PidSetup": "PID_GR2",
-      "Setpoint": 586.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4714,7 +4720,7 @@
       "Name": "hGR3",
       "ThermocoupleChannel": 3,
       "PidSetup": "PID_GR3",
-      "Setpoint": 579.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4742,7 +4748,7 @@
       "Name": "hGR4",
       "ThermocoupleChannel": 2,
       "PidSetup": "PID_GR4",
-      "Setpoint": 560.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4770,7 +4776,7 @@
       "Name": "hGR5",
       "ThermocoupleChannel": 1,
       "PidSetup": "PID_GR5",
-      "Setpoint": 575.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4798,7 +4804,7 @@
       "Name": "hGR6",
       "ThermocoupleChannel": 0,
       "PidSetup": "PID_GR6",
-      "Setpoint": 568.0,
+      "Setpoint": 400.0,
       "MinimumSetpoint": 0.0,
       "MaximumSetpoint": 600.0,
       "StopAction": "None",
@@ -4826,7 +4832,7 @@
       "Name": "hVTC",
       "ThermocoupleChannel": 4,
       "PidSetup": "VtcCold",
-      "Setpoint": 55.0,
+      "Setpoint": -140.0,
       "MinimumSetpoint": -196.0,
       "MaximumSetpoint": 55.0,
       "StopAction": "TurnOff",
@@ -5235,7 +5241,7 @@
       "VacuumManifold": "VM",
       "MySection": "VS1All",
       "State": "Evacuate",
-      "TargetPressure": 0.005,
+      "TargetPressure": 0.0005,
       "BaselinePressure": 0.0001,
       "GoodBackingPressure": 2.8,
       "HighVacuumPreferredPressure": 7.0,
@@ -5540,7 +5546,7 @@
     "GR1": {
       "$type": "AeonHacs.Components.GraphiteReactor, AeonHacs.Core",
       "Name": "GR1",
-      "State": "Prepared",
+      "State": "WaitService",
       "Size": "Standard",
       "Sample": null,
       "Aliquot": 0,
@@ -5559,9 +5565,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 160.20000000000002,
+      "PriorPressure": 0.0,
       "PressurePeak": 1250,
-      "MilliLiters": 3.3848561771087464,
+      "MilliLiters": 3.3,
       "Valve": "vGR1_GM",
       "Manometer": "pGR1",
       "Thermometer": "tGR1",
@@ -5572,7 +5578,7 @@
     "GR2": {
       "$type": "AeonHacs.Components.GraphiteReactor, AeonHacs.Core",
       "Name": "GR2",
-      "State": "Prepared",
+      "State": "WaitService",
       "Size": "Standard",
       "Sample": null,
       "Aliquot": 0,
@@ -5591,9 +5597,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 201.10000000000002,
-      "PressurePeak": 1246,
-      "MilliLiters": 3.342220474568035,
+      "PriorPressure": 0.0,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3,
       "Valve": "vGR2_GM",
       "Manometer": "pGR2",
       "Thermometer": "tGR2",
@@ -5604,7 +5610,7 @@
     "GR3": {
       "$type": "AeonHacs.Components.GraphiteReactor, AeonHacs.Core",
       "Name": "GR3",
-      "State": "Prepared",
+      "State": "WaitService",
       "Size": "Standard",
       "Sample": null,
       "Aliquot": 0,
@@ -5623,9 +5629,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 87.4,
-      "PressurePeak": 1342,
-      "MilliLiters": 3.2948610019433753,
+      "PriorPressure": 0.0,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3,
       "Valve": "vGR3_GM",
       "Manometer": "pGR3",
       "Thermometer": "tGR3",
@@ -5636,7 +5642,7 @@
     "GR4": {
       "$type": "AeonHacs.Components.GraphiteReactor, AeonHacs.Core",
       "Name": "GR4",
-      "State": "Prepared",
+      "State": "WaitService",
       "Size": "Standard",
       "Sample": null,
       "Aliquot": 0,
@@ -5655,9 +5661,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 174.4,
-      "PressurePeak": 1481,
-      "MilliLiters": 3.2958354026089567,
+      "PriorPressure": 0.0,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3,
       "Valve": "vGR4_GM",
       "Manometer": "pGR4",
       "Thermometer": "tGR4",
@@ -5687,9 +5693,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 171.9,
-      "PressurePeak": 1234,
-      "MilliLiters": 3.3259950668244267,
+      "PriorPressure": 0.0,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3,
       "Valve": "vGR5_GM",
       "Manometer": "pGR5",
       "Thermometer": "tGR5",
@@ -5719,9 +5725,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 189.0,
-      "PressurePeak": 1575,
-      "MilliLiters": 3.307390474870241,
+      "PriorPressure": 0.0,
+      "PressurePeak": 1250,
+      "MilliLiters": 3.3,
       "Valve": "vGR6_GM",
       "Manometer": "pGR6",
       "Thermometer": "tGR6",
@@ -6147,6 +6153,7 @@
         "GR3",
         "GR4",
         "GR5",
+        "GR6",
         "MCP1",
         "MCP2"
       ],
@@ -6250,7 +6257,8 @@
         "GR2",
         "GR3",
         "GR4",
-        "GR5"
+        "GR5",
+        "GR6"
       ],
       "VacuumSystem": "VacuumSystem1",
       "Isolation": [
@@ -6258,6 +6266,8 @@
         "vGM_VM"
       ],
       "InternalValves": [
+        "vMC_MCP1",
+        "vMC_MCP2",
         "vMC_Split",
         "vGM_Split"
       ],
@@ -6346,16 +6356,15 @@
         "GM",
         "Split"
       ],
-      "Ports": [
-        "GR1",
-        "GR2",
-        "GR3",
-        "GR4",
-        "GR5",
-        "GR6"
-      ],
+      "Ports": null,
       "VacuumSystem": "VacuumSystem1",
       "Isolation": [
+        "vGR1_GM",
+        "vGR2_GM",
+        "vGR3_GM",
+        "vGR4_GM",
+        "vGR5_GM",
+        "vGR6_GM",
         "vHe_VM",
         "vH2_VM",
         "vCO2_VM",
@@ -7308,9 +7317,9 @@
   },
   "Samples": {},
   "HacsComponents": {
-    "IpFan1-3": {
+    "IpFan1": {
       "$type": "AeonHacs.Components.IpFan, AeonHacs.Core",
-      "Name": "IpFan1-3",
+      "Name": "IpFan1",
       "Fan": "fan1",
       "InletPorts": [
         "IP1",
@@ -7321,9 +7330,9 @@
       "IdleTimeout": 500,
       "LogEverything": false
     },
-    "IpFan4-6": {
+    "IpFan2": {
       "$type": "AeonHacs.Components.IpFan, AeonHacs.Core",
-      "Name": "IpFan4-6",
+      "Name": "IpFan2",
       "Fan": "fan2",
       "InletPorts": [
         "IP4",
