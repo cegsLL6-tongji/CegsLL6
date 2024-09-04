@@ -88,6 +88,7 @@ public partial class CegsLL6 : Cegs
 
         // General-purpose process control actions
         ProcessDictionary["Wait for timer"] = WaitForTimer;
+        ProcessDictionary["Wait for IP timer"] = WaitIpMinutes;
         ProcessDictionary["Wait for operator"] = WaitForOperator;
         Separators.Add(ProcessDictionary.Count);
 

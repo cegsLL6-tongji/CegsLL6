@@ -9,7 +9,7 @@
     
     <Canvas Width="336" Height="245" Visibility="Visible">
         <!--Vacuum manifold-->
-        <wpf:Chamber Canvas.Left="5" Canvas.Top="18" Component="Section.VM1" HelpText="Vacuum manifold"
+        <wpf:Chamber Component="Section.VM" HelpText="Vacuum manifold" Canvas.Left="5" Canvas.Top="18" 
                 Data="M0,0 v69 h317 v-69
                       M26,69 v-13 M52,69 v-13 M124,69 v-69
                       M98,69 v17 M150,69 v17 M226,69 v17 M252,69 v17 M278,69 v17 M304,69 v17" />
@@ -19,23 +19,28 @@
 
         <!--Gas supplies-->
         <Canvas Canvas.Left="225" Canvas.Top="104" Width="99" Height="95">
-            <wpf:GasSupply Canvas.Left="0" GasName="O2" HelpText="Oxygen gas supply" Valve="vO2_VM" />
-            <wpf:GasSupply Canvas.Left="26" GasName="He" HelpText="Helium gas supply" Valve="vHe_VM"
-                        FlowValve="vHeFlow" d:FlowValve="" />
-            <wpf:GasSupply Canvas.Left="52" GasName="H2" HelpText="Hydrogen gas supply" Valve="vH2_VM"
-                        FlowValve="vH2Flow" d:FlowValve="" />
-            <wpf:GasSupply Canvas.Left="78" GasName="CO2" HelpText="Carbon dioxide gas supply" Valve="vCO2_VM"
-                        FlowValve="vCO2Flow" d:FlowValve="" />
+            <wpf:GasSupply Canvas.Left="0"
+                    GasName="O2" HelpText="Oxygen gas supply" Valve="vO2_VM" />
+            <wpf:GasSupply Canvas.Left="26" 
+                    GasName="He" HelpText="Helium gas supply" Valve="vHe_VM" FlowValve="vHeFlow" d:FlowValve="" />
+            <wpf:GasSupply Canvas.Left="52" 
+                    GasName="H2" HelpText="Hydrogen gas supply" Valve="vH2_VM" FlowValve="vH2Flow" d:FlowValve="" />
+            <wpf:GasSupply Canvas.Left="78"
+                    GasName="CO2" HelpText="Carbon dioxide gas supply" Valve="vCO2_VM" FlowValve="vCO2Flow" d:FlowValve="" />
         </Canvas>
 
         <!--Vacuum system-->
-        <wpf:VacuumSystem Canvas.Left="95" Canvas.Bottom="2" />
-        <wpf:Arrow Orientation="Right" Canvas.Left="184" Canvas.Bottom="18" />
-        <wpf:Ambient Canvas.Left="206" Canvas.Bottom="4" />
+        <wpf:VacuumSystem Canvas.Left="95" Canvas.Top="104" />
 
-        <wpf:Valve Canvas.Left="0" Canvas.Top="0" Component="vIM_VM" HelpText="IM-VM valve" />
-        <wpf:Valve Canvas.Left="124" Canvas.Top="0" Component="vCT_VM" HelpText="CT-VM valve" />
-        <wpf:Valve Canvas.Left="317" Canvas.Top="0" Component="vGM_VM" HelpText="GM-VM valve" />
+        <wpf:StackingPanel Height="55" Canvas.Left="182" Canvas.Top="196.5" Orientation="Right" Spacing="5"
+            wpf:View.Component="Ambient" AutomationProperties.HelpText="Ambient" Background="Transparent">
+            <wpf:Arrow />
+            <wpf:Ambient />
+        </wpf:StackingPanel>
+
+        <wpf:Valve Component="vIM_VM" HelpText="IM-VM valve" Canvas.Left="0" Canvas.Top="0" />
+        <wpf:Valve Component="vCT_VM" HelpText="CT-VM valve" Canvas.Left="124" Canvas.Top="0" />
+        <wpf:Valve Component="vGM_VM" HelpText="GM-VM valve" Canvas.Left="317" Canvas.Top="0" />
     </Canvas>
     
 </wpf:View>
