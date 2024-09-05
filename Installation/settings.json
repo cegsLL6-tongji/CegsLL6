@@ -835,7 +835,7 @@
       "Name": "SwitchBank",
       "Channels": 16,
       "SerialController": {
-        "Name": "SwitchBank1.SerialController",
+        "Name": "SwitchBank.SerialController",
         "SerialDevice": {
           "RtsMode": "Enabled",
           "PortSettings": {
