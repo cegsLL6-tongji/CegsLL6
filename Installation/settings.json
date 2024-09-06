@@ -5085,7 +5085,7 @@
       "Liters": null,
       "LevelSensor": "tLNManifold",
       "OverflowSensor": "tLNOverflow",
-      "OverflowTrigger": 25,
+      "OverflowTrigger": 15,
       "MinimumLiters": 10,
       "TargetTemperature": -185,
       "FillTrigger": 5,
@@ -5333,7 +5333,7 @@
       "LowVacuumRequiredPressure": 8.0,
       "StateStopwatch": {
         "IsRunning": true,
-        "Accumulated": 89985
+        "Accumulated": 4572
       },
       "IdleTimeout": 50
     }
