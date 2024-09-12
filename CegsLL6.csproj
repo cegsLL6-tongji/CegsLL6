@@ -12,7 +12,7 @@
         <RootNamespace>CegsLL6</RootNamespace>
 
         <UseWPF>true</UseWPF>
-    <OutputType>WinExe</OutputType>
+        <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0-windows</TargetFramework>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -28,24 +28,28 @@
         <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <ApplicationIcon>keg.ico</ApplicationIcon>
-  </PropertyGroup>
-
-  <ItemGroup>
-      <Content Include="keg.ico" />
+        <ApplicationIcon>keg.ico</ApplicationIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="keg.ico" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\AeonHacs.Core\AeonHacs.Core.csproj" />
-      <ProjectReference Include="..\AeonHacs.Wpf\AeonHacs.Wpf.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <Reference Include="LJUDDotNet">
-        <HintPath>Installation\LJUDDotNet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
+        <ProjectReference Include="..\AeonHacs.Core\AeonHacs.Core.csproj" />
+        <ProjectReference Include="..\AeonHacs.Wpf\AeonHacs.Wpf.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="LJUDDotNet">
+            <HintPath>Installation\LJUDDotNet.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
         <None Update="Installation\settings.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <TargetPath>%(Filename).installation%(Extension)</TargetPath>
@@ -88,5 +92,4 @@
             <Visible>False</Visible>
         </None>
   </ItemGroup>
-
 </Project>

@@ -1129,7 +1129,7 @@
       },
       "RateOfChange": {
         "Name": "",
-        "FilterLength": 35,
+        "FilterLength": 13,
         "MaxIntervalMilliseconds": 1000.0,
         "Resolution": 0.01
       },
@@ -5131,7 +5131,7 @@
       "FreezeTrigger": 5,
       "RaiseTrigger": 2,
       "MaximumSecondsLNFlowing": 60,
-      "MaximumMinutesToFreeze": 4,
+      "MaximumMinutesToFreeze": 8,
       "SecondsToWaitAfterRaised": 5,
       "NearAirTemperature": 10.0,
       "StopAction": "TurnOff",
@@ -5406,7 +5406,7 @@
       "Manometer": null,
       "Thermometer": "tVTC",
       "Heater": "hVTC",
-      "Coldfinger": null,
+      "Coldfinger": "ftcVTC",
       "VTColdfinger": "VTC"
     },
     "MC": {
