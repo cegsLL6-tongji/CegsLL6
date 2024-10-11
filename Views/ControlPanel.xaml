@@ -109,8 +109,10 @@
                     </Style.Triggers>
                 </Style>
             </StackPanel.Style>
-            <TextBlock Text="Sample: " VerticalAlignment="Center" />
-            <TextBlock Text="{Binding Component.Sample, ElementName=Cegs, Converter={StaticResource ToStringConverter}}" VerticalAlignment="Center" />
+            <TextBlock VerticalAlignment="Center" >
+                <Run Text="Sample:" />
+                <Run Text="{Binding Component.Sample, ElementName=Cegs, Converter={StaticResource ToStringConverter}}" />
+            </TextBlock>
         </StackPanel>
 
         <DockPanel LastChildFill="True">
@@ -130,11 +132,11 @@
                 <wpf:Split Data="M0,0 h21" Canvas.Left="493" Canvas.Top="133" />
                 <wpf:GM6 Canvas.Left="532" Canvas.Top="49" />
 
-                <wpf:Valve Component="vIM_CT" HelpText="IM-CT valve" Canvas.Left="249" Canvas.Top="128" />
-                <wpf:Valve Component="vCT_VTT" HelpText="CT-VTT valve" Canvas.Left="371" Canvas.Top="128" />
-                <wpf:Valve Component="vVTT_MC" HelpText="VTT-MC valve" Canvas.Left="423" Canvas.Top="128" />
-                <wpf:Valve Component="vMC_Split" HelpText="MC-Split valve" Canvas.Left="475" Canvas.Top="128" />
-                <wpf:Valve Component="vSplit_GM" HelpText="Split-GM valve" Canvas.Left="514" Canvas.Top="128" />
+                <wpf:Valve Component="vIM_CT" Canvas.Left="249" Canvas.Top="128" />
+                <wpf:Valve Component="vCT_VTT" Canvas.Left="371" Canvas.Top="128" />
+                <wpf:Valve Component="vVTT_MC" Canvas.Left="423" Canvas.Top="128" />
+                <wpf:Valve Component="vMC_Split" Canvas.Left="475" Canvas.Top="128" />
+                <wpf:Valve Component="vSplit_GM" Canvas.Left="514" Canvas.Top="128" />
                 
             </Canvas>
 

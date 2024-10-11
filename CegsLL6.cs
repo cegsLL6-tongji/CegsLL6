@@ -12,7 +12,7 @@ public partial class CegsLL6 : Cegs
 
     #region Process Management
 
-    protected override void BuildProcessDictionary()
+    protected void BuildProcessDictionary()
     {
         Separators.Clear();
 
@@ -24,9 +24,6 @@ public partial class CegsLL6 : Cegs
         ProcessDictionary["Prepare GRs for new iron and desiccant"] = PrepareGRsForService;
         ProcessDictionary["Precondition GR iron"] = PreconditionGRs;
         ProcessDictionary["Replace iron in sulfur traps"] = ChangeSulfurFe;
-        //ProcessDictionary["Service d13C ports"] = Service_d13CPorts;
-        //ProcessDictionary["Load empty d13C ports"] = LoadEmpty_d13CPorts;
-        //ProcessDictionary["Prepare loaded d13C ports"] = PrepareLoaded_d13CPorts;
         ProcessDictionary["Prepare loaded inlet ports for collection"] = PrepareIPsForCollection;
         Separators.Add(ProcessDictionary.Count);
 
@@ -100,7 +97,6 @@ public partial class CegsLL6 : Cegs
         Separators.Add(ProcessDictionary.Count);
 
         // Utilities (generally not for sample processing)
-        Separators.Add(ProcessDictionary.Count);
         ProcessDictionary["Exercise all Opened valves"] = ExerciseAllValves;
         ProcessDictionary["Close all Opened valves"] = CloseAllValves;
         ProcessDictionary["Exercise all LN Manifold valves"] = ExerciseLNValves;
@@ -109,13 +105,13 @@ public partial class CegsLL6 : Cegs
         ProcessDictionary["Measure valve volumes (plug in MCP1)"] = MeasureValveVolumes;
         ProcessDictionary["Measure remaining chamber volumes"] = MeasureRemainingVolumes;
         ProcessDictionary["Check GR H2 density ratios"] = CalibrateGRH2;
+        ProcessDictionary["Calibrate VP He initial manifold pressure"] = CalibrateVPHeP0;
         ProcessDictionary["Measure Extraction efficiency"] = MeasureExtractEfficiency;
         ProcessDictionary["Measure IP collection efficiency"] = MeasureIpCollectionEfficiency;
+        Separators.Add(ProcessDictionary.Count);
 
         // Test functions
-        Separators.Add(ProcessDictionary.Count);
         ProcessDictionary["Test"] = Test;
-        base.BuildProcessDictionary();
     }
 
     #region Process Control Parameters
@@ -130,6 +126,10 @@ public partial class CegsLL6 : Cegs
     #endregion Process Management
 
     #region Test functions
+
+    /// <summary>
+    /// General-purpose code tester. Put whatever you want here.
+    /// </summary>
     protected override void Test()
     {
     }
