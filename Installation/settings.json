@@ -1731,12 +1731,12 @@
         "Operations": [
           {
             "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "",
+            "Name": "ZeroOffset",
             "Argument": "x-0.4"
           },
           {
             "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "",
+            "Name": "Gain",
             "Argument": "x*48.3363"
           }
         ]
@@ -2679,13 +2679,13 @@
           "Name": "Close",
           "Value": 1700,
           "Incremental": false,
-          "Configuration": "t0.8"
+          "Configuration": "t1.0"
         },
         {
           "Name": "Open",
-          "Value": 1200,
+          "Value": 700,
           "Incremental": false,
-          "Configuration": "t0.8"
+          "Configuration": "t1.0"
         }
       ]
     },
@@ -4103,9 +4103,9 @@
       "Description": "Coil trap flow valve",
       "Position": 0,
       "MinimumPosition": 0,
-      "MaximumPosition": 675,
+      "MaximumPosition": 682,
       "PositionsPerTurn": 96,
-      "ClosedOffset": 3,
+      "ClosedOffset": 10,
       "Calibrated": true,
       "ConsecutiveMatches": 9,
       "ValveState": "Opened",
