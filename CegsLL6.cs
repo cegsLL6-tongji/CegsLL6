@@ -12,7 +12,7 @@ public partial class CegsLL6 : Cegs
 
     #region Process Management
 
-    protected void BuildProcessDictionary()
+    protected override void BuildProcessDictionary()
     {
         Separators.Clear();
 
