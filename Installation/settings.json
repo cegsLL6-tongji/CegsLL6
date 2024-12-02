@@ -2405,7 +2405,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -2431,7 +2431,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -2457,7 +2457,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -2509,7 +2509,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -2535,7 +2535,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
@@ -2561,7 +2561,7 @@
         "Name": "",
         "Description": "",
         "Power": 1.2,
-        "StepChange": 5.0
+        "StepChange": 3.0
       },
       "Conversion": null,
       "RateOfChange": null,
