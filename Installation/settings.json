@@ -2,29 +2,6 @@
   "$type": "AeonHacs.Components.CegsLL6, CegsLL6",
   "Name": "CegsLL6",
   "ProcessSequences": {
-    "Dead CO2": {
-      "Name": "Dead CO2",
-      "Description": "",
-      "PortType": "GasSupply",
-      "Steps": [
-        {
-          "Name": "Admit Dead CO2 into MC",
-          "Description": ""
-        },
-        {
-          "Name": "Measure, etc.",
-          "Description": ""
-        },
-        {
-          "Name": "Open and evacuate line",
-          "Description": ""
-        }
-      ],
-      "CheckList": [
-        "GR furnaces are lowered",
-        "GR FTCs are raised"
-      ]
-    },
     "Graphite": {
       "Name": "Graphite",
       "Description": "",
@@ -213,63 +190,6 @@
         "GR FTCs are raised"
       ]
     },
-    "Pyrolize": {
-      "Name": "Pyrolize",
-      "Description": "",
-      "PortType": "Combustion",
-      "Steps": [
-        {
-          "Name": "Flush Inlet Port",
-          "Description": ""
-        },
-        {
-          "$type": "AeonHacs.Components.CombustionStep, AeonHacs.Core",
-          "Temperature": 425,
-          "Minutes": 30,
-          "AdmitO2": false,
-          "WaitForSetpoint": true,
-          "Name": "Combust",
-          "Description": ""
-        },
-        {
-          "Name": "Turn Off CC Furnaces",
-          "Description": ""
-        },
-        {
-          "Name": "Wait for operator",
-          "Description": ""
-        },
-        {
-          "Name": "Open and evacuate line",
-          "Description": ""
-        }
-      ],
-      "CheckList": [
-        "Combustion Chamber furnaces are raised",
-        "GR furnaces are lowered",
-        "GR FTCs are raised"
-      ]
-    },
-    "Collect & Measure": {
-      "Name": "Collect & Measure",
-      "Description": "",
-      "PortType": "Manual",
-      "Steps": [
-        {
-          "Name": "Collect CO2 from InletPort",
-          "Description": ""
-        },
-        {
-          "Name": "Extract",
-          "Description": ""
-        },
-        {
-          "Name": "Measure",
-          "Description": ""
-        }
-      ],
-      "CheckList": []
-    },
     "Sealed CO2": {
       "Name": "Sealed CO2",
       "Description": "",
@@ -355,6 +275,87 @@
         "Combustion Chamber furnaces are raised"
       ]
     },
+    "Pyrolize": {
+      "Name": "Pyrolize",
+      "Description": "",
+      "PortType": "Combustion",
+      "Steps": [
+        {
+          "Name": "Flush Inlet Port",
+          "Description": ""
+        },
+        {
+          "$type": "AeonHacs.Components.CombustionStep, AeonHacs.Core",
+          "Temperature": 425,
+          "Minutes": 30,
+          "AdmitO2": false,
+          "WaitForSetpoint": true,
+          "Name": "Combust",
+          "Description": ""
+        },
+        {
+          "Name": "Turn Off CC Furnaces",
+          "Description": ""
+        },
+        {
+          "Name": "Wait for operator",
+          "Description": ""
+        },
+        {
+          "Name": "Open and evacuate line",
+          "Description": ""
+        }
+      ],
+      "CheckList": [
+        "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ]
+    },
+    "Collect & Measure": {
+      "Name": "Collect & Measure",
+      "Description": "",
+      "PortType": "Manual",
+      "Steps": [
+        {
+          "Name": "Collect CO2 from InletPort",
+          "Description": ""
+        },
+        {
+          "Name": "Extract",
+          "Description": ""
+        },
+        {
+          "Name": "Measure",
+          "Description": ""
+        }
+      ],
+      "CheckList": []
+    },
+    "Measure Sealed CO2": {
+      "Name": "Measure Sealed CO2",
+      "Description": "",
+      "PortType": "Manual",
+      "Steps": [
+        {
+          "Name": "Admit sealed CO2 to InletPort",
+          "Description": ""
+        },
+        {
+          "Name": "Collect CO2 from InletPort",
+          "Description": ""
+        },
+        {
+          "Name": "Extract",
+          "Description": ""
+        },
+        {
+          "Name": "Measure",
+          "Description": ""
+        }
+      ],
+      "CheckList": []
+    },
     "Combust, Measure": {
       "Name": "Combust, Measure",
       "Description": "",
@@ -417,6 +418,29 @@
       ],
       "CheckList": [
         "Combustion Chamber furnaces are raised",
+        "GR furnaces are lowered",
+        "GR FTCs are raised"
+      ]
+    },
+    "Dead CO2": {
+      "Name": "Dead CO2",
+      "Description": "",
+      "PortType": "GasSupply",
+      "Steps": [
+        {
+          "Name": "Admit Dead CO2 into MC",
+          "Description": ""
+        },
+        {
+          "Name": "Measure, etc.",
+          "Description": ""
+        },
+        {
+          "Name": "Open and evacuate line",
+          "Description": ""
+        }
+      ],
+      "CheckList": [
         "GR furnaces are lowered",
         "GR FTCs are raised"
       ]
@@ -2628,6 +2652,7 @@
       "Name": "vHV",
       "Description": "Vacuum system high vacuum valve",
       "ValveState": "Opened",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2650,6 +2675,7 @@
       "Name": "vLV",
       "Description": "Vacuum system low vacuum valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2672,6 +2698,7 @@
       "Name": "vB",
       "Description": "Vacuum system turbo pump backing valve",
       "ValveState": "Opened",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2694,6 +2721,7 @@
       "Name": "vR",
       "Description": "Vacuum system roughing pump valve",
       "ValveState": "Opened",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2857,6 +2885,7 @@
       "Name": "vHe_VM",
       "Description": "He-VM gas shutoff valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2879,6 +2908,7 @@
       "Name": "vH2_VM",
       "Description": "H2-VM gas shutoff valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2901,6 +2931,7 @@
       "Name": "vCO2_VM",
       "Description": "CO2-VM gas shutoff valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -2923,6 +2954,7 @@
       "Name": "vO2_VM",
       "Description": "O2-VM gas shutoff valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3838,6 +3870,7 @@
       "Name": "vLN_CT",
       "Description": "Coil trap LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3866,6 +3899,7 @@
       "Name": "vLN_VTT",
       "Description": "Variable-temperature trap LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3906,6 +3940,7 @@
       "Name": "vLN_MC",
       "Description": "Measurement chamber LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3934,6 +3969,7 @@
       "Name": "vLN_GR1",
       "Description": "Graphite reactor 1 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3962,6 +3998,7 @@
       "Name": "vLN_GR2",
       "Description": "Graphite reactor 2 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -3990,6 +4027,7 @@
       "Name": "vLN_GR3",
       "Description": "Graphite reactor 3 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -4018,6 +4056,7 @@
       "Name": "vLN_GR4",
       "Description": "Graphite reactor 4 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -4046,6 +4085,7 @@
       "Name": "vLN_GR5",
       "Description": "Graphite reactor 5 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -4074,6 +4114,7 @@
       "Name": "vLN_GR6",
       "Description": "Graphite reactor 6 LN valve",
       "ValveState": "Closed",
+      "Position": 0,
       "OpenedVolumeDelta": 0.0,
       "IdleCurrentLimit": 80,
       "ActuatorOperations": [
@@ -5553,16 +5594,11 @@
       "VacuumManifold": "VM",
       "MySection": "VS1All",
       "State": "Evacuate",
-      "TargetPressure": 0.005,
       "BaselinePressure": 0.0005,
       "GoodBackingPressure": 4.0,
       "HighVacuumPreferredPressure": 7.0,
       "HighVacuumRequiredPressure": 5.0,
       "LowVacuumRequiredPressure": 8.0,
-      "StateStopwatch": {
-        "IsRunning": true,
-        "Accumulated": 0
-      },
       "IdleTimeout": 50
     }
   },
@@ -7776,304 +7812,314 @@
     "CO2ExtractionTemperature": -140,
     "H2_CO2StoichiometricRatio": 2.0,
     "DefaultParameters": [
-        {
-            "ParameterName": "HoldSampleAtPorts",
-            "Value": "NaN",
-            "Description": "Set GR and d13C FTCs to Standby and hold to start reactions later."
-        },
-        {
-            "ParameterName": "MaximumSampleTemperature",
-            "Value": "NaN",
-            "Description": "End of reaction temperature."
-        },
-        {
-            "ParameterName": "MinutesAtMaximumTemperature",
-            "Value": 10.0,
-            "Description": "Stop collecting after this many minutes at the maximum temperature."
-        },
-        {
-            "ParameterName": "PressureOverAtm",
-            "Value": 770.0,
-            "Description": "Usually about 10 Torr over standard; should be slightly greater than the atmospheric pressure at any lab that will handle gas samples in septum-sealed vials (including external labs)."
-        },
-        {
-            "ParameterName": "LeakTightTorrLitersPerSecond",
-            "Value": 3E-05,
-            "Description": "The effective gas load below which a volume is considered leak free."
-        },
-        {
-            "ParameterName": "OkPressure",
-            "Value": 0.005,
-            "Description": "Low enough to join sections for drying."
-        },
-        {
-            "ParameterName": "CleanPressure",
+      {
+        "ParameterName": "HoldSampleAtPorts",
+        "Value": "NaN",
+        "Description": "Set GR and d13C FTCs to Standby and hold to start reactions later."
+      },
+      {
+        "ParameterName": "MaximumSampleTemperature",
+        "Value": "NaN",
+        "Description": "End of reaction temperature."
+      },
+      {
+        "ParameterName": "MinutesAtMaximumTemperature",
+        "Value": 10.0,
+        "Description": "Stop collecting after this many minutes at the maximum temperature."
+      },
+      {
+        "ParameterName": "PressureOverAtm",
+        "Value": 770.0,
+        "Description": "Usually about 10 Torr over standard; should be slightly greater than the atmospheric pressure at any lab that will handle gas samples in septum-sealed vials (including external labs)."
+      },
+      {
+            "ParameterName": "LeakTestBasePressure",
             "Value": 0.0005,
-            "Description": "Low enough to start a new sample."
+            "Description": "Evacuate a section to this pressure when starting a leak test."
         },
         {
-            "ParameterName": "VPInitialPressure",
-            "Value": -555.0,
-            "Description": "An initial manifold pressure that will result in PressureOverAtm when expanded into an LN-frozen vial"
-        },
-        {
-            "ParameterName": "VPErrorPressure",
-            "Value": 18.0,
-            "Description": "The maximum value for abs(pVP - PressureOverAtm) that is considered nominal."
-        },
-        {
-            "ParameterName": "MaximumResidual",
-            "Value": 1.2,
-            "Description": "The maximum acceptable residual pressure for a completed graphite reaction, expressed as a multiple of the expected value."
-        },
-        {
-            "ParameterName": "IMO2Pressure",
-            "Value": 1350.0,
-            "Description": "An initial IM O2 pressure that will expand sufficient oxygen into the inlet port to fully combust a sample of maximum size. Typically, this means enough to fully oxidize about three mg C to CO2."
-        },
-        {
-            "ParameterName": "FirstTrapBleedPressure",
-            "Value": 2.0,
-            "Description": "The first trap pressure to maintain when collecting CO2 out of a carrier gas by \"bleeding\" the mixture through the FirstTrap."
-        },
-        {
-            "ParameterName": "FirstTrapEndPressure",
-            "Value": 0.03,
-            "Description": "The first trap pressure at which the process should stop the Bleed process."
-        },
-        {
-            "ParameterName": "FirstTrapOpenFlowPressure",
-            "Value": 5.0,
-            "Description": "Fully open the flow valve when the pressure differential between the IM and the FirstTrap falls below this value. Choose this pressure to avoid an excessive downstream pressure spike."
-        },
-        {
-            "ParameterName": "FirstTrapFlowBypassPressure",
-            "Value": 2.0,
-            "Description": "Open the flow bypass valve when the pressure differential between the IM and the FirstTrap falls below this value. Choose this pressure to avoid an excessive downstream pressure spike."
-        },
-        {
-            "ParameterName": "IronPreconditionH2Pressure",
-            "Value": 0.0,
-            "Description": "The initial H2 pressure to be used when preparing Fe in the GRs for use as the graphitization catalyst."
-        },
-        {
-            "ParameterName": "IMPluggedTorrPerSecond",
-            "Value": 5.0,
-            "Description": "The IM pressure rate of change, following a stable flow, used to detect that something has been put onto the IP needle (a vial or stopper)."
-        },
-        {
-            "ParameterName": "IMLoadedTorrPerSecond",
-            "Value": 4.0,
-            "Description": "An IM pressure rate of change, following \"plugged\" detection, that indicates the delayed slowing of the pressure increase characteristic of a vial being filled, as distinct from the rapid drop to stability that occurs when the needle is plugged by a stopper."
-        },
-        {
-            "ParameterName": "GRCompleteTorrPerMinute",
-            "Value": 0.4,
-            "Description": "The graphitization reaction is considered complete when the declining pressure rate of change falls below this value."
-        },
-        {
-            "ParameterName": "RoomTemperature",
-            "Value": 21.0,
-            "Description": "Typical room temperature in the lab."
-        },
-        {
-            "ParameterName": "SulfurTrapTemperature",
-            "Value": 400.0,
-            "Description": "Reaction temperature for trapping trace sulfur contamination in a CO2 sample onto iron powder."
-        },
-        {
-            "ParameterName": "IronPreconditioningTemperature",
-            "Value": 580.0,
-            "Description": "Reaction temperature for preparing iron powder with H2 for use as a CO2 reduction catalyst."
-        },
-        {
-            "ParameterName": "IronPreconditioningTemperatureCushion",
+        "ParameterName": "LeakTightTorrLitersPerSecond",
+        "Value": 3E-05,
+        "Description": "The effective gas load below which a volume is considered leak free."
+      },
+      {
+        "ParameterName": "OkPressure",
+        "Value": 0.005,
+        "Description": "Low enough to join sections for drying."
+      },
+      {
+        "ParameterName": "CleanPressure",
+        "Value": 0.0005,
+        "Description": "Low enough to start a new sample."
+      },
+      {
+        "ParameterName": "VPInitialPressure",
+        "Value": -555.0,
+        "Description": "An initial manifold pressure that will result in PressureOverAtm when expanded into an LN-frozen vial"
+      },
+      {
+        "ParameterName": "VPErrorPressure",
+        "Value": 18.0,
+        "Description": "The maximum value for abs(pVP - PressureOverAtm) that is considered nominal."
+      },
+      {
+        "ParameterName": "MaximumResidual",
+        "Value": 1.2,
+        "Description": "The maximum acceptable residual pressure for a completed graphite reaction, expressed as a multiple of the expected value."
+      },
+      {
+        "ParameterName": "IMO2Pressure",
+        "Value": 1350.0,
+        "Description": "An initial IM O2 pressure that will expand sufficient oxygen into the inlet port to fully combust a sample of maximum size. Typically, this means enough to fully oxidize about three mg C to CO2."
+      },
+      {
+        "ParameterName": "FirstTrapBleedPressure",
+        "Value": 2.0,
+        "Description": "The first trap pressure to maintain when collecting CO2 out of a carrier gas by \"bleeding\" the mixture through the FirstTrap."
+      },
+      {
+        "ParameterName": "FirstTrapEndPressure",
+        "Value": 0.03,
+        "Description": "The first trap pressure at which the process should stop the Bleed process."
+      },
+      {
+        "ParameterName": "FirstTrapOpenFlowPressure",
+        "Value": 5.0,
+        "Description": "Fully open the flow valve when the pressure differential between the IM and the FirstTrap falls below this value. Choose this pressure to avoid an excessive downstream pressure spike."
+      },
+      {
+        "ParameterName": "FirstTrapFlowBypassPressure",
+        "Value": 2.0,
+        "Description": "Open the flow bypass valve when the pressure differential between the IM and the FirstTrap falls below this value. Choose this pressure to avoid an excessive downstream pressure spike."
+      },
+      {
+        "ParameterName": "IronPreconditionH2Pressure",
+        "Value": 0.0,
+        "Description": "The initial H2 pressure to be used when preparing Fe in the GRs for use as the graphitization catalyst."
+      },
+      {
+        "ParameterName": "IMPluggedTorrPerSecond",
+        "Value": 5.0,
+        "Description": "The IM pressure rate of change, following a stable flow, used to detect that something has been put onto the IP needle (a vial or stopper)."
+      },
+      {
+        "ParameterName": "IMLoadedTorrPerSecond",
+        "Value": 4.0,
+        "Description": "An IM pressure rate of change, following \"plugged\" detection, that indicates the delayed slowing of the pressure increase characteristic of a vial being filled, as distinct from the rapid drop to stability that occurs when the needle is plugged by a stopper."
+      },
+      {
+        "ParameterName": "GRCompleteTorrPerMinute",
+        "Value": 0.4,
+        "Description": "The graphitization reaction is considered complete when the declining pressure rate of change falls below this value."
+      },
+      {
+        "ParameterName": "RoomTemperature",
+        "Value": 21.0,
+        "Description": "Typical room temperature in the lab."
+      },
+      {
+        "ParameterName": "SulfurTrapTemperature",
+        "Value": 400.0,
+        "Description": "Reaction temperature for trapping trace sulfur contamination in a CO2 sample onto iron powder."
+      },
+      {
+        "ParameterName": "IronPreconditioningTemperature",
+        "Value": 580.0,
+        "Description": "Reaction temperature for preparing iron powder with H2 for use as a CO2 reduction catalyst."
+      },
+      {
+        "ParameterName": "IronPreconditioningTemperatureCushion",
+        "Value": 10.0,
+        "Description": "Less than this error is near enough to the Fe Prep reaction temperature to begin the process."
+      },
+      {
+        "ParameterName": "CollectionMinutes",
+        "Value": 4.0,
+        "Description": "Time to wait for CO2 to move from InletPort to the FirstTrap."
+      },
+      {
+        "ParameterName": "ExtractionMinutes",
+        "Value": 4.0,
+        "Description": "Time to spend extracting CO2 from the VTT into the MC."
+      },
+      {
+        "ParameterName": "CO2TransferMinutes",
+        "Value": 4.0,
+        "Description": "Time to wait for CO2 transfer between chambers."
+      },
+      {
+        "ParameterName": "MeasurementSeconds",
             "Value": 10.0,
-            "Description": "Less than this error is near enough to the Fe Prep reaction temperature to begin the process."
+        "Description": "How long to average a measurement."
+      },
+      {
+        "ParameterName": "GRFirstEvacuationMinutes",
+        "Value": 0.0,
+        "Description": "How long to evacuate freshly serviced graphite reactors."
+      },
+      {
+        "ParameterName": "MinimumGRMinutes",
+        "Value": 0.0,
+        "Description": "Minimum Graphitization time."
+      },
+      {
+            "ParameterName": "ThawBeforeGraphitizing",
+            "Value": 1.0,
+            "Description": "Thaw the CO2 in the graphite reactor before starting the furnace."
         },
         {
-            "ParameterName": "CollectionMinutes",
-            "Value": 4.0,
-            "Description": "Time to wait for CO2 to move from InletPort to the FirstTrap."
-        },
-        {
-            "ParameterName": "ExtractionMinutes",
-            "Value": 4.0,
-            "Description": "Time to spend extracting CO2 from the VTT into the MC."
-        },
-        {
-            "ParameterName": "CO2TransferMinutes",
-            "Value": 4.0,
-            "Description": "Time to wait for CO2 transfer between chambers."
-        },
-        {
-            "ParameterName": "MeasurementSeconds",
-            "Value": 15.0,
-            "Description": "How long to average a measurement."
-        },
-        {
-            "ParameterName": "GRFirstEvacuationMinutes",
-            "Value": 0.0,
-            "Description": "How long to evacuate freshly serviced graphite reactors."
-        },
-        {
-            "ParameterName": "MinimumGRMinutes",
-            "Value": 0.0,
-            "Description": "Minimum Graphitization time."
-        },
-        {
-            "ParameterName": "SplitEquilibrationSeconds",
-            "Value": 0.0,
-            "Description": "After expanding a sample into a larger section, how long to wait before subdividing it."
-        },
-        {
-            "ParameterName": "IronPreconditioningMinutes",
-            "Value": 15.0,
-            "Description": "Duration of iron powder preparation process."
-        },
-        {
-            "ParameterName": "QuartzFurnaceWarmupMinutes",
-            "Value": 10.0,
-            "Description": "How long after turn-on the quartz media takes to reach its functional temperature range."
-        },
-        {
-            "ParameterName": "SulfurTrapMinutes",
-            "Value": 20.0,
-            "Description": "Duration of the sulfur trapping process."
-        },
-        {
-            "ParameterName": "H2_CO2GraphitizationRatio",
-            "Value": 2.3,
-            "Description": "Target H2:CO2 ratio for graphitization, providing excess hydogen to speed reaction."
-        },
-        {
-            "ParameterName": "H2DensityAdjustment",
-            "Value": 0.76,
-            "Description": "Estimated appropriate initial GM H2 pressure reduction to compensate for higher density of H2 in frozen standard GR coldfinger."
-        },
-        {
-            "ParameterName": "SmallSampleMicrogramsCarbon",
-            "Value": 10.0,
-            "Description": "A sample with less than this much carbon is processed as \"small.\""
-        },
-        {
-            "ParameterName": "MinimumUgCThatPermits_d13CSplit",
-            "Value": 1000.0,
-            "Description": "The minimum Aliquot mass (in micrograms) sufficient to provide a d13C split."
-        },
-        {
-            "ParameterName": "DilutedSampleMicrogramsCarbon",
-            "Value": 0.0,
-            "Description": "The minimum final mass for a diluted sample. Dilution is disabled unless DilutedSampleMicrogramsCarbon > SmallSampleMicrogramsCarbon"
-        },
-        {
-            "ParameterName": "MaximumSampleMicrogramsCarbon",
-            "Value": 1000.0,
-            "Description": "Discard CO2 splits as long as the sample contains more than this much carbon."
-        },
-        {
-            "ParameterName": "IpEvacuationPressure",
-            "Value": 0.1,
-            "Description": "Pressure to use when evacuating an IP."
-        },
-        {
-            "ParameterName": "CollectUntilTemperatureRises",
-            "Value": "NaN",
-            "Description": "Stop collecting into the coil trap when the Inlet Port temperature rises to this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectUntilTemperatureFalls",
-            "Value": "NaN",
-            "Description": "Stop collecting into the coil trap when the Inlet Port temperature falls to this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectCloseIpAtPressure",
-            "Value": "NaN",
-            "Description": "During sample collection, close the Inlet Port when the Inlet Manifold pressure falls to this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectCloseIpAtCtPressure",
-            "Value": "NaN",
-            "Description": "During sample collection, close the Inlet Port when the Coil Trap pressure falls to this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectUntilCtFlowFullyOpen",
-            "Value": "NaN",
-            "Description": "Stop collecting into the coil trap when Coil Trap flow valve is fully open, if this value is a non-zero number."
-        },
-        {
-            "ParameterName": "MinutesCollectingTooLong",
-            "Value": "NaN",
-            "Description": "Something's wrong if collection takes this long; this check is disabled if the value is not a number."
-        },
-        {
-            "ParameterName": "FinishCollecting",
-            "Value": "1.0",
-            "Description": "Continue collecting into the coil trap until Coil Trap pressure stops falling, if this value is a non-zero number."
-        },
-        {
-            "ParameterName": "CollectUntilUgc",
-            "Value": "NaN",
-            "Description": "Stop collecting into the coil trap when amount of carbon in the Coil Trap reaches this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectUntilMinutes",
-            "Value": "NaN",
-            "Description": "Stop collecting into the coil trap when this much time has elapsed, provided that the value is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "CollectUntilCtPressureFalls",
-            "Value": 0.2,
-            "Description": "Stop collecting when the Coil Trap pressure falls to or below this value, provided that it is a number (i.e., not NaN)."
-        },
-        {
-            "ParameterName": "IpSetpoint",
-            "Value": 1000.0,
-            "Description": "The Inlet Port sample furnace's target setpoint (the final setpoint when ramping)."
-        },
-        {
-            "ParameterName": "WaitTimerMinutes",
-            "Value": 10.0,
-            "Description": "How many minutes to wait."
-        },
-        {
-            "ParameterName": "MaximumMinutesGrToReachTemperature",
-            "Value": 20.0,
-            "Description": "The maximum time a graphite reactor should take to reach its setpoint."
-        },
-        {
-            "ParameterName": "MaximumMinutesIpToReachTemperature",
-            "Value": 10.0,
-            "Description": "The maximum time an inlet port should take to reach its setpoint."
-        },
-        {
-            "ParameterName": "IpMinutes",
-            "Value": 60.0,
-            "Description": "Set time for the IP Timer."
-        },
-        {
-            "ParameterName": "IpTemperatureCushion",
-            "Value": 20.0,
-            "Description": "The acceptable range around IpSetpoint considered at temperature."
-        },
-        {
-            "ParameterName": "MaximumSecondsAdmitGas",
-            "Value": 60.0,
-            "Description": "The longest time allowed for admitting gas."
-        },
-        {
-            "ParameterName": "KeepFeUnderH2",
-            "Value": 0.0,
-            "Description": "Whether to evacuate H2 after preconditioning graphite reactors."
-        }
+        "ParameterName": "SplitEquilibrationSeconds",
+        "Value": 0.0,
+        "Description": "After expanding a sample into a larger section, how long to wait before subdividing it."
+      },
+      {
+        "ParameterName": "IronPreconditioningMinutes",
+        "Value": 15.0,
+        "Description": "Duration of iron powder preparation process."
+      },
+      {
+        "ParameterName": "QuartzFurnaceWarmupMinutes",
+        "Value": 10.0,
+        "Description": "How long after turn-on the quartz media takes to reach its functional temperature range."
+      },
+      {
+        "ParameterName": "SulfurTrapMinutes",
+        "Value": 20.0,
+        "Description": "Duration of the sulfur trapping process."
+      },
+      {
+        "ParameterName": "H2_CO2GraphitizationRatio",
+        "Value": 2.3,
+        "Description": "Target H2:CO2 ratio for graphitization, providing excess hydogen to speed reaction."
+      },
+      {
+        "ParameterName": "H2DensityAdjustment",
+        "Value": 0.76,
+        "Description": "Estimated appropriate initial GM H2 pressure reduction to compensate for higher density of H2 in frozen standard GR coldfinger."
+      },
+      {
+        "ParameterName": "SmallSampleMicrogramsCarbon",
+        "Value": 10.0,
+        "Description": "A sample with less than this much carbon is processed as \"small.\""
+      },
+      {
+        "ParameterName": "MinimumUgCThatPermits_d13CSplit",
+        "Value": 1000.0,
+        "Description": "The minimum Aliquot mass (in micrograms) sufficient to provide a d13C split."
+      },
+      {
+        "ParameterName": "DilutedSampleMicrogramsCarbon",
+        "Value": 0.0,
+        "Description": "The minimum final mass for a diluted sample. Dilution is disabled unless DilutedSampleMicrogramsCarbon > SmallSampleMicrogramsCarbon"
+      },
+      {
+        "ParameterName": "MaximumSampleMicrogramsCarbon",
+        "Value": 1000.0,
+        "Description": "Discard CO2 splits as long as the sample contains more than this much carbon."
+      },
+      {
+        "ParameterName": "IpEvacuationPressure",
+        "Value": 0.1,
+        "Description": "Pressure to use when evacuating an IP."
+      },
+      {
+        "ParameterName": "CollectUntilTemperatureRises",
+        "Value": "NaN",
+        "Description": "Stop collecting into the coil trap when the Inlet Port temperature rises to this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectUntilTemperatureFalls",
+        "Value": "NaN",
+        "Description": "Stop collecting into the coil trap when the Inlet Port temperature falls to this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectCloseIpAtPressure",
+        "Value": "NaN",
+        "Description": "During sample collection, close the Inlet Port when the Inlet Manifold pressure falls to this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectCloseIpAtCtPressure",
+        "Value": "NaN",
+        "Description": "During sample collection, close the Inlet Port when the Coil Trap pressure falls to this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectUntilCtFlowFullyOpen",
+        "Value": "NaN",
+        "Description": "Stop collecting into the coil trap when Coil Trap flow valve is fully open, if this value is a non-zero number."
+      },
+      {
+        "ParameterName": "MinutesCollectingTooLong",
+        "Value": "NaN",
+        "Description": "Something's wrong if collection takes this long; this check is disabled if the value is not a number."
+      },
+      {
+        "ParameterName": "FinishCollecting",
+        "Value": 1.0,
+        "Description": "Continue collecting into the coil trap until Coil Trap pressure stops falling, if this value is a non-zero number."
+      },
+      {
+        "ParameterName": "CollectUntilUgc",
+        "Value": "NaN",
+        "Description": "Stop collecting into the coil trap when amount of carbon in the Coil Trap reaches this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectUntilMinutes",
+        "Value": "NaN",
+        "Description": "Stop collecting into the coil trap when this much time has elapsed, provided that the value is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "CollectUntilCtPressureFalls",
+        "Value": 0.2,
+        "Description": "Stop collecting when the Coil Trap pressure falls to or below this value, provided that it is a number (i.e., not NaN)."
+      },
+      {
+        "ParameterName": "IpSetpoint",
+        "Value": 1000.0,
+        "Description": "The Inlet Port sample furnace's target setpoint (the final setpoint when ramping)."
+      },
+      {
+        "ParameterName": "WaitTimerMinutes",
+        "Value": 10.0,
+        "Description": "How many minutes to wait."
+      },
+      {
+        "ParameterName": "MaximumMinutesGrToReachTemperature",
+        "Value": 20.0,
+        "Description": "The maximum time a graphite reactor should take to reach its setpoint."
+      },
+      {
+        "ParameterName": "MaximumMinutesIpToReachTemperature",
+        "Value": 10.0,
+        "Description": "The maximum time an inlet port should take to reach its setpoint."
+      },
+      {
+        "ParameterName": "IpMinutes",
+        "Value": 60.0,
+        "Description": "Set time for the IP Timer."
+      },
+      {
+        "ParameterName": "IpTemperatureCushion",
+        "Value": 20.0,
+        "Description": "The acceptable range around IpSetpoint considered at temperature."
+      },
+      {
+        "ParameterName": "MaximumSecondsAdmitGas",
+        "Value": 60.0,
+        "Description": "The longest time allowed for admitting gas."
+      },
+      {
+        "ParameterName": "KeepFeUnderH2",
+        "Value": 0.0,
+        "Description": "Whether to evacuate H2 after preconditioning graphite reactors."
+      }
     ]
   },
   "AutoFeedEnabled": false,
   "Power": "Power",
   "SampleLog": "SampleLog",
   "TestLog": "TestLog",
+  "SampleRecords": null,
   "Ambient": "Ambient",
-  "VacuumSystem": "VacuumSystem",
   "InletManifold": "IM",
   "CoilTrap": "CT",
   "VariableTemperatureTrap": "VTT",
