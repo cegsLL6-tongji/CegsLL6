@@ -1026,21 +1026,25 @@
         "$type": "AeonHacs.ExponentialFilter, AeonHacs.Core",
         "Name": "",
         "Description": "",
-        "Power": 3.0,
-        "StepChange": 0.2
+        "Power": 2.0,
+        "StepChange": 0.01
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x+-0"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.016655486803451903,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "CompensatedGain",
-            "Argument": "x*14.97"
+                "Item1": 6.8324,
+                "Item2": 104.4
+              }
+            ]
           }
         ]
       },
@@ -1067,28 +1071,32 @@
       "Ratiometric": false,
       "MaxValue": 10.0,
       "MinValue": 0.0,
-      "Sensitivity": 0.001,
-      "Resolution": 0.001,
+      "Sensitivity": 0.0001,
+      "Resolution": 0.0001,
       "ResolutionIsProportional": false,
       "Filter": {
         "$type": "AeonHacs.ExponentialFilter, AeonHacs.Core",
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x+-0"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.006641828845705464,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "CompensatedGain",
-            "Argument": "x*1.222"
+                "Item1": 8.3502,
+                "Item2": 10.45
+              }
+            ]
           }
         ]
       },
@@ -1110,7 +1118,7 @@
       "Description": "Foreline pressure",
       "MaximumVoltage": 10.0,
       "AnalogInputMode": "SingleEnded",
-      "MinimumVoltage": 0.0,
+      "MinimumVoltage": -10.0,
       "UnitSymbol": "Torr",
       "Ratiometric": true,
       "MaxValue": 1551.0,
@@ -1123,20 +1131,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.49621754928716183,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3398,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1171,20 +1183,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.49621754928716183,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3398,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1219,20 +1235,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.5063379152492451,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3542,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1267,20 +1287,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.491840002790119,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3385,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1315,35 +1339,56 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.01
+        "StepChange": 0.02
       },
       "Conversion": {
         "Name": "",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.OperationSet, AeonHacs.Core",
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
             "Name": "VoltageCorrection",
-            "Operations": [
+            "CalibrationData": [
               {
-                "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-                "Name": "ZeroOffset",
-                "Argument": "x-1"
+                "Item1": 1.2919,
+                "Item2": 0.8543
               },
               {
-                "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-                "Name": "VRef Correction",
-                "Argument": "x+1"
+                "Item1": 2.1859,
+                "Item2": 1.0294
               },
               {
-                "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-                "Name": "Gain",
-                "Argument": "x*1"
+                "Item1": 3.3536,
+                "Item2": 2.0086
+              },
+              {
+                "Item1": 4.5972,
+                "Item2": 3.0
+              },
+              {
+                "Item1": 4.9702,
+                "Item2": 5.0382
+              },
+              {
+                "Item1": 5.9773,
+                "Item2": 6.0673
+              },
+              {
+                "Item1": 6.7009,
+                "Item2": 6.7898
+              },
+              {
+                "Item1": 7.8707,
+                "Item2": 7.9636
+              },
+              {
+                "Item1": 8.7574,
+                "Item2": 8.8448
               }
             ]
           },
           {
             "$type": "AeonHacs.Utilities.OperationSet, AeonHacs.Core",
-            "Name": "ValueConversion",
+            "Name": "TransferFunction",
             "Operations": [
               {
                 "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
@@ -1392,18 +1437,22 @@
         "Name": "",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x+0"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltageCorrection",
+            "CalibrationData": [
+              {
+                "Item1": 0.0,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "VoltageCorrection",
-            "Argument": "x*1.2252"
+                "Item1": 8.0091,
+                "Item2": 9.98
+              }
+            ]
           },
           {
             "$type": "AeonHacs.Utilities.OperationSet, AeonHacs.Core",
-            "Name": "ValueConversion",
+            "Name": "TransferFunction",
             "Operations": [
               {
                 "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
@@ -1423,9 +1472,15 @@
             ]
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
+            "$type": "AeonHacs.Utilities.OperationSet, AeonHacs.Core",
             "Name": "UnitConversion",
+            "Operations": [
+              {
+            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
+                "Name": "mbarToTorr",
             "Argument": "x*0.750061683"
+          }
+        ]
           }
         ]
       },
@@ -1454,20 +1509,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.5024755306109031,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3584,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1496,20 +1555,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.48502904717936063,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3389,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1538,20 +1601,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.01
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.511582771212074,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.351,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1567,7 +1634,7 @@
       "Description": "Graphite reactor 4 pressure",
       "MaximumVoltage": 10.0,
       "AnalogInputMode": "SingleEnded",
-      "MinimumVoltage": 0.0,
+      "MinimumVoltage": -10.0,
       "UnitSymbol": "Torr",
       "Ratiometric": true,
       "MaxValue": 1551.0,
@@ -1580,20 +1647,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.513530566543172,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3726,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1622,20 +1693,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.509687309190977,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3634,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1651,7 +1726,7 @@
       "Description": "Graphite reactor 6 pressure",
       "MaximumVoltage": 10.0,
       "AnalogInputMode": "SingleEnded",
-      "MinimumVoltage": 0.0,
+      "MinimumVoltage": -10.0,
       "UnitSymbol": "Torr",
       "Ratiometric": true,
       "MaxValue": 1551.0,
@@ -1664,20 +1739,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.02
+        "StepChange": 0.005
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.499810463714926,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3489,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1705,21 +1784,25 @@
         "$type": "AeonHacs.ExponentialFilter, AeonHacs.Core",
         "Name": "",
         "Description": "",
-        "Power": 2.5,
-        "StepChange": 0.05
+        "Power": 2.0,
+        "StepChange": 0.01
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.5"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToTorr",
+            "CalibrationData": [
+              {
+                "Item1": 0.503,
+                "Item2": 0.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*385"
+                "Item1": 2.3616,
+                "Item2": 699.6
+              }
+            ]
           }
         ]
       },
@@ -1748,20 +1831,24 @@
         "Name": "",
         "Description": "",
         "Power": 2.0,
-        "StepChange": 0.05
+        "StepChange": 0.01
       },
       "Conversion": {
-        "Name": "VoltageConversion",
+        "Name": "ValueConversion",
         "Operations": [
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "ZeroOffset",
-            "Argument": "x-0.4"
+            "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
+            "Name": "VoltsToDegC",
+            "CalibrationData": [
+              {
+                "Item1": 0.692,
+                "Item2": 15.0
           },
           {
-            "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-            "Name": "Gain",
-            "Argument": "x*48.3363"
+                "Item1": 0.985,
+                "Item2": 30.0
+              }
+            ]
           }
         ]
       },
@@ -1789,30 +1876,30 @@
         "$type": "AeonHacs.ExponentialFilter, AeonHacs.Core",
         "Name": "",
         "Description": "",
-        "Power": 2.5,
-        "StepChange": 0.25
+        "Power": 2.0,
+        "StepChange": 0.02
       },
       "Conversion": {
         "Name": "ValueConversion",
         "Operations": [
           {
             "$type": "AeonHacs.PchipInterpolator, AeonHacs.Core",
-            "Name": "Interpolate",
+            "Name": "VoltsToDegC",
             "CalibrationData": [
               {
-                "Item1": 0.737,
-                "Item2": 15.0
+                "Item1": 0.758,
+                "Item2": 15.1
               },
               {
-                "Item1": 0.83,
+                "Item1": 0.827,
                 "Item2": 20.0
               },
               {
-                "Item1": 0.941,
-                "Item2": 27.0
+                "Item1": 0.93,
+                "Item2": 27.1
               },
               {
-                "Item1": 1.074,
+                "Item1": 1.002,
                 "Item2": 35.0
               }
             ]
@@ -2363,7 +2450,7 @@
     "tLNManifold": {
       "$type": "AeonHacs.Components.HC6Thermocouple, AeonHacs.Core",
       "Name": "tLNManifold",
-      "Description": "LN manifold 1 level sensor temperature",
+      "Description": "LN manifold level sensor temperature",
       "Type": "T",
       "UnitSymbol": "°C",
       "Ratiometric": false,
@@ -2729,13 +2816,13 @@
           "Name": "Close",
           "Value": 1700,
           "Incremental": false,
-          "Configuration": "t0.8"
+          "Configuration": "t1.0"
         },
         {
           "Name": "Open",
           "Value": 700,
           "Incremental": false,
-          "Configuration": "t0.8"
+          "Configuration": "t1.0"
         }
       ]
     },
@@ -7964,7 +8051,7 @@
       },
       {
             "ParameterName": "ThawBeforeGraphitizing",
-            "Value": 1.0,
+            "Value": "NaN",
             "Description": "Thaw the CO2 in the graphite reactor before starting the furnace."
         },
         {
@@ -8069,7 +8156,7 @@
       },
       {
         "ParameterName": "CollectUntilCtPressureFalls",
-        "Value": 0.2,
+        "Value": "NaN",
         "Description": "Stop collecting when the Coil Trap pressure falls to or below this value, provided that it is a number (i.e., not NaN)."
       },
       {
