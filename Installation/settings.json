@@ -1051,7 +1051,7 @@
       "RateOfChange": {
         "Name": "",
         "Description": "",
-        "FilterLength": 19,
+        "FilterLength": 13,
         "MaxIntervalMilliseconds": 1000.0,
         "Resolution": 0.01
       },
@@ -1103,7 +1103,7 @@
       "RateOfChange": {
         "Name": "",
         "Description": "",
-        "FilterLength": 21,
+        "FilterLength": 13,
         "MaxIntervalMilliseconds": 5000.0,
         "Resolution": 0.001
       },
@@ -1472,15 +1472,9 @@
             ]
           },
           {
-            "$type": "AeonHacs.Utilities.OperationSet, AeonHacs.Core",
-            "Name": "UnitConversion",
-            "Operations": [
-              {
             "$type": "AeonHacs.Utilities.Arithmetic, AeonHacs.Core",
-                "Name": "mbarToTorr",
+            "Name": "mbarToTorr",
             "Argument": "x*0.750061683"
-          }
-        ]
           }
         ]
       },
@@ -2723,7 +2717,7 @@
       "RateOfChange": {
         "Name": "",
         "Description": "",
-        "FilterLength": 21,
+        "FilterLength": 13,
         "MaxIntervalMilliseconds": 1000.0,
         "Resolution": 0.1
       },
