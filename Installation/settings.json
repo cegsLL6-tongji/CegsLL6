@@ -1308,13 +1308,7 @@
           }
         ]
       },
-      "RateOfChange": {
-        "Name": "",
-        "Description": "",
-        "FilterLength": 13,
-        "MaxIntervalMilliseconds": 1000.0,
-        "Resolution": 0.01
-      },
+      "RateOfChange": null,
       "Stable": 0.5,
       "Falling": -0.5,
       "Rising": 0.5,
@@ -5362,24 +5356,6 @@
       "Derivative": 100.0,
       "Preset": 0.8
     },
-    "CFF60V88W": {
-      "$type": "AeonHacs.Components.PidSetup, AeonHacs.Core",
-      "Name": "CFF60V88W",
-      "Description": "Generic PID parameters for a 60V 88W CF furnace",
-      "Gain": 25.0,
-      "Integral": 0.01,
-      "Derivative": 100.0,
-      "Preset": 0.8
-    },
-    "GROven200W": {
-      "$type": "AeonHacs.Components.PidSetup, AeonHacs.Core",
-      "Name": "GROven200W",
-      "Description": "Generic PID parameters for a 200W GR oven",
-      "Gain": 19.23,
-      "Integral": 0.00672,
-      "Derivative": 283.6,
-      "Preset": 0.991
-    },
     "VtcCold": {
       "$type": "AeonHacs.Components.PidSetup, AeonHacs.Core",
       "Name": "VtcCold",
@@ -5995,9 +5971,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 71.2,
-      "PressurePeak": 556,
-      "MilliLiters": 2.7728189422697764,
+      "PriorPressure": 0.0,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR1_GM",
       "Manometer": "pGR1",
       "Thermometer": "tGR1",
@@ -6027,9 +6003,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 48.300000000000004,
-      "PressurePeak": 500,
-      "MilliLiters": 2.619673747931876,
+      "PriorPressure": 0.0,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR2_GM",
       "Manometer": "pGR2",
       "Thermometer": "tGR2",
@@ -6059,9 +6035,9 @@
         "IsRunning": false,
         "Accumulated": 0
       },
-      "PriorPressure": 286.5,
-      "PressurePeak": 1662,
-      "MilliLiters": 2.6249849672434467,
+      "PriorPressure": 0.0,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR3_GM",
       "Manometer": "pGR3",
       "Thermometer": "tGR3",
@@ -6092,8 +6068,8 @@
         "Accumulated": 0
       },
       "PriorPressure": 0.0,
-      "PressurePeak": 1250,
-      "MilliLiters": 3.3,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR4_GM",
       "Manometer": "pGR4",
       "Thermometer": "tGR4",
@@ -6124,8 +6100,8 @@
         "Accumulated": 0
       },
       "PriorPressure": 0.0,
-      "PressurePeak": 1250,
-      "MilliLiters": 3.3,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR5_GM",
       "Manometer": "pGR5",
       "Thermometer": "tGR5",
@@ -6156,8 +6132,8 @@
         "Accumulated": 0
       },
       "PriorPressure": 0.0,
-      "PressurePeak": 1250,
-      "MilliLiters": 3.3,
+      "PressurePeak": 0,
+      "MilliLiters": 2.75,
       "Valve": "vGR6_GM",
       "Manometer": "pGR6",
       "Thermometer": "tGR6",
@@ -7423,7 +7399,7 @@
         {
           "Name": "pVM_GP",
           "Resolution": -1.0,
-          "Format": "0.00e0",
+          "Format": "0.0",
           "Path": ""
         }
       ],
