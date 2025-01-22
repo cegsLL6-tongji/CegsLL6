@@ -5373,15 +5373,6 @@
       "Integral": 0.002,
       "Derivative": 370.0,
       "Preset": 0.7
-    },
-    "HeatTape120V470W": {
-      "$type": "AeonHacs.Components.PidSetup, AeonHacs.Core",
-      "Name": "HeatTape120V470W",
-      "Description": "Generic PID parameters for 470W heat tape",
-      "Gain": 63.49,
-      "Integral": 0.02907,
-      "Derivative": 166.7,
-      "Preset": 8.273
     }
   },
   "LNManifolds": {
