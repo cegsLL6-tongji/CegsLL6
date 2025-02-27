@@ -8056,9 +8056,19 @@
         "Description": "The maximum time a graphite reactor should take to reach its setpoint."
       },
       {
+        "ParameterName": "MaximumMinutesGraphitizing",
+        "Value": 240.0,
+        "Description": "Notify if reaction time exceeds this."
+      },
+      {
         "ParameterName": "MaximumMinutesIpToReachTemperature",
         "Value": 10.0,
         "Description": "The maximum time an inlet port should take to reach its setpoint."
+      },
+      {
+        "ParameterName": "MaximumMinutesWaitFalling",
+        "Value": 30.0,
+        "Description": "Notify if graphite reaction remains undetected for longer than this."
       },
       {
         "ParameterName": "MaximumResidual",
@@ -8086,9 +8096,9 @@
         "Description": "How long to average a measurement."
       },
       {
-        "ParameterName": "MinimumGRMinutes",
+        "ParameterName": "MinimumMinutesGraphitizing",
         "Value": 0.0,
-        "Description": "Minimum Graphitization time."
+        "Description": "Minimum graphitization time."
       },
       {
         "ParameterName": "MinimumUgCThatPermits_d13CSplit",
