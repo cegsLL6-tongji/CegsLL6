@@ -7866,6 +7866,11 @@
         "Description": "Time to wait for CO2 transfer between chambers."
       },
       {
+        "ParameterName": "CheckGrCO2Pressure",
+        "Value": "NaN",
+        "Description": "Observe CO2 pressure in reactor before adding H2."
+      },
+      {
         "ParameterName": "CleanPressure",
         "Value": 0.0005,
         "Description": "Low enough to start a new sample."
